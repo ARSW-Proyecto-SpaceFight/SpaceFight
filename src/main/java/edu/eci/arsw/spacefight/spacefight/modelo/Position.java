@@ -1,33 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.eci.arsw.spacefight.spacefight.modelo;
 
-/**
- *
- * @author 2125275
- */
-public class Position {
-    private int Xpos;
-    private int Ypos;
+public abstract class Position {
+    protected int Xpos;
+    protected int Ypos;
 
-    public int getXpos() {
+    protected int getXpos() {
         return Xpos;
     }
 
-    public void setXpos(int Xpos) {
-        this.Xpos = Xpos;
-    }
-
-    public int getYpos() {
+    protected int getYpos() {
         return Ypos;
     }
 
-    public void setYpos(int Ypos) {
-        this.Ypos = Ypos;
+    protected void setYpos(int ypos) {
+        Ypos = ypos;
     }
-    
-    
+
+    protected void setXpos(int xpos) {
+        Xpos = xpos;
+    }
 }

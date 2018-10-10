@@ -9,6 +9,16 @@ package edu.eci.arsw.spacefight.spacefight.modelo;
  *
  * @author 2125275
  */
-public class LifeOrb {
-    private Position pos;
+public class LifeOrb extends Item {
+
+    private int Health;
+    public LifeOrb(int Xpos,int Ypos,int Health){
+        this.Xpos=Xpos;
+        this.Ypos=Ypos;
+        this.Health=Health;
+    }
+
+    @Override
+    public void Impact(Ship s){s.Changehealth(Health);}
+
 }

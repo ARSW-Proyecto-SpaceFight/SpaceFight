@@ -9,6 +9,10 @@ package edu.eci.arsw.spacefight.spacefight.modelo;
  *
  * @author 2125275
  */
-public class Item {
+public abstract class Item extends Position {
+
+    protected void Impact(Ship s){
+
+    }
     
 }

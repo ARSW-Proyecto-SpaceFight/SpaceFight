@@ -7,6 +7,9 @@ package edu.eci.arsw.spacefight.spacefight.restcontrollers;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import edu.eci.arsw.spacefight.spacefight.Services.BattleGroundServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -23,8 +26,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/spacefight")
-public class SpaceFightAPIController {
-    @RequestMapping(method = RequestMethod.GET)        
+public class SpaceFightAPIController{
+
+    @Autowired
+    BattleGroundServices bgs;
+
+
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGetRecursoOrdenes(){
  	try {
             //obtener datos que se enviarán a través del API

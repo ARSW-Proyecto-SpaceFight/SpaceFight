@@ -12,8 +12,12 @@ import java.util.HashMap;
  * @author 2125275
  */
 public class Team {
-    private Position pos;
+
     private int Score;
     private HashMap<String,Ship> ships;
+
+    public Team(){
+        Score=0;
+    }
     
 }

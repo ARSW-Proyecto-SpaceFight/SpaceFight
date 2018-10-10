@@ -9,7 +9,17 @@ package edu.eci.arsw.spacefight.spacefight.modelo;
  *
  * @author 2125275
  */
-public class Shoot {
-    private Position pos;
+public class Shoot extends Position {
+    private Ship Shooter;
     private int Damage;
+    Shoot(Ship s,int Xpos,int Ypos){
+        this.Xpos =Xpos;
+        this.Ypos=Ypos;
+        Shooter=s;
+
+    }
+
+    public Ship getShooter() {
+        return Shooter;
+    }
 }
