@@ -12,6 +12,7 @@ package edu.eci.arsw.spacefight.spacefight.modelo;
 public class Ship extends Position {
 
     private int Health;
+    private String ID;
 
     public Ship(int Xpos,int Ypos){
         this.Xpos=Xpos;
@@ -28,4 +29,14 @@ public class Ship extends Position {
     public void shoot(){
         new Shoot(this,Xpos,Ypos);
     }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+    
+    
 }
