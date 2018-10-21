@@ -1,44 +1,90 @@
+/*
+*Modulo que contiene la informacion de las naves y la propia
+*/
 var ship = (function(){
-	var id;
-	var x = 0;
-	var y = 0;
-	var health;
-	var imageElement;
+	var id;	
+	var allShips;
 	return{
-		setX : function(xPos){
-			x = xPos;
-			imageElement.style.left=xPos.toString() + "px";
+		setID : function(idS){
+			id = idS;
 		},
-		setY : function(yPos){
-			y = yPos;
-			imageElement.style.top=yPos.toString() + "px";
+		getID : function(){
+			return id;
 		},
-		moveOnX : function(units){
-			x += units;
-			imageElement.style.left=x.toString() + "px";
+		setAllShips : function(ships){
+			allShips = ships;
 		},
-		moveOnY : function(units){			
-			y += units;				
-			imageElement.style.top=y.toString() + "px";
+		getAllShips : function(){
+			return allShips;
 		},
-		setHealth : function(newHealth){
-			health = newHealth;
-		},
-		setImageElement : function(imageE){
-			imageElement = imageE;
+		getJSON : function(){
+			var jsonString = {
+								"id" : id,
+								"x" : 0,
+								"y" : 0,
+								"health" : 100
+								}
+			return jsonString;
 		}
 	}
 })();
 
-function start(){	
-	var img = document.getElementById("ship");
-	ship.setImageElement(img);
-	//img.style.top = "300px";
-	//img.style.left = "300px";
+/*
+*Comienza todo y pregunta constantemente el estado del juego
+*/
+async function start(){		
+	if(await existsRooms() == false){
+		await createNewRoom(1);
+	}
+	await newShip();
+	while(true){		
+		await pintar();
+		await(2000);
+	}
 }
 
+/*
+*Accion cuando se presiona las teclas
+*/
 window.onkeydown = function(e) {
 	var key = e.keyCode ? e.keyCode : e.which;
 	move(key);   
 }
 
+/*
+*Pinta el estado de juego
+*/
+async function pintar(){
+	await getAllShips();
+	var agregar = "";
+	for(var i = 0; i < ship.getAllShips().length; i++ ){
+		agregar += "<img id='ship"+ship.getAllShips()[i].id+"' style='position:absolute; width:"+ship.getAllShips()[i].shipSize+"px; height:"+ship.getAllShips()[i].shipSize+"px; top:"+ship.getAllShips()[i].y+"px; left:"+ship.getAllShips()[i].x+"px'";
+		if(ship.getAllShips()[i].direction == "U"){
+			if(ship.getAllShips()[i].id == ship.getID()){
+				agregar += " src='images/shipPlayer.png' ></img>";
+			}else{
+				agregar += " src='images/ship.png' ></img>";
+			}
+		}else if(ship.getAllShips()[i].direction == "R"){
+			if(ship.getAllShips()[i].id == ship.getID()){
+				agregar += " src='images/rightPlayer.png' ></img>";
+			}else{
+				agregar += " src='images/right.png' ></img>";
+			}			
+		}else if(ship.getAllShips()[i].direction == "L"){
+			if(ship.getAllShips()[i].id == ship.getID()){
+				agregar += " src='images/leftPlayer.png' ></img>";
+			}else{
+				agregar += " src='images/left.png' ></img>";
+			}				
+		}else{
+			if(ship.getAllShips()[i].id == ship.getID()){
+				agregar += " src='images/downPlayer.png' ></img>";
+			}else{
+				agregar += " src='images/down.png' ></img>";
+			}
+			
+		}
+	}
+	document.getElementById("all").innerHTML = agregar;
+}
