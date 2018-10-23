@@ -1,11 +1,11 @@
-package edu.eci.arsw.spacefight.spacefight.services;
+package edu.eci.arsw.spacefight.spacefight.Services;
 
-import edu.eci.arsw.spacefight.spacefight.game.BattleGroundGameException;
+import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import java.util.Set;
 
 
-public interface BattleGroundServices {
+public interface SpaceFightServices {
     
     public void registerPlayerToRoom(int roomId,Ship ship) throws BattleGroundGameException;
     
