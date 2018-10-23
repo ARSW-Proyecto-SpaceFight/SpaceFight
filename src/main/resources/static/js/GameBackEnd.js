@@ -1,5 +1,5 @@
-var host = "http://localhost:8080/spacefight/"
-//var host = "https://spacefightarsw.herokuapp.com/spacefight/"
+//var host = "http://localhost:8080/spacefight/"
+var host = "https://spacefightarsw.herokuapp.com/spacefight/"
 
 /*
 *Le dice al servidor que se movio la nave
