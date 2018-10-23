@@ -1,22 +1,22 @@
-package edu.eci.arsw.spacefight.spacefight.modelo;
+package edu.eci.arsw.spacefight.spacefight.model;
 
 public abstract class Position {
     protected int Xpos;
     protected int Ypos;
 
-    protected int getXpos() {
+    public int getXpos() {
         return Xpos;
     }
 
-    protected int getYpos() {
+    public int getYpos() {
         return Ypos;
     }
 
-    protected void setYpos(int ypos) {
+    public void setYpos(int ypos) {
         Ypos = ypos;
     }
 
-    protected void setXpos(int xpos) {
+    public void setXpos(int xpos) {
         Xpos = xpos;
     }
 }
