@@ -9,11 +9,9 @@ import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGame;
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
 import edu.eci.arsw.spacefight.spacefight.Game.Master;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
-<<<<<<< HEAD
+
 import edu.eci.arsw.spacefight.spacefight.Services.SpaceFightServices;
-=======
-import edu.eci.arsw.spacefight.spacefight.Services.BattleGroundServices;
->>>>>>> master
+
 import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;

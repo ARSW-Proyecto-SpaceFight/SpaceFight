@@ -1,22 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-<<<<<<< HEAD
+
 package edu.eci.arsw.spacefight.spacefight.Game;
 
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGame;
 import edu.eci.arsw.spacefight.spacefight.model.*;
 
-=======
-package edu.eci.arsw.spacefight.spacefight.game;
 
-import edu.eci.arsw.spacefight.spacefight.game.BattleGroundGame;
+import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGame;
 import edu.eci.arsw.spacefight.spacefight.model.Item;
 import edu.eci.arsw.spacefight.spacefight.model.Shoot;
 import edu.eci.arsw.spacefight.spacefight.model.Team;
->>>>>>> master
+
 import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +23,7 @@ public class BattleGroundImp implements BattleGroundGame {
     private ArrayList<Item> items;
     private Team team1;
     private Team team2;
-<<<<<<< HEAD
+
 
 
     @Override
@@ -74,10 +67,5 @@ public class BattleGroundImp implements BattleGroundGame {
             throw new BattleGroundGameException("The selected team is incorrect");
         }
     }
-=======
-    
-    
-    
-    
->>>>>>> master
+
 }

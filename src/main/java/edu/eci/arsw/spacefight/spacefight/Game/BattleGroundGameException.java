@@ -1,4 +1,4 @@
-package edu.eci.arsw.spacefight.spacefight.game;
+package edu.eci.arsw.spacefight.spacefight.Game;
 
 public class BattleGroundGameException extends Exception {
 
