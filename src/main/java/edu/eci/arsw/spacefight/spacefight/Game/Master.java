@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+<<<<<<< HEAD:src/main/java/edu/eci/arsw/spacefight/spacefight/Game/Imp/Master.java
 <<<<<<< Updated upstream:src/main/java/edu/eci/arsw/spacefight/spacefight/Game/Imp/Master.java
 package edu.eci.arsw.spacefight.spacefight.Game.Imp;
 =======
@@ -14,6 +15,9 @@ import javassist.bytecode.stackmap.BasicBlock;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 >>>>>>> Stashed changes:src/main/java/edu/eci/arsw/spacefight/spacefight/Game/Master.java
+=======
+package edu.eci.arsw.spacefight.spacefight.game;
+>>>>>>> master:src/main/java/edu/eci/arsw/spacefight/spacefight/Game/Master.java
 
 /**
  *

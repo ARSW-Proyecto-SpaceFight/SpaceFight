@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.arsw.spacefight.spacefight.modelo;
+package edu.eci.arsw.spacefight.spacefight.model;
 
 /**
  *
- * @author 2125275
+ * @author User
  */
 public class LifeOrb extends Item {
 
@@ -19,6 +19,6 @@ public class LifeOrb extends Item {
     }
 
     @Override
-    public void Impact(Ship s){s.Changehealth(Health);}
+    public void Impact(Ship s){s.setHealth(Health);}
 
 }

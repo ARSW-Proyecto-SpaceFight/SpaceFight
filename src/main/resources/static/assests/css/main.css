@@ -2216,7 +2216,7 @@
 		background-color: #FF6382;
 		border-radius: 4px;
 		border: 0;
-		color: !important;
+		color: important;
 		cursor: pointer;
 		display: inline-block;
 		font-weight: 200;
@@ -2326,7 +2326,7 @@
 		button.special,
 		.button.special {
 			background-color: #FF6382;
-			color: !important;
+			color: important;
 		}
 
 			input[type="submit"].special:hover,
