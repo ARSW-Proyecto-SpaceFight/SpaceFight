@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,14 +53,11 @@ public class BattleGroundImpInMemory implements BattleGroundServices{
     @Override
     public void removePlayerFromRoom(int roomId, Ship ship) throws BattleGroundGameException {
         if(!roomsData.containsKey(roomId)){
-            throw new BattleGroundGameException("Room"+roomId+"not regostered in the server");
+            throw new BattleGroundGameException("Room"+roomId+"not registered in the server");
         }
-        else{
-            if(!roomsData.get(roomId).contains(ship)){
+        else{                
+            if(!roomsData.get(roomId).remove(ship)){                
                 throw new BattleGroundGameException("Player"+ship.getId()+"not registered in room"+roomId);
-            }
-            else{
-                roomsData.get(roomId).remove(ship);
             }
         }
     }
@@ -101,8 +100,22 @@ public class BattleGroundImpInMemory implements BattleGroundServices{
         Ship ship = null;
         for(Ship s:roomsData.get(roomId)){
             if(s.getId() == shipId) ship = s;
-        }
-        
+        }        
         ship.move(key);
+    }
+
+    @Override
+    public synchronized void playerOnline(int roomId, int player){
+        for(Ship s: roomsData.get(roomId)){
+            if(s.getId() == player){
+                s.isOnline();
+            }else if(s.notOnline()){                                      
+                try {                                   
+                    removePlayerFromRoom(roomId, s);
+                } catch (BattleGroundGameException ex) {
+                    //Logger.getLogger(BattleGroundImpInMemory.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 }
