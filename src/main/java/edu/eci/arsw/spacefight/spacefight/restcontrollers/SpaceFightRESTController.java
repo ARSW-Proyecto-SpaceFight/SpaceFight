@@ -5,21 +5,12 @@
  */
 package edu.eci.arsw.spacefight.spacefight.restcontrollers;
 
-<<<<<<< HEAD
-import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
-import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
-=======
 import edu.eci.arsw.spacefight.spacefight.game.BattleGroundGameException;
->>>>>>> master
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-<<<<<<< HEAD
-import edu.eci.arsw.spacefight.spacefight.Services.SpaceFightServices;
-=======
 import edu.eci.arsw.spacefight.spacefight.services.BattleGroundServices;
->>>>>>> master
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,11 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SpaceFightRESTController{
 
     @Autowired
-<<<<<<< HEAD
-    SpaceFightServices bgs;
-=======
     BattleGroundServices bgs;
->>>>>>> master
 
    
     

@@ -3,20 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-<<<<<<< HEAD
-package edu.eci.arsw.spacefight.spacefight.Game;
-
-import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGame;
-import edu.eci.arsw.spacefight.spacefight.model.*;
-
-=======
 package edu.eci.arsw.spacefight.spacefight.game;
 
 import edu.eci.arsw.spacefight.spacefight.game.BattleGroundGame;
 import edu.eci.arsw.spacefight.spacefight.model.Item;
 import edu.eci.arsw.spacefight.spacefight.model.Shoot;
 import edu.eci.arsw.spacefight.spacefight.model.Team;
->>>>>>> master
 import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 
@@ -30,54 +22,8 @@ public class BattleGroundImp implements BattleGroundGame {
     private ArrayList<Item> items;
     private Team team1;
     private Team team2;
-<<<<<<< HEAD
-
-
-    @Override
-    public void insertPlayerToTeam(Ship ship, int team) throws BattleGroundGameException {
-        if(team == 1){
-            try {
-                team1.addPlayer(ship);
-            } catch (ModelException e) {
-                throw new BattleGroundGameException("The team could not accept the player");
-            }
-        }
-        else if(team == 2){
-            try {
-                team2.addPlayer(ship);
-            } catch (ModelException e) {
-                throw new BattleGroundGameException("The team could not accept the player");
-            }
-        }
-        else{
-            throw new BattleGroundGameException("The selected team is incorrect");
-        }
-    }
-
-    @Override
-    public void removePlayerFromTeam(Ship ship, int team) throws BattleGroundGameException {
-        if(team == 1){
-            try {
-                team1.removePlayer(ship.getUsername());
-            } catch (ModelException e) {
-                throw new BattleGroundGameException("The team could not accept the player");
-            }
-        }
-        else if(team == 2){
-            try {
-                team2.removePlayer(ship.getUsername());
-            } catch (ModelException e) {
-                throw new BattleGroundGameException("The team could not accept the player");
-            }
-        }
-        else{
-            throw new BattleGroundGameException("The selected team is incorrect");
-        }
-    }
-=======
     
     
     
     
->>>>>>> master
 }
