@@ -20,9 +20,13 @@ public class Ship implements Comparable<Ship> {
     private static final int shipSize = 50;
     private char direction = 'U';
 <<<<<<< HEAD
+<<<<<<< HEAD
     private String username;
 =======
 >>>>>>> master
+=======
+    private int online = 100;
+>>>>>>> a7ee0323231d0416768a314604a98919e90979e2
     //private Position position;
     
     public Ship(){
@@ -114,7 +118,11 @@ public class Ship implements Comparable<Ship> {
     
     @Override
     public int compareTo(Ship o) {
-        return 1;
+        if(o.getId()==this.id){
+            return 0;
+        }else{
+            return 1;
+        }        
     }
 
     public void move(int key){
@@ -139,4 +147,17 @@ public class Ship implements Comparable<Ship> {
                 break;
         }
     }
+    
+    public synchronized void isOnline(){
+        online = 100;
+    }
+    
+    public synchronized boolean notOnline(){
+        online -= 1;
+        if(online <= 0){
+            return true;
+        }else{
+            return false;
+        }
+    }        
 }

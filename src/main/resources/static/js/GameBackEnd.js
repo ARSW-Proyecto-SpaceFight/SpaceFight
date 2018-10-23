@@ -17,17 +17,14 @@ async function move(key){
 async function newShip(){
 	var id = Math.floor((Math.random() * 100) + 1);
 	ship.setID(id);
-	await Promise.resolve(axios.put(host+"1/players",ship.getJSON())
-	.then(async function(response){
-		console.log(id)
-	}));
+	await Promise.resolve(axios.put(host+"1/players",ship.getJSON()));
 }
 
 /*
 *Le pregunta al servidor el estado actual del juego
 */
 async function getAllShips(room){
-	await Promise.resolve(axios.get(host+"1/players")
+	await Promise.resolve(axios.get(host+"1/players?player="+ship.getID())
 	.then(async function(response){
 		ship.setAllShips(response.data);
 	}));

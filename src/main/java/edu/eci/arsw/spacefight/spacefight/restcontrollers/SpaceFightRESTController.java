@@ -52,10 +52,11 @@ public class SpaceFightRESTController{
    
     
     @RequestMapping(path = "/{roomId}/players",method = RequestMethod.GET)
-    public ResponseEntity<?> getRoomPlayers(@PathVariable(name = "roomId") String roomId) {
+    public ResponseEntity<?> getRoomPlayers(@PathVariable(name = "roomId") int roomId, int player) {
 
          try {
-             return new ResponseEntity<>(bgs.getRegisteredPlayers(Integer.parseInt(roomId)),HttpStatus.ACCEPTED);
+             bgs.playerOnline(roomId,player);
+             return new ResponseEntity<>(bgs.getRegisteredPlayers(roomId),HttpStatus.ACCEPTED);
          } catch (BattleGroundGameException ex) {
              Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
              return new ResponseEntity<>(ex.getLocalizedMessage(),HttpStatus.NOT_FOUND);

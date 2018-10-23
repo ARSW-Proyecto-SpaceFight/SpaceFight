@@ -20,5 +20,7 @@ public interface SpaceFightServices {
     public int getTotalRooms() throws BattleGroundGameException;
     
     public void moveShip(int roomId, int shipId, int key);
+    
+    public void playerOnline(int roomId, int player);
 
 }
