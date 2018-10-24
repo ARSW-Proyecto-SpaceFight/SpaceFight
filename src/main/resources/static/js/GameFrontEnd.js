@@ -88,3 +88,4 @@ async function pintar(){
 	}
 	document.getElementById("all").innerHTML = agregar;
 }
+
