@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.arsw.spacefight.spacefight.services;
+package edu.eci.arsw.spacefight.spacefight.Services;
 
-import edu.eci.arsw.spacefight.spacefight.game.BattleGroundGame;
-import edu.eci.arsw.spacefight.spacefight.game.BattleGroundGameException;
+import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
+
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
-import edu.eci.arsw.spacefight.spacefight.services.BattleGroundServices;
+
+
+import edu.eci.arsw.spacefight.spacefight.Services.SpaceFightServices;
+
 import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -23,7 +26,7 @@ import org.springframework.stereotype.Service;
  * @author User
  */
 @Service
-public class BattleGroundImpInMemory implements BattleGroundServices{
+public class BattleGroundImpInMemory implements SpaceFightServices{
     private HashMap<Integer, ConcurrentSkipListSet<Ship>> roomsData;
 
     public BattleGroundImpInMemory() {

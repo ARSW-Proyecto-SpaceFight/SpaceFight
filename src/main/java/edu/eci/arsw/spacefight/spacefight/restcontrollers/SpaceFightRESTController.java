@@ -1,16 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package edu.eci.arsw.spacefight.spacefight.restcontrollers;
 
-import edu.eci.arsw.spacefight.spacefight.game.BattleGroundGameException;
+
+import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
+import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
+
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import edu.eci.arsw.spacefight.spacefight.services.BattleGroundServices;
+import edu.eci.arsw.spacefight.spacefight.Services.SpaceFightServices;
+
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +34,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class SpaceFightRESTController{
 
     @Autowired
-    BattleGroundServices bgs;
+
+    SpaceFightServices bgs;
+
 
    
     

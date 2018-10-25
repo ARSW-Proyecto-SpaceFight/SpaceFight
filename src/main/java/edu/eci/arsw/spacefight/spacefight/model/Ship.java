@@ -20,6 +20,7 @@ public class Ship implements Comparable<Ship> {
     private static final int shipSize = 50;
     private char direction = 'U';
     private int online = 100;
+    private String username;
     //private Position position;
     
     public Ship(){
@@ -30,10 +31,17 @@ public class Ship implements Comparable<Ship> {
         health=100;
     }
 
+    public Ship(int id, int x, int y, Position position, String username) {
+        this.id = id;
+        this.x = x;
+        this.y = y;
+    }
+
     public Ship(int id, int x, int y, Position position) {
         this.id = id;
         this.x = x;
         this.y = y;
+
         //this.position = position;
         health=100;
 
@@ -45,6 +53,15 @@ public class Ship implements Comparable<Ship> {
         this.y = y;
         health=100;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 
     public int getId() {
         return this.id;
