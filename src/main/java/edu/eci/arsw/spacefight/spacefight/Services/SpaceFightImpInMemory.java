@@ -26,10 +26,10 @@ import org.springframework.stereotype.Service;
  * @author User
  */
 @Service
-public class BattleGroundImpInMemory implements SpaceFightServices{
+public class SpaceFightImpInMemory implements SpaceFightServices{
     private HashMap<Integer, ConcurrentSkipListSet<Ship>> roomsData;
 
-    public BattleGroundImpInMemory() {
+    public SpaceFightImpInMemory() {
         roomsData = new HashMap<>();
     }
 
