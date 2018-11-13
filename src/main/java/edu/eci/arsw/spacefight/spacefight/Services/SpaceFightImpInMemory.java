@@ -11,6 +11,7 @@ import edu.eci.arsw.spacefight.spacefight.model.Ship;
 
 
 import edu.eci.arsw.spacefight.spacefight.Services.SpaceFightServices;
+import edu.eci.arsw.spacefight.spacefight.restcontrollers.SpaceFightMessageController;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -19,6 +20,7 @@ import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,10 +29,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SpaceFightImpInMemory implements SpaceFightServices{
+    
+    @Autowired
+    SpaceFightMessageController smc;
+    
     private HashMap<Integer, ConcurrentSkipListSet<Ship>> roomsData;
 
-    public SpaceFightImpInMemory() {
-        roomsData = new HashMap<>();
+    public SpaceFightImpInMemory() {        
+        this.roomsData = new HashMap<>();
     }
 
     
@@ -104,7 +110,7 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
         for(Ship s:roomsData.get(roomId)){
             if(s.getId() == shipId) ship = s;
         }        
-        ship.move(key);
+        ship.move(key);        
     }
 
     @Override
@@ -119,6 +125,21 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
                     //Logger.getLogger(BattleGroundImpInMemory.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+        }
+    }
+
+    @Override
+    public Ship getPlayer(int roomId, int player) throws BattleGroundGameException {
+        Ship playerShip = null;        
+        for(Ship s: roomsData.get(roomId)){
+            if(s.getId() == player){
+                playerShip = s;
+            }
+        }
+        if(playerShip != null){
+            return playerShip;
+        }else{
+            throw new BattleGroundGameException("No existe el jugador");
         }
     }
 }

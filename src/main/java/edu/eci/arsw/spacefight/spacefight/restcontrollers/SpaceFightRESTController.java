@@ -34,11 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SpaceFightRESTController{
 
     @Autowired
-
     SpaceFightServices bgs;
-
-
-   
     
     @RequestMapping(path = "/{roomId}/players",method = RequestMethod.GET)
     public ResponseEntity<?> getRoomPlayers(@PathVariable(name = "roomId") int roomId, int player) {
@@ -145,4 +141,19 @@ public class SpaceFightRESTController{
         }
     }
     
+    @RequestMapping(path = "/{roomId}/{id}",method = RequestMethod.GET)
+    public ResponseEntity<?> getPlayer(@PathVariable(name = "roomId") String roomId, @PathVariable(name = "id") int id){
+        try {            
+            return new ResponseEntity<>(bgs.getPlayer(Integer.parseInt(roomId), id), HttpStatus.CREATED);
+        } catch (BattleGroundGameException ex) {
+            Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getLocalizedMessage(),HttpStatus.BAD_REQUEST);
+        }
+    }
+    
+    public void playerOnline(int roomId, int player){
+        bgs.playerOnline(roomId, player);
+    }
 }
+    
+
