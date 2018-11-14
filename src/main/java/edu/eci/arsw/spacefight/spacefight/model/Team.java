@@ -23,7 +23,7 @@ public class Team {
     
 
     public void addPlayer(Ship ship) throws ModelException {
-        if(ships.size()>5){
+        if(ships.size()>6){
             throw new ModelException("This Team is Full");
         }
         else {
@@ -38,5 +38,14 @@ public class Team {
         else {
             ships.remove(username);
         }
+    }
+    public Ship getShip(String username)throws ModelException{
+        if(!ships.containsKey(username)){
+            throw new ModelException("That ship does not exist");
+        }
+        else{
+            return ships.get(username);
+        }
+
     }
 }

@@ -5,6 +5,7 @@ package edu.eci.arsw.spacefight.spacefight.restcontrollers;
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
 
+
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,6 +36,7 @@ public class SpaceFightRESTController{
 
     @Autowired
     SpaceFightServices bgs;
+
     
     @RequestMapping(path = "/{roomId}/players",method = RequestMethod.GET)
     public ResponseEntity<?> getRoomPlayers(@PathVariable(name = "roomId") int roomId, int player) {

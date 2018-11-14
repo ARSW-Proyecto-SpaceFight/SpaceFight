@@ -55,19 +55,31 @@ public class BattleGroundImp implements BattleGroundGame {
             try {
                 team1.removePlayer(ship.getUsername());
             } catch (ModelException e) {
-                throw new BattleGroundGameException("The team could not accept the player");
+                throw new BattleGroundGameException("The team could not remove the player");
             }
         }
         else if(team == 2){
             try {
                 team2.removePlayer(ship.getUsername());
             } catch (ModelException e) {
-                throw new BattleGroundGameException("The team could not accept the player");
+                throw new BattleGroundGameException("The team could not remove the player");
             }
         }
         else{
             throw new BattleGroundGameException("The selected team is incorrect");
         }
     }
+    @Override
+    public Team getTeam(int id)throws BattleGroundGameException {
 
+        if(id==1){
+            return team1;
+        }
+        else if(id==2){
+            return team2;
+        }
+        else{
+            throw new BattleGroundGameException("The selected team is incorrect");
+        }
+    }
 }

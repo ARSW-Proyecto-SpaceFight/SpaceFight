@@ -7,6 +7,7 @@ package edu.eci.arsw.spacefight.spacefight.Services;
 
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
 
+import edu.eci.arsw.spacefight.spacefight.Game.Master;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 
 
@@ -32,8 +33,12 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
     
     @Autowired
     SpaceFightMessageController smc;
+
+    /*@Autowired
+    Master ms;*/
     
     private HashMap<Integer, ConcurrentSkipListSet<Ship>> roomsData;
+
 
     public SpaceFightImpInMemory() {        
         this.roomsData = new HashMap<>();
