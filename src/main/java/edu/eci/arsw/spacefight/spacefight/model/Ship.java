@@ -95,11 +95,11 @@ public class Ship implements Comparable<Ship> {
                 direction = 'U';
                 break;
             case 39:
-                x+=velocity;
+                if(x<830) x+=velocity;
                 direction = 'R';
                 break;
             case 40:
-                y+=velocity;
+                if(y<470) y+=velocity;
                 direction = 'D';
                 break;
             default:
