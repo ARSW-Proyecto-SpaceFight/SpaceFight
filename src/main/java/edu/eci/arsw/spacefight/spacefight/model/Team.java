@@ -8,6 +8,7 @@ package edu.eci.arsw.spacefight.spacefight.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.util.HashMap;
 public class Team {
 
     private int Score;
-    private HashMap<String,Ship> ships;
+    private ConcurrentHashMap<String,Ship> ships = new ConcurrentHashMap<>();
 
     public Team(){
         Score=0;

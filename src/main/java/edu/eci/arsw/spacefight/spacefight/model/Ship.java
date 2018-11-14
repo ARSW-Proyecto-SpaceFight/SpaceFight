@@ -12,10 +12,9 @@ import java.util.Map;
  * @author User
  */
 public class Ship implements Comparable<Ship> {
-
-    private int id;
+    
     private int x, y;
-    private float health;
+    private float health = 100;
     public static final int velocity = 10;
     private static final int shipSize = 50;
     private char direction = 'U';
@@ -26,35 +25,15 @@ public class Ship implements Comparable<Ship> {
     
     public Ship(){
     }
+
+    public Ship(int x, int y, String username, int team) {
+        this.x = x;
+        this.y = y;
+        this.username = username;
+        this.team = team;
+    }
     
-    public Ship(int id){
-        this.id = id;
-        health=100;
-    }
-
-    public Ship(int id, int x, int y, Position position, String username) {
-        this.id = id;
-        this.x = x;
-        this.y = y;
-    }
-
-    public Ship(int id, int x, int y, Position position) {
-        this.id = id;
-        this.x = x;
-        this.y = y;
-
-        //this.position = position;
-        health=100;
-
-    }
-
     
-    public Ship(int id, int x, int y) {
-        this.id = id;
-        this.x = x;
-        this.y = y;
-        health=100;
-    }
 
     public String getUsername() {
         return username;
@@ -63,12 +42,7 @@ public class Ship implements Comparable<Ship> {
     public void setUsername(String username) {
         this.username = username;
     }
-
-
-    public int getId() {
-        return this.id;
-    }
-
+  
     public float getX() {
         return this.x;
     }
@@ -84,14 +58,6 @@ public class Ship implements Comparable<Ship> {
     public void setY(int y) {
         this.y = y;
     }
-
-   // public Position getPosition() {
-       // return position;
-    //}
-
-    //public void setPosition(Position position) {
-        //this.position = position;
-    //}
 
     public float getHealth() {
         return health;
@@ -111,7 +77,7 @@ public class Ship implements Comparable<Ship> {
     
     @Override
     public int compareTo(Ship o) {
-        if(o.getId()==this.id){
+        if(o.getUsername().equals(this.username)){
             return 0;
         }else{
             return 1;
@@ -152,5 +118,14 @@ public class Ship implements Comparable<Ship> {
         }else{
             return false;
         }
-    }        
+    }
+    
+    public int getTeam(){
+        return team;
+    }
+    
+    public void setTeam(int team){
+        this.team = team;
+    }
+    
 }

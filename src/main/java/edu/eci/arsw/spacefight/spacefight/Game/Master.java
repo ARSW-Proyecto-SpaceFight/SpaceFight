@@ -12,4 +12,7 @@ public interface Master {
     void registerPlayerToRoom(int roomId, Ship ship, int team) throws MasterException;
     void removePlayerFromRoom(int roomId, Ship ship, int team)throws MasterException;
     HashMap<Integer, BattleGroundGame> getRoomsMap();
+    public Ship getShip(String username,int roomId,int team)throws MasterException;
+    public BattleGroundGame getRoom(int roomId)throws MasterException;
+    boolean containsRoom(int roomid);
 }

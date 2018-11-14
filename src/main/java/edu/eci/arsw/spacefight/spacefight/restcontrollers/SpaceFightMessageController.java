@@ -5,6 +5,7 @@
  */
 package edu.eci.arsw.spacefight.spacefight.restcontrollers;
 
+import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -26,36 +27,38 @@ public class SpaceFightMessageController {
     SimpMessagingTemplate msgt;
     
     @MessageMapping("/move.{room}")
-    public void move(Movement movement, @DestinationVariable String room){       
-        spc.movePlayer(Integer.parseInt(room), movement.getId(), movement.getKey());
-        msgt.convertAndSend("/topic/move." +room, spc.getPlayer(room, movement.id).getBody());
-        spc.playerOnline(Integer.parseInt(room), movement.id);
+    public void move(Movement movement, @DestinationVariable String room) throws BattleGroundGameException{       
+        spc.movePlayer(Integer.parseInt(room), movement.getUsername(), movement.getKey(), movement.getTeam());        
+        msgt.convertAndSend("/topic/move." +room, spc.getPlayer(room, movement.getUsername()).getBody());
+        spc.playerOnline(Integer.parseInt(room), movement.getUsername());
     }
     
     @MessageMapping("/new.{room}")
     public void newShip(Ship newShip, @DestinationVariable String room){        
-        spc.addPlayer(Integer.valueOf(room), newShip);
-        msgt.convertAndSend("/topic/new."+room, spc.getPlayer(room, newShip.getId()).getBody());
+        spc.addPlayer(Integer.valueOf(room), newShip, newShip.getTeam());
+        msgt.convertAndSend("/topic/new."+room, spc.getPlayer(room, newShip.getUsername()).getBody());
     }            
     
     static class Movement{
-        private int id;
+        private String username;
         private int key;
+        private int team;
 
         public Movement() {
         }
 
-        public Movement(int id, int key) {
-            this.id = id;
+        public Movement(String username, int key, int team) {
+            this.username= username;
             this.key = key;
+            this.team = team;
         }
 
-        public int getId() {
-            return id;
+        public String getUsername() {
+            return username;
         }
 
-        public void setId(int id) {
-            this.id = id;
+        public void setUsername(String username) {
+            this.username = username;
         }
 
         public int getKey() {
@@ -64,6 +67,14 @@ public class SpaceFightMessageController {
 
         public void setKey(int key) {
             this.key = key;
+        }
+        
+        public void setTeam(int team){
+            this.team = team;
+        }
+        
+        public int getTeam(){
+            return team;
         }
         
     }

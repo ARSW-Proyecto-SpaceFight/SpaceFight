@@ -2,15 +2,22 @@
 *Modulo que contiene la informacion de las naves y la propia
 */
 var ship = (function(){
-	var id = Math.floor((Math.random() * 100) + 1);	
+        var username = prompt("¿Cual es su usuario?")
+	var team = Math.floor((Math.random() * 2) + 1);	
 	var allShips;
 	return{
-		setID : function(idS){
-			id = idS;
+		setUsername : function(usernameS){
+			username = usernameS;
 		},
-		getID : function(){
-			return id;
+		getUsername : function(){
+			return username;
 		},
+                setTeam : function(teamS){
+                        team = teamS;
+                },
+                getTeam : function(){
+                        return team;
+                },
 		setAllShips : function(ships){
 			allShips = ships;
 		},
@@ -19,11 +26,11 @@ var ship = (function(){
 		},
 		getJSON : function(){
 			var jsonString = {
-								"id" : id,
-								"x" : 0,
-								"y" : 0,
-								"health" : 100
-								}
+                                            "username" : username,
+                                            "x" : 0,
+                                            "y" : 0,
+                                            "team" : team
+                                            }
 			return jsonString;
 		}
 	}
@@ -64,29 +71,29 @@ async function pintar(){
 }
 
 function moverNave(body){    
-    nave = document.getElementById("ship"+body.id);    
+    nave = document.getElementById("ship"+body.username);    
     nave.style.top = body.y + "px"
     nave.style.left = body.x + "px"
     if(body.direction == "U"){
-			if(body.id == ship.getID()){
+			if(body.username == ship.getUsername()){
 				nave.src = "images/shipPlayer.png";
 			}else{
 				nave.src = "images/ship.png";
 			}
 		}else if(body.direction == "R"){
-			if(body.id == ship.getID()){
+			if(body.username == ship.getUsername()){
 				nave.src = "images/rightPlayer.png";
 			}else{
 				nave.src = "images/right.png";
 			}			
 		}else if(body.direction == "L"){
-			if(body.id == ship.getID()){
+			if(body.username == ship.getUsername()){
 				nave.src = "images/leftPlayer.png";
 			}else{
 				nave.src = "images/left.png";
 			}				
 		}else{
-			if(body.id == ship.getID()){
+			if(body.username == ship.getUsername()){
 				nave.src = "images/downPlayer.png";
 			}else{
 				nave.src = "images/down.png";
@@ -97,27 +104,27 @@ function moverNave(body){
 
 function pintarNave(body){
     agregar = ""
-    agregar += "<img id='ship"+body.id+"' style='position:absolute; width:"+body.shipSize+"px; height:"+body.shipSize+"px; top:"+body.y+"px; left:"+body.x+"px'";
+    agregar += "<img id='ship"+body.username+"' style='position:absolute; width:"+body.shipSize+"px; height:"+body.shipSize+"px; top:"+body.y+"px; left:"+body.x+"px'";
 		if(body.direction == "U"){
-			if(body.id == ship.getID()){
+			if(body.username == ship.getUsername()){
 				agregar += " src='images/shipPlayer.png' ></img>";
 			}else{
 				agregar += " src='images/ship.png' ></img>";
 			}
 		}else if(body.direction == "R"){
-			if(body.id == ship.getID()){
+			if(body.username == ship.getUsername()){
 				agregar += " src='images/rightPlayer.png' ></img>";
 			}else{
 				agregar += " src='images/right.png' ></img>";
 			}			
 		}else if(body.direction == "L"){
-			if(body.id == ship.getID()){
+			if(body.username == ship.getUsername()){
 				agregar += " src='images/leftPlayer.png' ></img>";
 			}else{
 				agregar += " src='images/left.png' ></img>";
 			}				
 		}else{
-			if(body.id == ship.getID()){
+			if(body.username == ship.getUsername()){
 				agregar += " src='images/downPlayer.png' ></img>";
 			}else{
 				agregar += " src='images/down.png' ></img>";

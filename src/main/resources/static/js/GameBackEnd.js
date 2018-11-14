@@ -8,7 +8,7 @@ var stompClient = null;
 *Le dice al servidor que se movio la nave
 */
 async function move(key){ 
-        stompClient.send("/app/move.1", {}, JSON.stringify({'id': ship.getID(), 'key' : key}));
+        stompClient.send("/app/move.1", {}, JSON.stringify({'username': ship.getUsername(), 'key' : key, 'team': ship.getTeam()}));
 	//await Promise.resolve(axios.put(host+"1?id="+ship.getID()+"&key="+key)
 	//.then(async function(response){
 		//var i = 0;
@@ -30,7 +30,7 @@ async function newShip(){
 *Le pregunta al servidor el estado actual del juego
 */
 async function getAllShips(room){
-	await Promise.resolve(axios.get(host+"1/players?player="+ship.getID())
+	await Promise.resolve(axios.get(host+"1/players?player="+ship.getUsername())
 	.then(async function(response){
 		ship.setAllShips(response.data);
 	}));

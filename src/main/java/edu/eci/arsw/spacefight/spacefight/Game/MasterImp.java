@@ -6,6 +6,7 @@ import edu.eci.arsw.spacefight.spacefight.model.ModelException;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 
 import java.util.HashMap;
+import org.springframework.stereotype.Service;
 
 
 
@@ -13,7 +14,8 @@ import java.util.HashMap;
  *
  * @author ARSW Proyecto
  */
-public class MasterImp {
+@Service
+public class MasterImp implements Master{
 
     private HashMap<Integer, BattleGroundGame> rooms = new HashMap<>();
 
@@ -133,5 +135,14 @@ public class MasterImp {
             return rooms.get(roomId);
         }
 
+    }
+
+    @Override
+    public boolean containsRoom(int roomid) {
+     if(rooms.containsKey(roomid)){
+         return true;
+     }else{
+         return false;
+     }
     }
 }

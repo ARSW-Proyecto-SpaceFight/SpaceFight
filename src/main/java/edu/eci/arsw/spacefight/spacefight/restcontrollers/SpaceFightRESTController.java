@@ -4,6 +4,7 @@ package edu.eci.arsw.spacefight.spacefight.restcontrollers;
 
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
+import edu.eci.arsw.spacefight.spacefight.Game.MasterException;
 
 
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
@@ -39,10 +40,10 @@ public class SpaceFightRESTController{
 
     
     @RequestMapping(path = "/{roomId}/players",method = RequestMethod.GET)
-    public ResponseEntity<?> getRoomPlayers(@PathVariable(name = "roomId") int roomId, int player) {
+    public ResponseEntity<?> getRoomPlayers(@PathVariable(name = "roomId") int roomId, String username) {
 
          try {
-             bgs.playerOnline(roomId,player);
+             bgs.playerOnline(roomId,username);            
              return new ResponseEntity<>(bgs.getRegisteredPlayers(roomId),HttpStatus.ACCEPTED);
          } catch (BattleGroundGameException ex) {
              Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
@@ -56,23 +57,26 @@ public class SpaceFightRESTController{
     }
     
     @RequestMapping(path = "/{roomId}",method = RequestMethod.PUT)
-    public ResponseEntity<?> movePlayer(@PathVariable(name = "roomId") int roomId, int id,  int key){
-        try {
-            bgs.moveShip(roomId, id, key);
+    public ResponseEntity<?> movePlayer(@PathVariable(name = "roomId") int roomId, String username,  int key, int team){
+        try {            
+            bgs.moveShip(roomId, username, key, team);
             //bgs.registerPlayerToRoom(Integer.parseInt(roomId), ship);
                     return new ResponseEntity<>(HttpStatus.ACCEPTED);        
         } catch (NumberFormatException ex){
             Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("/{roomId}/ must be an integer value.",HttpStatus.BAD_REQUEST);
+        } catch (MasterException ex) {
+            Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
         }
 
     }
     
     
     @RequestMapping(path = "/{roomId}/players",method = RequestMethod.PUT)
-    public ResponseEntity<?> addPlayer(@PathVariable(name = "roomId") Integer roomId,@RequestBody Ship ship){
+    public ResponseEntity<?> addPlayer(@PathVariable(name = "roomId") Integer roomId,@RequestBody Ship ship, int team){
         try {
-            bgs.registerPlayerToRoom(roomId, ship);
+            bgs.registerPlayerToRoom(roomId, ship, team);            
                     return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (BattleGroundGameException ex) {
             Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,9 +89,9 @@ public class SpaceFightRESTController{
     }
     
     @RequestMapping(path = "/{roomId}/players",method = RequestMethod.DELETE)
-    public ResponseEntity<?> removePlayer(@PathVariable(name = "roomId") String roomId,@RequestBody Ship ship) {
+    public ResponseEntity<?> removePlayer(@PathVariable(name = "roomId") String roomId,@RequestBody Ship ship, int team) {
         try {
-            bgs.removePlayerFromRoom(Integer.valueOf(roomId), ship);
+            bgs.removePlayerFromRoom(Integer.valueOf(roomId), ship, team);            
                     return new ResponseEntity<>(HttpStatus.OK);
         } catch (BattleGroundGameException ex) {
             Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
@@ -144,17 +148,17 @@ public class SpaceFightRESTController{
     }
     
     @RequestMapping(path = "/{roomId}/{id}",method = RequestMethod.GET)
-    public ResponseEntity<?> getPlayer(@PathVariable(name = "roomId") String roomId, @PathVariable(name = "id") int id){
+    public ResponseEntity<?> getPlayer(@PathVariable(name = "roomId") String roomId, @PathVariable(name = "id") String username){
         try {            
-            return new ResponseEntity<>(bgs.getPlayer(Integer.parseInt(roomId), id), HttpStatus.CREATED);
+            return new ResponseEntity<>(bgs.getPlayer(Integer.parseInt(roomId), username), HttpStatus.CREATED);
         } catch (BattleGroundGameException ex) {
             Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getLocalizedMessage(),HttpStatus.BAD_REQUEST);
         }
     }
     
-    public void playerOnline(int roomId, int player){
-        bgs.playerOnline(roomId, player);
+    public void playerOnline(int roomId, String username) throws BattleGroundGameException{
+        bgs.playerOnline(roomId, username);        
     }
 }
     
