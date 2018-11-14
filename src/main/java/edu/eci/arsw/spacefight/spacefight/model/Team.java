@@ -6,6 +6,7 @@
 package edu.eci.arsw.spacefight.spacefight.model;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -47,5 +48,19 @@ public class Team {
             return ships.get(username);
         }
 
+
     }
+    public boolean isInTeam(String username){
+        if(ships.containsKey(username)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+    public ArrayList<Ship> getShips(){
+        return new ArrayList<Ship>(ships.values());
+    }
+
 }

@@ -11,7 +11,9 @@ import edu.eci.arsw.spacefight.spacefight.restcontrollers.SpaceFightMessageContr
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -36,7 +38,13 @@ public class SpaceFightImpInMemory2 {
         this.roomsData = new HashMap<>();
     }
 
-    
+    /**
+     *This method register a Ship to an specific room and a specific team
+     * @param roomId ID of the room
+     * @param ship Object of the ship to register in the room
+     * @param team ship's team number
+     * @throws BattleGroundGameException
+     */
     //@Override
     public void registerPlayerToRoom(int roomId, Ship ship,int team) throws BattleGroundGameException {
         try {
@@ -46,6 +54,13 @@ public class SpaceFightImpInMemory2 {
         }
     }
 
+    /**
+     *this method removes a ship from a given room and team
+     * @param roomId ID of the room
+     * @param ship Object of the Ship to remove
+     * @param team Number of the ship's team
+     * @throws BattleGroundGameException
+     */
     //@Override
     public void removePlayerFromRoom(int roomId, Ship ship,int team) throws BattleGroundGameException {
         try {
@@ -55,17 +70,31 @@ public class SpaceFightImpInMemory2 {
         }
     }
 
-
+    /**
+     *this method gets all the registered players from a given room in a set
+     * @param roomId ID of the room
+     * @return a Set of all the Ships of the given room
+     * @throws BattleGroundGameException
+     */
     //@Override
     public Set<Ship> getRegisteredPlayers(int roomId) throws BattleGroundGameException {
         if(!roomsData.containsKey(roomId)){
             throw new BattleGroundGameException("Room"+roomId+"does not exist");
         }
         else{
-            return roomsData.get(roomId);
+            try {
+                return new HashSet<Ship>(ms.getRoom(roomId).getAllShips());
+            } catch (MasterException e) {
+                throw new BattleGroundGameException(e.getMessage());
+            }
         }
     }
 
+    /**
+     * this method creates a new room idexed with the given id
+     * @param roomId ID of the room
+     * @throws BattleGroundGameException
+     */
     //@Override
     public void createRoom(int roomId) throws BattleGroundGameException {
         try {
@@ -75,6 +104,11 @@ public class SpaceFightImpInMemory2 {
         }
     }
 
+    /**
+     * This method removes a room who matches the given id
+     * @param roomId ID of the room to remove
+     * @throws BattleGroundGameException
+     */
    // @Override
     public void removeRoom(int roomId) throws BattleGroundGameException {
         try {
@@ -84,48 +118,78 @@ public class SpaceFightImpInMemory2 {
         }
     }
 
+    /**
+     * This method returns the amount of total active rooms
+     * @return an integer of the total active rooms
+     * @throws BattleGroundGameException
+     */
     //@Override
     public int getTotalRooms() throws BattleGroundGameException {
         return ms.getRoomsMap().size();
     }
 
+    /**
+     * This method moves the given ship from a given room
+     * @param roomId ID of the room where the ship is
+     * @param username Username of the ship's Owner
+     * @param key The key pressed
+     * @param team The team of the ship
+     * @throws MasterException
+     */
     //@Override
-    public void moveShip(int roomId, String username, int key,int team) {
+    public void moveShip(int roomId, String username, int key,int team) throws MasterException {
         try {
             ms.getShip(username, roomId, team).move(key);
         } catch (MasterException e) {
-            e.printStackTrace();
+            throw new MasterException(e.getMessage());
         }
 
     }
 
+    /**
+     * This method set as online the given ship and remove offline ships of a room
+     * @param roomId Id of the room to check
+     * @param username Username of the ship to check
+     * @throws BattleGroundGameException
+     */
     //@Override
-    /*public synchronized void playerOnline(int roomId, int player){
-        for(Ship s: roomsData.get(roomId)){
-            if(s.getId() == player){
-                s.isOnline();
-            }else if(s.notOnline()){                                      
-                try {                                   
-                    removePlayerFromRoom(roomId, s);
-                } catch (BattleGroundGameException ex) {
-                    //Logger.getLogger(BattleGroundImpInMemory.class.getName()).log(Level.SEVERE, null, ex);
+    public synchronized void playerOnline(int roomId, String username) throws BattleGroundGameException {
+        try {
+            BattleGroundGame room =ms.getRoom(roomId);
+            ArrayList<Ship> ships= room.getAllShips();
+            for(int i=0; i<ships.size();i++){
+                if(ships.get(i).getUsername().equals(username)){
+                    ships.get(i).isOnline();
+                }
+                else if(ships.get(i).notOnline()){
+                    try {
+                        ms.removePlayerFromRoom(roomId,ships.get(i),room.findShipTeam(ships.get(i)));
+                    } catch (BattleGroundGameException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
+        } catch (MasterException e) {
+            throw new BattleGroundGameException(e.getMessage());
         }
     }
 
+    /**
+     * This method gets an specific ship from a given room
+     * @param roomId ID of the room
+     * @param username username of the ship to be get
+     * @return An Ship object fetched from the given room
+     * @throws BattleGroundGameException
+     */
    // @Override
-    public Ship getPlayer(int roomId, int player) throws BattleGroundGameException {
-        Ship playerShip = null;        
-        for(Ship s: roomsData.get(roomId)){
-            if(s.getId() == player){
-                playerShip = s;
-            }
+    public Ship getPlayer(int roomId, String username) throws BattleGroundGameException {
+        try {
+            BattleGroundGame room = ms.getRoom(roomId);
+            return room.getShip(username);
+        } catch (MasterException e) {
+            throw new BattleGroundGameException(e.getMessage());
         }
-        if(playerShip != null){
-            return playerShip;
-        }else{
-            throw new BattleGroundGameException("No existe el jugador");
-        }
-    }*/
+    }
+
+
 }
