@@ -107,10 +107,7 @@ public class SpaceFightRESTController{
     public ResponseEntity<?> getRooms() {
 
          try {
-             return new ResponseEntity<>(bgs.getTotalRooms() ,HttpStatus.ACCEPTED);
-         } catch (BattleGroundGameException ex) {
-             Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
-             return new ResponseEntity<>(ex.getLocalizedMessage(),HttpStatus.NOT_FOUND);
+             return new ResponseEntity<>(bgs.getRooms() ,HttpStatus.ACCEPTED);         
          } catch (NumberFormatException ex){
              Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
              return new ResponseEntity<>("A NumberFormat error has occurred.",HttpStatus.BAD_REQUEST);

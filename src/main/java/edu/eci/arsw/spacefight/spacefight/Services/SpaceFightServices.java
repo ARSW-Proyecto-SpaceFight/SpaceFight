@@ -25,5 +25,7 @@ public interface SpaceFightServices {
     public void playerOnline(int roomId, String username)throws BattleGroundGameException;
     
     public Ship getPlayer(int roomId, String username) throws BattleGroundGameException;
+    
+    public Set<Integer> getRooms();
 
 }

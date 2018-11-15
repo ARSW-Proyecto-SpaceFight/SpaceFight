@@ -188,6 +188,11 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
         }
     }
 
+    @Override
+    public Set<Integer> getRooms() {
+        return ms.getRoomsMap().keySet();
+    }
+
     
 
 
