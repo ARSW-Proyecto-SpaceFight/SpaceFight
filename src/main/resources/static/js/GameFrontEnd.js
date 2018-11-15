@@ -166,8 +166,21 @@ function eliminarElemento(elementId) {
     element.parentNode.removeChild(element);
 }
 
-function pintabala(body){
-agregar = ""
-    agregar += "<img id='ship"+body.Xpos+"' style='position:absolute; width:"+body.shipSize+"px; height:"+body.shipSize+"px; top:"+body.y+"px; left:"+body.x+"px'";
+function pintarBala(body){
+    console.log(document.getElementById("bala"+body.id))
+    if(document.getElementById("bala"+body.id) == null){
+        agregar = ""
+        agregar += "<img id='bala"+body.id+"' style='position:absolute; width: 20px; height:20px; top:"+body.Ypos+"px; left:"+body.Xpos+"px' src='images/shot.png'></img>";
+        console.log(agregar)
+        document.getElementById("all").innerHTML += agregar;
+    }else{
+        moverBala(body)
+    }
 
+}
+
+function moverBala(body){
+    bala = document.getElementById("bala"+body.id);
+    bala.style.top = body.Ypos + "px"
+    bala.style.left = body.Xpos + "px"
 }

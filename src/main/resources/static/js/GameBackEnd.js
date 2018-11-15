@@ -83,7 +83,7 @@ async function connectAndSubscribe() {
                 if(message.body==ship.getUsername()) stompClient.send("/app/conectado."+ship.getRoom(), {priority: 9}, ship.getUsername());
             });
             await stompClient.subscribe('/topic/shoot.'+ship.getRoom(), function (message){
-
+                    pintarBala(JSON.parse(message.body));
             });
         await pintar();
         await newShip();         	               

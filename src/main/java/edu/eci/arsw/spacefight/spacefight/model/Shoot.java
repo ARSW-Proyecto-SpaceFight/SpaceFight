@@ -80,13 +80,13 @@ public class Shoot {
             Xpos-=VEL;
         }
         else if (direction=='U'){
-            Ypos+=VEL;
+            Ypos-=VEL;
         }
         else if(direction=='R'){
             Xpos+=VEL;
         }
         else if(direction=='D'){
-            Ypos-=VEL;
+            Ypos+=VEL;
         }
 
     }
