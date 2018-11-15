@@ -1,5 +1,5 @@
-var host = "http://localhost:8080/spacefight/"
-//var host = "https://spacefightarsw.herokuapp.com/spacefight/"
+//var host = "http://localhost:8080/spacefight/"
+var host = "https://spacefightarsw.herokuapp.com/spacefight/"
 
 var stompClient = null;
 
@@ -8,7 +8,7 @@ var stompClient = null;
 *Le dice al servidor que se movio la nave
 */
 async function move(key){ 
-        stompClient.send("/app/move.1", {}, JSON.stringify({'username': ship.getUsername(), 'key' : key, 'team': ship.getTeam()}));
+        stompClient.send("/app/move."+ship.getRoom(), {}, JSON.stringify({'username': ship.getUsername(), 'key' : key, 'team': ship.getTeam()}));
 	//await Promise.resolve(axios.put(host+"1?id="+ship.getID()+"&key="+key)
 	//.then(async function(response){
 		//var i = 0;
@@ -23,14 +23,14 @@ async function newShip(){
 	//ship.setID(id);
 	//await Promise.resolve(axios.put(host+"1/players",ship.getJSON()));
         console.log(ship.getJSON())
-        stompClient.send("/app/new.1", {}, JSON.stringify(ship.getJSON()));
+        stompClient.send("/app/new."+ship.getRoom(), {}, JSON.stringify(ship.getJSON()));
 }
 
 /*
 *Le pregunta al servidor el estado actual del juego
 */
 async function getAllShips(room){
-	await Promise.resolve(axios.get(host+"1/players?player="+ship.getUsername())
+	await Promise.resolve(axios.get(host+ship.getRoom()+"/players?player="+ship.getUsername())
 	.then(async function(response){
 		ship.setAllShips(response.data);
 	}));
@@ -64,19 +64,19 @@ async function connectAndSubscribe() {
         //setConnected(true);
         console.log('Connected: ' + frame);
         
-            await stompClient.subscribe('/topic/move.1', function (message) {
+            await stompClient.subscribe('/topic/move.'+ship.getRoom(), function (message) {
                 //console.log(message.body)
                 moverNave(JSON.parse(message.body));
                 //showGreeting(JSON.parse(greeting.body).content);
             });
-            await stompClient.subscribe('/topic/new.1', function (message){
+            await stompClient.subscribe('/topic/new.'+ship.getRoom(), function (message){
                 pintarNave(JSON.parse(message.body));
             });
-            await stompClient.subscribe('/topic/delete.1', function (message){
+            await stompClient.subscribe('/topic/delete.'+ship.getRoom(), function (message){
                 eliminarNave(message.body);
             });
-            await stompClient.subscribe('/topic/conectado.1', function (message){
-                if(message.body==ship.getUsername()) stompClient.send("/app/conectado.1", {priority: 9}, ship.getUsername());
+            await stompClient.subscribe('/topic/conectado.'+ship.getRoom(), function (message){
+                if(message.body==ship.getUsername()) stompClient.send("/app/conectado."+ship.getRoom(), {priority: 9}, ship.getUsername());
             });
         await pintar();
         await newShip();         	               

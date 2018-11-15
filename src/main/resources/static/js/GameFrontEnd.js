@@ -5,6 +5,7 @@ var ship = (function(){
         var username = prompt("¿Cual es su usuario?")
 	var team = Math.floor((Math.random() * 2) + 1);	
 	var allShips;
+        var room = sessionStorage.room
 	return{
 		setUsername : function(usernameS){
 			username = usernameS;
@@ -18,12 +19,15 @@ var ship = (function(){
                 getTeam : function(){
                         return team;
                 },
+                getRoom : function(){
+                        return room;
+                },
 		setAllShips : function(ships){
 			allShips = ships;
 		},
 		getAllShips : function(){
 			return allShips;
-		},
+		},               
 		getJSON : function(){
 			var jsonString = {
                                             "username" : username,
@@ -42,9 +46,9 @@ var ship = (function(){
 */
 async function start(){
         
-	if(await existsRooms() == false){
-		await createNewRoom(1);
-	}
+	//if(await existsRooms() == false){
+	//	await createNewRoom(1);
+	//}
         await connectAndSubscribe();
 	//while(true){		
 	//	await pintar();

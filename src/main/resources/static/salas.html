@@ -6,9 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="assests/css/main.css" />
     </head>
-    <body onload="start()">
-	<p id="all"></p>		
+    <body onload="getRooms()">
+	<p id="all"></p>
+        <button style="color:white; font-size:1.3em; background-image: url('images/button.jpg')" 
+		onclick="createRoom()">Crear Sala</button>
 	
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="js/Rooms.js"></script>
         
 </html>
