@@ -1,5 +1,5 @@
-//var host = "http://localhost:8080/spacefight/"
-var host = "https://spacefightarsw.herokuapp.com/spacefight/"
+var host = "http://localhost:8080/spacefight/"
+//var host = "https://spacefightarsw.herokuapp.com/spacefight/"
 
 var stompClient = null;
 
@@ -13,6 +13,10 @@ async function move(key){
 	//.then(async function(response){
 		//var i = 0;
 		//}));
+}
+async function shoot(){
+    await Promise.resolve(axios.put(host+ship.getRoom()+"/shoot?username="+ship.getUsername()))
+
 }
 
 /*
@@ -77,6 +81,9 @@ async function connectAndSubscribe() {
             });
             await stompClient.subscribe('/topic/conectado.'+ship.getRoom(), function (message){
                 if(message.body==ship.getUsername()) stompClient.send("/app/conectado."+ship.getRoom(), {priority: 9}, ship.getUsername());
+            });
+            await stompClient.subscribe('/topic/shoot.'+ship.getRoom(), function (message){
+                            console.log(message);
             });
         await pintar();
         await newShip();         	               

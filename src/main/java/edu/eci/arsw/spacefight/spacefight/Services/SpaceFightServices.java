@@ -28,4 +28,5 @@ public interface SpaceFightServices {
     
     public Set<Integer> getRooms();
 
+    void shoot(int roomId,String username)throws BattleGroundGameException;
 }

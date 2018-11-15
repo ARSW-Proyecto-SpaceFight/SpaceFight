@@ -12,32 +12,42 @@ import edu.eci.arsw.spacefight.spacefight.model.Item;
 import edu.eci.arsw.spacefight.spacefight.model.Shoot;
 import edu.eci.arsw.spacefight.spacefight.model.Team;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import edu.eci.arsw.spacefight.spacefight.restcontrollers.SpaceFightMessageController;
 import org.apache.ibatis.jdbc.Null;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  *
  * @author User
  */
-@Service
-public class BattleGroundImp implements BattleGroundGame {
-    private ArrayList<Shoot> disparos;
+
+public class BattleGroundImp extends Thread implements BattleGroundGame {
+    private ArrayList<Shoot> shoots;
     private ArrayList<Item> items;
     private HashMap<Integer,Team> teamsmap= new HashMap<Integer, Team>();
     private Team team1;
     private Team team2;
+    private  int id;
 
-    public BattleGroundImp() {
+    SpaceFightMessageController msgt ;
+
+    public BattleGroundImp(SpaceFightMessageController msgt) {
+        shoots= new ArrayList<>();
         teamsmap.put(1,new Team());
         teamsmap.put(2,new Team());
+        this.msgt=msgt;
+
+
 
     }
 
     /**
-     * This method inserts a player toa given team
+     * This method inserts a player to a given team
      * @param ship Object OF the ship to be inserted
      * @param team Number of the team
      * @throws BattleGroundGameException
@@ -99,6 +109,16 @@ public class BattleGroundImp implements BattleGroundGame {
         }
         return sp;
     }
+
+    public HashMap<String,Ship> getAllShipsAsMap(){
+        HashMap<String,Ship> spmap = new HashMap<>();
+        ArrayList<Ship> sp= getAllShips();
+        for(int i=0;i<sp.size();i++){
+            spmap.put(sp.get(i).getUsername(),sp.get(i));
+        }
+        return spmap;
+    }
+
     public int findShipTeam(Ship sp)throws BattleGroundGameException{
         ArrayList<Integer> keys = new ArrayList<>(teamsmap.keySet());
         int team= Integer.MIN_VALUE;
@@ -213,6 +233,59 @@ public class BattleGroundImp implements BattleGroundGame {
             throw new BattleGroundGameException(e.getMessage());
         }
     }
+    @Override
+    public Shoot shoot(String username)throws BattleGroundGameException {
+        HashMap<String,Ship> map=getAllShipsAsMap();
+        if(!map.containsKey(username)){
+            throw new BattleGroundGameException("Ship not found");
+        }
+        else{
+            Ship s = map.get(username);
+            Shoot shot = new Shoot(s,(int)s.getX(),(int)s.getY(),s.getDirection());
+            shoots.add(shot);
+            return shot;
+        }
+    }
+    @Override
+    public void run(){
+        //System.out.println("IM RUNNING");
+        while(true) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //System.out.println("IM WHILING");
+            moveElements();
+
+        }
 
 
+    }
+    private void moveElements(){
+        ArrayList<Shoot> found=new ArrayList<>();
+        //System.out.println("FUCK ME IN THE ASS"+shoots.size()+"");
+        for(int i=0;i<shoots.size();i++){
+            Shoot s= shoots.get(i);
+            s.move();
+            //System.out.println("IM SENDING ID="+id+"SHOOT"+s);
+            msgt.sendshoot(id,s);
+            //System.out.println("SENT");
+
+        }
+        for(int i=0;i<shoots.size();i++) {
+            //System.out.println("IM REMOVING");
+            Shoot s= shoots.get(i);
+            if (s.getXpos() < 0 || s.getXpos() > Ship.BOUNDX || s.getYpos() < 0 || s.getYpos() > Ship.BOUNDY) {
+                found.add(s);
+
+            }
+        }
+        shoots.removeAll(found);
+    }
+
+    public void setId(int id) {
+        this.id = id;
+        this.start();
+    }
 }

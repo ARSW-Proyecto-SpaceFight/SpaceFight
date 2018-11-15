@@ -1,10 +1,7 @@
 
 package edu.eci.arsw.spacefight.spacefight.Game;
 
-import edu.eci.arsw.spacefight.spacefight.model.Item;
-import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
-import edu.eci.arsw.spacefight.spacefight.model.Ship;
-import edu.eci.arsw.spacefight.spacefight.model.Team;
+import edu.eci.arsw.spacefight.spacefight.model.*;
 
 import java.util.ArrayList;
 
@@ -23,5 +20,6 @@ public interface BattleGroundGame {
     ArrayList<Meteorite> getAllMeteorites() throws BattleGroundGameException;
     Meteorite getMeteorite(int idMeteorite) throws BattleGroundGameException;
     void removeMeteorite(int idMeteorite) throws BattleGroundGameException;
-
+    Shoot shoot(String username)throws BattleGroundGameException;
+    void setId(int id);
 }

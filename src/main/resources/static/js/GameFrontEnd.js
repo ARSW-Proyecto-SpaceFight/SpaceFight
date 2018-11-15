@@ -61,7 +61,14 @@ async function start(){
 */
 window.onkeydown = function(e) {
 	var key = e.keyCode ? e.keyCode : e.which;
-	move(key);   
+	if(key==32){
+	    shoot();
+	}
+	else{
+	    move(key);
+	}
+
+	//console.log(key);
 }
 
 /*

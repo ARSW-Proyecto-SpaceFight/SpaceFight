@@ -22,6 +22,8 @@ public class Ship implements Comparable<Ship> {
     private String username;
     private int team;
     //private Position position;
+    public static final int BOUNDX = 830;
+    public static final int BOUNDY = 470;
     
     public Ship(){
     }

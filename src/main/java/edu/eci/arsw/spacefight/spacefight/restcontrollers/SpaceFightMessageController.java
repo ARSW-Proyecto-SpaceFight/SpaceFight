@@ -10,6 +10,8 @@ import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import edu.eci.arsw.spacefight.spacefight.model.Shoot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -49,7 +51,16 @@ public class SpaceFightMessageController {
         desconectados.put(username, Boolean.TRUE);
         spc.playerOnline(Integer.parseInt(room), username);
     }
-    
+    @MessageMapping("/shoot.{room}")
+    public void shoot(int roomId,String username){
+        spc.shoot(roomId,username);
+
+    }
+
+    public void sendshoot(int roomId,Shoot s){
+        msgt.convertAndSend("/topic/shoot." +roomId,s);
+    }
+
     public boolean conectado(String username, int room){
         desconectados.put(username, Boolean.FALSE);
         Thread temp = new Thread(){

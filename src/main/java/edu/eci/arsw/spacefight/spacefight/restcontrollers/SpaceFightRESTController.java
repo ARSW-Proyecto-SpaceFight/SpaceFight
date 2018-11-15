@@ -87,6 +87,22 @@ public class SpaceFightRESTController{
         }
 
     }
+
+    @RequestMapping(path = "/{roomId}/shoot",method = RequestMethod.PUT)
+    public ResponseEntity<?> shoot(@PathVariable(name = "roomId") Integer roomId,String username){
+        try {
+            bgs.shoot(roomId,username);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (BattleGroundGameException ex) {
+            Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+        } catch (NumberFormatException ex){
+            Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("/{roomId}/ must be an integer value.",HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
     
     @RequestMapping(path = "/{roomId}/players",method = RequestMethod.DELETE)
     public ResponseEntity<?> removePlayer(@PathVariable(name = "roomId") String roomId,@RequestBody Ship ship, int team) {

@@ -27,6 +27,8 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
 
     @Autowired
     private Master ms;
+    @Autowired
+    SpaceFightMessageController smc;
     //private MasterImp ms = new MasterImp();
 
     private HashMap<Integer, ConcurrentSkipListSet<Ship>> roomsData = new HashMap<>();
@@ -95,7 +97,10 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
     @Override
     public void createRoom(int roomId) throws BattleGroundGameException {
         try {
-            ms.insertRoom(roomId,new BattleGroundImp());
+
+            BattleGroundGame bg= new BattleGroundImp(smc);
+            bg.setId(roomId);
+            ms.insertRoom(roomId,bg);
         } catch (MasterException e) {
             e.printStackTrace();
         }
@@ -183,6 +188,13 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
         try {
             BattleGroundGame room = ms.getRoom(roomId);
             return room.getShip(username);
+        } catch (MasterException e) {
+            throw new BattleGroundGameException(e.getMessage());
+        }
+    }
+    public void shoot(int roomId,String username)throws BattleGroundGameException{
+        try {
+            ms.shoot(roomId,username);
         } catch (MasterException e) {
             throw new BattleGroundGameException(e.getMessage());
         }

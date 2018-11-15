@@ -140,6 +140,17 @@ public class MasterImp implements Master{
         }
 
     }
+    public void shoot(int roomId,String username)throws MasterException{
+        try {
+            BattleGroundGame bg=getRoom(roomId);
+            bg.shoot(username);
+        } catch (MasterException e) {
+            throw  new MasterException(e.getMessage());
+        } catch (BattleGroundGameException e) {
+            throw  new MasterException(e.getMessage());
+        }
+
+    }
 
     @Override
     public boolean containsRoom(int roomid) {

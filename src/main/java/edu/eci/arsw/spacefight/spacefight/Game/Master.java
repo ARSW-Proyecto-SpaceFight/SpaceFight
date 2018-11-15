@@ -15,4 +15,5 @@ public interface Master {
     public Ship getShip(String username,int roomId,int team)throws MasterException;
     public BattleGroundGame getRoom(int roomId)throws MasterException;
     boolean containsRoom(int roomid);
+    void shoot(int roomId,String username)throws MasterException;
 }
