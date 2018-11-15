@@ -11,17 +11,24 @@ package edu.eci.arsw.spacefight.spacefight.model;
  */
 public class Meteorite extends Item {
 
+    private int idMeteorite;
     private int Damage;
+    private static final int meteoriteSize = 20;
 
-    public Meteorite(int Xpos,int Ypos,int Damage){
+    public Meteorite(int Xpos,int Ypos,int Damage, int id){
         this.Xpos=Xpos;
         this.Ypos=Ypos;
-        this.Damage=-Damage;
+        this.Damage=Damage;
+        this.idMeteorite = id;
 
     }
     @Override
     public void Impact(Ship s){
-        s.setHealth( s.getHealth()-Damage);
+        s.setHealth(s.getHealth()-Damage);
     }
+
+    public int getMeteoriteSize(){return meteoriteSize;}
+
+    public int getIdMeteorite(){return idMeteorite;}
 
 }
