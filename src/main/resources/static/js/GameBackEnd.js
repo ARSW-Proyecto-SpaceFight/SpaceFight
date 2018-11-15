@@ -1,5 +1,5 @@
-//var host = "http://localhost:8080/spacefight/"
-var host = "https://spacefightarsw.herokuapp.com/spacefight/"
+var host = "http://localhost:8080/spacefight/"
+//var host = "https://spacefightarsw.herokuapp.com/spacefight/"
 
 var stompClient = null;
 
@@ -83,7 +83,7 @@ async function connectAndSubscribe() {
                 if(message.body==ship.getUsername()) stompClient.send("/app/conectado."+ship.getRoom(), {priority: 9}, ship.getUsername());
             });
             await stompClient.subscribe('/topic/shoot.'+ship.getRoom(), function (message){
-                            console.log(message);
+
             });
         await pintar();
         await newShip();         	               

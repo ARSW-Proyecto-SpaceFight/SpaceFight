@@ -165,3 +165,9 @@ function eliminarElemento(elementId) {
     var element = document.getElementById(elementId);
     element.parentNode.removeChild(element);
 }
+
+function pintabala(body){
+agregar = ""
+    agregar += "<img id='ship"+body.Xpos+"' style='position:absolute; width:"+body.shipSize+"px; height:"+body.shipSize+"px; top:"+body.y+"px; left:"+body.x+"px'";
+
+}

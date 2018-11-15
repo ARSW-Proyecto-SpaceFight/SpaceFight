@@ -8,6 +8,8 @@ package edu.eci.arsw.spacefight.spacefight.model;
 import edu.eci.arsw.spacefight.spacefight.restcontrollers.SpaceFightMessageController;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Random;
+
 /**
  *
  * @author User
@@ -22,12 +24,15 @@ public class Shoot {
     public int Ypos;
     private char direction;
     public static final int VEL = 10;
+    private int id;
 
     public Shoot(Ship s,int Xpos,int Ypos, char dir){
         this.Xpos =Xpos;
         this.Ypos=Ypos;
         Shooter=s;
         direction=dir;
+        Random rn = new Random();
+        id= rn.nextInt();
     }
 
     public int getXpos(){
@@ -84,5 +89,13 @@ public class Shoot {
             Ypos-=VEL;
         }
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
