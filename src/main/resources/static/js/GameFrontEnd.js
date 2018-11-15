@@ -27,8 +27,8 @@ var ship = (function(){
 		getJSON : function(){
 			var jsonString = {
                                             "username" : username,
-                                            "x" : 0,
-                                            "y" : 0,
+                                            "x" : (team === 1) ? 0 : (830-50),
+                                            "y" : Math.floor((Math.random() *470) + 1),
                                             "team" : team
                                             }
 			return jsonString;
@@ -36,10 +36,12 @@ var ship = (function(){
 	}
 })();
 
+
 /*
 *Comienza todo y pregunta constantemente el estado del juego
 */
-async function start(){		
+async function start(){
+        
 	if(await existsRooms() == false){
 		await createNewRoom(1);
 	}
@@ -47,7 +49,7 @@ async function start(){
 	//while(true){		
 	//	await pintar();
 	//	await(2000);
-	//}
+	//}        
 }
 
 /*
@@ -71,66 +73,74 @@ async function pintar(){
 }
 
 function moverNave(body){    
-    nave = document.getElementById("ship"+body.username);    
+    nave = document.getElementById("ship"+body.username);   
     nave.style.top = body.y + "px"
     nave.style.left = body.x + "px"
     if(body.direction == "U"){
-			if(body.username == ship.getUsername()){
+			if(body.team != ship.getTeam()){
 				nave.src = "images/shipPlayer.png";
 			}else{
 				nave.src = "images/ship.png";
 			}
 		}else if(body.direction == "R"){
-			if(body.username == ship.getUsername()){
+			if(body.team != ship.getTeam()){
 				nave.src = "images/rightPlayer.png";
 			}else{
 				nave.src = "images/right.png";
 			}			
 		}else if(body.direction == "L"){
-			if(body.username == ship.getUsername()){
+			if(body.team != ship.getTeam()){
 				nave.src = "images/leftPlayer.png";
 			}else{
 				nave.src = "images/left.png";
 			}				
 		}else{
-			if(body.username == ship.getUsername()){
+			if(body.team != ship.getTeam()){
 				nave.src = "images/downPlayer.png";
 			}else{
 				nave.src = "images/down.png";
 			}
 			
 		}
+    nombreNave = document.getElementById("user"+body.username);  
+    nombreNave.style.top = (body.y + body.shipSize) + "px"
+    nombreNave.style.left = body.x + "px"
+    vidaNave = document.getElementById("vida"+body.username);  
+    vidaNave.style.top = (body.y) + "px"
+    vidaNave.style.left = body.x + "px"
 }
 
 function pintarNave(body){
     agregar = ""
     agregar += "<img id='ship"+body.username+"' style='position:absolute; width:"+body.shipSize+"px; height:"+body.shipSize+"px; top:"+body.y+"px; left:"+body.x+"px'";
 		if(body.direction == "U"){
-			if(body.username == ship.getUsername()){
+			if(body.team != ship.getTeam()){
 				agregar += " src='images/shipPlayer.png' ></img>";
 			}else{
 				agregar += " src='images/ship.png' ></img>";
 			}
 		}else if(body.direction == "R"){
-			if(body.username == ship.getUsername()){
+			if(body.team != ship.getTeam()){
 				agregar += " src='images/rightPlayer.png' ></img>";
 			}else{
 				agregar += " src='images/right.png' ></img>";
 			}			
 		}else if(body.direction == "L"){
-			if(body.username == ship.getUsername()){
+			if(body.team != ship.getTeam()){
 				agregar += " src='images/leftPlayer.png' ></img>";
 			}else{
 				agregar += " src='images/left.png' ></img>";
 			}				
 		}else{
-			if(body.username == ship.getUsername()){
+			if(body.team != ship.getTeam()){
 				agregar += " src='images/downPlayer.png' ></img>";
 			}else{
 				agregar += " src='images/down.png' ></img>";
 			}
 			
 		}
+    agregar += "<label id = 'user"+ body.username +"' style='position:absolute; top:"+(body.y + body.shipSize)+"px; left:"+body.x+"px'>"+body.username+"</label>"
+    agregar += "<label id = 'vida"+ body.username +"' style='position:absolute; top:"+(body.y)+"px; left:"+body.x+"px'>"+body.health+"</label>"
     document.getElementById("all").innerHTML += agregar;
 }
 

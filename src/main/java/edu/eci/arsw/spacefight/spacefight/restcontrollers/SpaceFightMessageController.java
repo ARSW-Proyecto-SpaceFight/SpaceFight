@@ -7,6 +7,9 @@ package edu.eci.arsw.spacefight.spacefight.restcontrollers;
 
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -26,6 +29,8 @@ public class SpaceFightMessageController {
     @Autowired
     SimpMessagingTemplate msgt;
     
+    ConcurrentHashMap<String, Boolean> desconectados = new ConcurrentHashMap<>();
+    
     @MessageMapping("/move.{room}")
     public void move(Movement movement, @DestinationVariable String room) throws BattleGroundGameException{       
         spc.movePlayer(Integer.parseInt(room), movement.getUsername(), movement.getKey(), movement.getTeam());        
@@ -37,7 +42,36 @@ public class SpaceFightMessageController {
     public void newShip(Ship newShip, @DestinationVariable String room){        
         spc.addPlayer(Integer.valueOf(room), newShip, newShip.getTeam());
         msgt.convertAndSend("/topic/new."+room, spc.getPlayer(room, newShip.getUsername()).getBody());
-    }            
+    }
+    
+    @MessageMapping("/conectado.{room}")
+    public void conectdo(String username, @DestinationVariable String room){                
+        desconectados.put(username, Boolean.TRUE);     
+    }
+    
+    public boolean conectado(String username, int room){
+        desconectados.put(username, Boolean.FALSE);
+        Thread temp = new Thread(){
+            @Override
+            public void run(){
+                msgt.convertAndSend("/topic/conectado."+room, username);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SpaceFightMessageController.class.getName()).log(Level.SEVERE, null, ex);
+                }                
+            }
+        };        
+        try {
+            temp.start();
+            temp.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SpaceFightMessageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        boolean conectado = desconectados.get(username);
+        desconectados.remove(username);        
+        return conectado;
+    }
     
     static class Movement{
         private String username;
