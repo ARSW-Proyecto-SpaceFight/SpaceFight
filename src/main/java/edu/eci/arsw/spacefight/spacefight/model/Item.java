@@ -19,12 +19,21 @@ public class Item {
         return idItem;
     }
 
-    protected int getXpos(){
+    public int getXpos(){
         return Xpos;
     }
 
-    protected int getYpos(){
+    public void setXpos(int xpos){
+        Xpos = xpos;
+    }
+
+
+    public int getYpos(){
         return Ypos;
+    }
+
+    public void setYpos(int ypos){
+        Ypos = ypos;
     }
 
     protected void Impact(Ship s){

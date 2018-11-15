@@ -9,15 +9,35 @@ package edu.eci.arsw.spacefight.spacefight.model;
  *
  * @author User
  */
-public class Flag extends Position {
+public class Flag {
 
     Team team;
     Boolean captured;
+    public int Xpos;
+    public int Ypos;
+
     public Flag(int Xpos,int Ypos,Team team){
         this.Xpos=Xpos;
         this.Ypos=Ypos;
         this.team=team;
         captured=false;
+    }
+
+    public int getXpos(){
+        return Xpos;
+    }
+
+    public void setXpos(int xpos){
+        Xpos = xpos;
+    }
+
+
+    public int getYpos(){
+        return Ypos;
+    }
+
+    public void setYpos(int ypos){
+        Ypos = ypos;
     }
 
     public Team getTeam() {
