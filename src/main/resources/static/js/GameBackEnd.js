@@ -73,10 +73,10 @@ async function connectAndSubscribe() {
                 pintarNave(JSON.parse(message.body));
             });
             await stompClient.subscribe('/topic/delete.1', function (message){
-                console.log(JSON.parse(message.body));
+                eliminarNave(message.body);
             });
             await stompClient.subscribe('/topic/conectado.1', function (message){
-                stompClient.send("/app/conectado.1", {}, ship.getUsername());
+                if(message.body==ship.getUsername()) stompClient.send("/app/conectado.1", {priority: 9}, ship.getUsername());
             });
         await pintar();
         await newShip();         	               

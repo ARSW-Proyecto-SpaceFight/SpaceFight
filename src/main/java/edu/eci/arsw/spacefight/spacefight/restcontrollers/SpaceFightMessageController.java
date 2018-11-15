@@ -45,8 +45,9 @@ public class SpaceFightMessageController {
     }
     
     @MessageMapping("/conectado.{room}")
-    public void conectdo(String username, @DestinationVariable String room){                
-        desconectados.put(username, Boolean.TRUE);     
+    public void conectado(String username, @DestinationVariable String room) throws BattleGroundGameException{                
+        desconectados.put(username, Boolean.TRUE);
+        spc.playerOnline(Integer.parseInt(room), username);
     }
     
     public boolean conectado(String username, int room){
@@ -69,7 +70,13 @@ public class SpaceFightMessageController {
             Logger.getLogger(SpaceFightMessageController.class.getName()).log(Level.SEVERE, null, ex);
         }
         boolean conectado = desconectados.get(username);
-        desconectados.remove(username);        
+        System.out.println(desconectados);
+        desconectados.remove(username);
+        
+        if(!conectado){ 
+            msgt.convertAndSend("/topic/delete."+room, username);  
+            System.out.println("Eliminar :/topic/conectado."+room+ username);
+        }
         return conectado;
     }
     

@@ -144,3 +144,13 @@ function pintarNave(body){
     document.getElementById("all").innerHTML += agregar;
 }
 
+function eliminarNave(username){
+    eliminarElemento("user"+username);
+    eliminarElemento("vida"+username);
+    eliminarElemento("ship"+username);
+}
+
+function eliminarElemento(elementId) {    
+    var element = document.getElementById(elementId);
+    element.parentNode.removeChild(element);
+}
