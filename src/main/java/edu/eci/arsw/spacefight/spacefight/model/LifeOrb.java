@@ -11,6 +11,7 @@ package edu.eci.arsw.spacefight.spacefight.model;
  */
 public class LifeOrb extends Item {
 
+
     private int Health;
     public LifeOrb(int Xpos,int Ypos,int Health){
         this.Xpos=Xpos;

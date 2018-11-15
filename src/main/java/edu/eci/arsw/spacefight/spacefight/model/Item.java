@@ -11,6 +11,7 @@ package edu.eci.arsw.spacefight.spacefight.model;
  */
 public abstract class Item extends Position {
 
+
     protected void Impact(Ship s){
 
     }

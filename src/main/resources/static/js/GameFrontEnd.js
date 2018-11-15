@@ -1,5 +1,5 @@
 /*
-*Modulo que contiene la informacion de las naves y la propia
+*Modulo que contiene la informacion de las naves, meteoritos y la propia
 */
 var ship = (function(){
         var username = prompt("¿Cual es su usuario?")

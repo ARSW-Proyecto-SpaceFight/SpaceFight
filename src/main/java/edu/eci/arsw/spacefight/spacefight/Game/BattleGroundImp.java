@@ -137,4 +137,30 @@ public class BattleGroundImp implements BattleGroundGame {
         }
 
     }
+
+    @Override
+    public void insertItemInBatlleGround(Item item) throws BattleGroundGameException {
+        if(!items.contains(item)){
+            items.add(item);
+        }
+        else{
+            throw new BattleGroundGameException("The item is in the ground");
+        }
+    }
+
+    @Override
+    public void removeItemFromBatleGround(Item item) throws BattleGroundGameException {
+        if(!items.contains(item)){
+            throw new BattleGroundGameException("The item isn't in the ground");
+        }
+        else{
+            items.remove(item);
+        }
+
+    }
+
+    
+
+
+
 }
