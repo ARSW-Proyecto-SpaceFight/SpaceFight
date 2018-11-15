@@ -70,10 +70,13 @@ async function connectAndSubscribe() {
                 //showGreeting(JSON.parse(greeting.body).content);
             });
             await stompClient.subscribe('/topic/new.1', function (message){
-                pintarNave(JSON.parse(message.body))
+                pintarNave(JSON.parse(message.body));
             });
             await stompClient.subscribe('/topic/delete.1', function (message){
-                console.log(JSON.parse(message.body))
+                console.log(JSON.parse(message.body));
+            });
+            await stompClient.subscribe('/topic/conectado.1', function (message){
+                stompClient.send("/app/conectado.1", {}, ship.getUsername());
             });
         await pintar();
         await newShip();         	               

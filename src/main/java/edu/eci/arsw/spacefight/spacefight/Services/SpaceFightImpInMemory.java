@@ -23,9 +23,7 @@ import java.util.concurrent.ConcurrentSkipListSet;
  */
 @Service
 public class SpaceFightImpInMemory implements SpaceFightServices{
-
-    @Autowired
-    SpaceFightMessageController smc;
+    
 
     @Autowired
     private Master ms;

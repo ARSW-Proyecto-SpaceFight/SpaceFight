@@ -4,8 +4,10 @@ package edu.eci.arsw.spacefight.spacefight.Game;
 
 import edu.eci.arsw.spacefight.spacefight.model.ModelException;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
+import edu.eci.arsw.spacefight.spacefight.restcontrollers.SpaceFightMessageController;
 
 import java.util.HashMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -19,9 +21,9 @@ public class MasterImp implements Master{
 
     private HashMap<Integer, BattleGroundGame> rooms = new HashMap<>();
 
-
-
-
+    @Autowired
+    SpaceFightMessageController smc;
+    
     public HashMap<Integer, BattleGroundGame> getRoomsMap() {
         return rooms;
     }
@@ -90,9 +92,11 @@ public class MasterImp implements Master{
         }
         else {
             try {
-                rooms.get(roomId).removePlayerFromTeam(ship, team);
+                if(!smc.conectado(ship.getUsername(), roomId)){
+                    rooms.get(roomId).removePlayerFromTeam(ship, team);
+                }
             } catch (BattleGroundGameException e) {
-                throw new MasterException("Could not Insert player to Team");
+                throw new MasterException("Could not remove player to Team");
             }
         }
     }
