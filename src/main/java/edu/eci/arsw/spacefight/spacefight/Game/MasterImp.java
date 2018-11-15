@@ -2,10 +2,12 @@
 
 package edu.eci.arsw.spacefight.spacefight.Game;
 
+import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
 import edu.eci.arsw.spacefight.spacefight.model.ModelException;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import edu.eci.arsw.spacefight.spacefight.restcontrollers.SpaceFightMessageController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -160,4 +162,64 @@ public class MasterImp implements Master{
          return false;
      }
     }
+
+    
+    @Override
+    public void insertMeteoritesToRoom(int roomid, Meteorite meteorite) throws MasterException {
+        if(!rooms.containsKey(roomid)){
+            throw  new MasterException("Room "+roomid+" does not exist.");
+        }
+        else{
+            try {
+                rooms.get(roomid).insertItemInBatlleGround(meteorite);
+            } catch (BattleGroundGameException e) {
+                throw new MasterException("Could not Insert meteorite to background");
+            }
+        }
+    }
+
+    @Override
+    public void removeMeteoritesToRoom(int roomid, Meteorite meteorite) throws MasterException {
+        if(!rooms.containsKey(roomid)){
+            throw  new MasterException("Room "+roomid+" does not exist.");
+        }
+        else{
+            try {
+                rooms.get(roomid).removeItemFromBatleGround(meteorite);
+            } catch (BattleGroundGameException e) {
+                throw new MasterException("Could not delete meteorite to background");
+            }
+        }
+    }
+
+    @Override
+    public void removeOneMeteorite(int roomid, Meteorite meteorite) throws MasterException {
+        if(!rooms.containsKey(roomid)){
+            throw  new MasterException("Room "+roomid+" does not exist.");
+        }
+        else{
+            try {
+                rooms.get(roomid).removeMeteorite(meteorite.getIdMeteorite());
+            } catch (BattleGroundGameException e) {
+                throw new MasterException("Could not delete meteorite to background");
+            }
+        }
+
+    }
+
+    @Override
+    public ArrayList<Meteorite> getMeteoritesFromRoom(int roomid) throws MasterException {
+        if(!rooms.containsKey(roomid)){
+            throw  new MasterException("Room "+roomid+" does not exist.");
+        }
+        else{
+            try {
+                return rooms.get(roomid).getAllMeteorites();
+            } catch (BattleGroundGameException e) {
+                throw new MasterException("The background not contain any meteorite");
+            }
+        }
+    }
+
+
 }

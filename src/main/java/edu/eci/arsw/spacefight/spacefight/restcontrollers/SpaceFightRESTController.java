@@ -173,6 +173,22 @@ public class SpaceFightRESTController{
     public void playerOnline(int roomId, String username) throws BattleGroundGameException{
         bgs.playerOnline(roomId, username);        
     }
+
+
+     @RequestMapping(path = "/{roomId}/meteorites",method = RequestMethod.GET)
+    public ResponseEntity<?> getMeteoriteFromRoom(@PathVariable(name = "roomId") String roomId){
+        try {
+            return new ResponseEntity<>(bgs.getMeteoriteFromRoom(Integer.parseInt(roomId)), HttpStatus.CREATED);
+        } catch (BattleGroundGameException ex) {
+            Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getLocalizedMessage(),HttpStatus.BAD_REQUEST);
+        } catch (MasterException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getLocalizedMessage(),HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
 }
     
 

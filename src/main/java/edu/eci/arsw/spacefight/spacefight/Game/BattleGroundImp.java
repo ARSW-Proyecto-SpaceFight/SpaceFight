@@ -28,7 +28,7 @@ import org.springframework.stereotype.Service;
 
 public class BattleGroundImp extends Thread implements BattleGroundGame {
     private ArrayList<Shoot> shoots;
-    private ArrayList<Item> items;
+    private ArrayList<Item> items = new ArrayList<Item>();
     private HashMap<Integer,Team> teamsmap= new HashMap<Integer, Team>();
     private Team team1;
     private Team team2;
@@ -41,8 +41,11 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         teamsmap.put(1,new Team());
         teamsmap.put(2,new Team());
         this.msgt=msgt;
-
-
+        try {
+            insertItemInBatlleGround(new Meteorite(50,50,20,1));
+        } catch (BattleGroundGameException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -203,7 +206,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     public ArrayList<Meteorite> getAllMeteorites() throws BattleGroundGameException {
         ArrayList<Meteorite> m = new ArrayList<Meteorite>();
         for(int i=0;i<items.size();i++) {
-            if(items.get(i).getClass().getName()=="Meteorite"){
+            if(items.get(i).getClass().getName().toString().equals("edu.eci.arsw.spacefight.spacefight.model.Meteorite")){
                 m.add((Meteorite) items.get(i));
             }
         }

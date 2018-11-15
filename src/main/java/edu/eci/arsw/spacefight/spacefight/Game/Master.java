@@ -1,8 +1,10 @@
 package edu.eci.arsw.spacefight.spacefight.Game;
 
+import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 @Service
@@ -16,4 +18,8 @@ public interface Master {
     public BattleGroundGame getRoom(int roomId)throws MasterException;
     boolean containsRoom(int roomid);
     void shoot(int roomId,String username)throws MasterException;
+    void insertMeteoritesToRoom(int roomid, Meteorite meteorite)throws MasterException;
+    void removeMeteoritesToRoom(int roomid, Meteorite meteorite)throws MasterException;
+    void removeOneMeteorite (int roomid, Meteorite meteorite)throws MasterException;
+    ArrayList<Meteorite> getMeteoritesFromRoom(int roomid) throws MasterException;
 }

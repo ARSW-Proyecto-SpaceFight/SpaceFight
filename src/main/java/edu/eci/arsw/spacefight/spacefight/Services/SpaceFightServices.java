@@ -2,7 +2,10 @@ package edu.eci.arsw.spacefight.spacefight.Services;
 
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
 import edu.eci.arsw.spacefight.spacefight.Game.MasterException;
+import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
+
+import java.util.ArrayList;
 import java.util.Set;
 
 
@@ -29,4 +32,6 @@ public interface SpaceFightServices {
     public Set<Integer> getRooms();
 
     void shoot(int roomId,String username)throws BattleGroundGameException;
+
+    public ArrayList<Meteorite> getMeteoriteFromRoom(int roomId) throws BattleGroundGameException, MasterException;
 }

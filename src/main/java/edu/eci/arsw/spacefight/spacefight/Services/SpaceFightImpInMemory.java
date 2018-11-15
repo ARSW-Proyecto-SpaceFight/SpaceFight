@@ -6,6 +6,7 @@
 package edu.eci.arsw.spacefight.spacefight.Services;
 
 import edu.eci.arsw.spacefight.spacefight.Game.*;
+import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import edu.eci.arsw.spacefight.spacefight.restcontrollers.SpaceFightMessageController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -205,7 +206,10 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
         return ms.getRoomsMap().keySet();
     }
 
-    
+    @Override
+    public ArrayList<Meteorite> getMeteoriteFromRoom(int roomId) throws BattleGroundGameException, MasterException {
+        return ms.getMeteoritesFromRoom(roomId);
+    }
 
 
 }
