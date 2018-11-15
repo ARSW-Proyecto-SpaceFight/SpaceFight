@@ -2,6 +2,7 @@
 package edu.eci.arsw.spacefight.spacefight.Game;
 
 import edu.eci.arsw.spacefight.spacefight.model.Item;
+import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import edu.eci.arsw.spacefight.spacefight.model.Team;
 
@@ -17,4 +18,10 @@ public interface BattleGroundGame {
     Ship getShip(String username) throws BattleGroundGameException;
     void insertItemInBatlleGround(Item item) throws BattleGroundGameException;
     void removeItemFromBatleGround(Item item) throws BattleGroundGameException;
+    ArrayList<Item> getAllItems()throws BattleGroundGameException;
+    Item getItem(int idItem)throws BattleGroundGameException;
+    ArrayList<Meteorite> getAllMeteorites() throws BattleGroundGameException;
+    Meteorite getMeteorite(int idMeteorite) throws BattleGroundGameException;
+    void removeMeteorite(int idMeteorite) throws BattleGroundGameException;
+
 }

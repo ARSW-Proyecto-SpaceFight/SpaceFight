@@ -9,8 +9,23 @@ package edu.eci.arsw.spacefight.spacefight.model;
  *
  * @author User
  */
-public abstract class Item extends Position {
+public class Item {
 
+    protected int idItem;
+    protected int Xpos;
+    protected int Ypos;
+
+    public int getIdItem(){
+        return idItem;
+    }
+
+    protected int getXpos(){
+        return Xpos;
+    }
+
+    protected int getYpos(){
+        return Ypos;
+    }
 
     protected void Impact(Ship s){
 

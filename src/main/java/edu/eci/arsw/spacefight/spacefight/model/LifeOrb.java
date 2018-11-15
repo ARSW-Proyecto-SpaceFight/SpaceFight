@@ -13,13 +13,16 @@ public class LifeOrb extends Item {
 
 
     private int Health;
-    public LifeOrb(int Xpos,int Ypos,int Health){
+    public LifeOrb(int Xpos,int Ypos,int Health,int idLifeOrb){
         this.Xpos=Xpos;
         this.Ypos=Ypos;
         this.Health=Health;
+        this.idItem=idLifeOrb;
     }
 
     @Override
     public void Impact(Ship s){s.setHealth(Health);}
+
+
 
 }

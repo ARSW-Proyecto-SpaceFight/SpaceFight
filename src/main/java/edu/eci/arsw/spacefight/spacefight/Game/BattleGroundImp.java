@@ -159,8 +159,60 @@ public class BattleGroundImp implements BattleGroundGame {
 
     }
 
-    
+    @Override
+    public ArrayList<Item> getAllItems() throws BattleGroundGameException {
+        return items;
+    }
 
+    @Override
+    public Item getItem(int idItem) throws BattleGroundGameException {
+        Item it= null;
+        for(int i=0;i<items.size();i++) {
+            if(items.get(i).getIdItem()==(idItem)){
+                it = items.get(i);
+                break;
+            }
+        }
+        if(it.equals(null)){
+            throw new BattleGroundGameException("The item selected isn't in the battle ground");
+        }
+        return it;
+    }
+
+    @Override
+    public ArrayList<Meteorite> getAllMeteorites() throws BattleGroundGameException {
+        ArrayList<Meteorite> m = new ArrayList<Meteorite>();
+        for(int i=0;i<items.size();i++) {
+            if(items.get(i).getClass().getName()=="Meteorite"){
+                m.add((Meteorite) items.get(i));
+            }
+        }
+
+        if(m.isEmpty()){
+            throw new BattleGroundGameException("Non exist a meteorites in the items list");
+        }
+
+        return m;
+
+    }
+
+    @Override
+    public Meteorite getMeteorite(int idMeteorite) throws BattleGroundGameException {
+        try{
+            return getAllMeteorites().get(idMeteorite);
+        }catch (Exception e){
+            throw new BattleGroundGameException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void removeMeteorite(int idMeteorite) throws BattleGroundGameException {
+        try{
+           getAllMeteorites().remove(getMeteorite(idMeteorite));
+        }catch(Exception e){
+            throw new BattleGroundGameException(e.getMessage());
+        }
+    }
 
 
 }
