@@ -61,7 +61,7 @@ async function start(){
 */
 window.onkeydown = function(e) {
 	var key = e.keyCode ? e.keyCode : e.which;
-	if(key==32){
+	if(key===32){
 	    shoot();
 	}
 	else{
@@ -166,8 +166,7 @@ function eliminarElemento(elementId) {
     element.parentNode.removeChild(element);
 }
 
-function pintarBala(body){
-    console.log(document.getElementById("bala"+body.id))
+function pintarBala(body){    
     if(document.getElementById("bala"+body.id) == null){
         agregar = ""
         agregar += "<img id='bala"+body.id+"' style='position:absolute; width: 20px; height:20px; top:"+body.Ypos+"px; left:"+body.Xpos+"px' src='images/shot.png'></img>";
