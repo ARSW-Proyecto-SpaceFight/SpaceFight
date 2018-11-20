@@ -37,3 +37,10 @@ Los jugadores son ubicados en dos equipos aleatoriamente y la bandera se esconde
 ##### Versión Escalable AWS
 
 ## VISTA
+
+
+
+   [david]: <https://github.com/davd62133>
+   [oscar]: <https://github.com/TheBaphomet666>
+   [martin]: <https://github.com/Martin9958>
+   [alejandra]: <https://github.com/alejaags>
