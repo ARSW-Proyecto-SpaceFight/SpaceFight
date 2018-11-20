@@ -1732,7 +1732,7 @@
 	textarea {
 		padding: 0.75em 1em;
 	}
-
+/*
 	input[type="checkbox"],
 	input[type="radio"] {
 		-moz-appearance: none;
@@ -1807,7 +1807,7 @@
 	input[type="radio"] + label:before {
 		border-radius: 100%;
 	}
-
+*/
 	::-webkit-input-placeholder {
 		color: rgba(255, 255, 255, 0.35) !important;
 		opacity: 1.0;
@@ -2654,7 +2654,7 @@
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
+    background-color: #000;
     margin: 5px auto; /* 15% from the top and centered */
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
