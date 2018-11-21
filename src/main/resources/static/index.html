@@ -44,6 +44,8 @@
 						<input type="checkbox" id="cbox2" value="second_checkbox"> Remember me
 					</label>
 				</div>
+				
+				<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
 
 				<div class="container" style="background-color:#000">
 					<button type="button" onclick="document.getElementById('id01').style.display=''" class="cancelbtn">Cancel</button>
@@ -51,6 +53,16 @@
 				</div>
 			</form>
 		</div>
+		
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2';
+			fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
 
 		<script>
 			//"window.location.href='salas.html'"
