@@ -267,6 +267,9 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     }
 
+    /**
+     * This method calculates the colition between shoots and ships and damage if required
+     */
     private synchronized void DamageShoots() {
         ArrayList<Ship> shiplist = getAllShips();
         synchronized (shiplist){
@@ -291,6 +294,12 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         }
     }
 
+    /**
+     * this method checks the coordinates between a ship and a shoot also omits the collision with the shooter
+     * @param ship the ship about to be checked if was hit
+     * @param shoot the current shoot to be checked
+     * @return
+     */
     private boolean colide(Ship ship, Shoot shoot) {
         boolean bol=false;
         if(ship.getX()-Shoot.shootSize<shoot.getXpos() && shoot.getXpos()<ship.getX()+Ship.shipSize && ship.getY()-Shoot.shootSize<shoot.getYpos() && shoot.getYpos()<ship.getY()+Ship.shipSize ){
