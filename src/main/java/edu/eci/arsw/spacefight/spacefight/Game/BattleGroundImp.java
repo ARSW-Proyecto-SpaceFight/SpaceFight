@@ -260,31 +260,57 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             }
             //System.out.println("IM WHILING");
             moveElements();
+            //Damage();
 
         }
 
 
     }
-    private void moveElements(){
-        ArrayList<Shoot> found=new ArrayList<>();
-        //System.out.println("FUCK ME IN THE ASS"+shoots.size()+"");
-        for(int i=0;i<shoots.size();i++){
-            Shoot s= shoots.get(i);
-            s.move();
-            //System.out.println("IM SENDING ID="+id+"SHOOT"+s);
-            msgt.sendshoot(id,s);
-            //System.out.println("SENT");
+
+    private synchronized void Damage() {
+        ArrayList<Ship> shiplist = getAllShips();
+        synchronized (shiplist){
+            synchronized (shoots){
+                for(int j=0; j<shiplist.size();j++) {
+                    for (int i = 0; i < shoots.size(); i++) {
+                        if(colide(shiplist.get(j),shoots.get(i))){
+
+                        }
+
+                    }
+                }
+            }
 
         }
-        for(int i=0;i<shoots.size();i++) {
-            //System.out.println("IM REMOVING");
-            Shoot s= shoots.get(i);
-            if (s.getXpos() < 0 || s.getXpos() > Ship.BOUNDX || s.getYpos() < 0 || s.getYpos() > Ship.BOUNDY) {
-                found.add(s);
+    }
+
+    private boolean colide(Ship ship, Shoot shoot) {
+
+        return true;
+    }
+
+    private synchronized void moveElements(){
+        synchronized(shoots) {
+            ArrayList<Shoot> found = new ArrayList<>();
+            //System.out.println("FUCK ME IN THE ASS"+shoots.size()+"");
+            for (int i = 0; i < shoots.size(); i++) {
+                Shoot s = shoots.get(i);
+                s.move();
+                //System.out.println("IM SENDING ID="+id+"SHOOT"+s);
+                msgt.sendshoot(id, s);
+                //System.out.println("SENT");
 
             }
+            for (int i = 0; i < shoots.size(); i++) {
+                //System.out.println("IM REMOVING");
+                Shoot s = shoots.get(i);
+                if (s.getXpos() < 0 || s.getXpos() > Ship.BOUNDX || s.getYpos() < 0 || s.getYpos() > Ship.BOUNDY) {
+                    found.add(s);
+
+                }
+            }
+            shoots.removeAll(found);
         }
-        shoots.removeAll(found);
     }
 
     public void setId(int id) {

@@ -16,7 +16,7 @@ public class Ship implements Comparable<Ship> {
     private int x, y;
     private float health = 100;
     public static final int velocity = 10;
-    private static final int shipSize = 50;
+    private static final int shipSize = 20;
     private char direction = 'U';
     private int online = 100;
     private String username;

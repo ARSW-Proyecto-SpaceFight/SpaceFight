@@ -25,6 +25,7 @@ public class Shoot {
     private char direction;
     public static final int VEL = 10;
     private int id;
+    private static final int shootSize = 50;
 
     public Shoot(Ship s,int Xpos,int Ypos, char dir){
         this.Xpos =Xpos;
@@ -75,6 +76,10 @@ public class Shoot {
     public void setDirection(char direction) {
         this.direction = direction;
     }
+
+    public static int getShootSize() {return shootSize; }
+
+
     public void move(){
         if(direction=='L'){
             Xpos-=VEL;
