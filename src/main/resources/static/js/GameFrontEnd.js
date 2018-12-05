@@ -169,7 +169,7 @@ function eliminarElemento(elementId) {
 function pintarBala(body){    
     if(document.getElementById("bala"+body.id) == null){
         agregar = ""
-        agregar += "<img id='bala"+body.id+"' style='position:absolute; width: "+body.shootSize+"px; height:"+body.shootSize+"px; top:"+body.Ypos+"px; left:"+body.Xpos+"px' src='images/shot.png'></img>";
+        agregar += "<img id='bala"+body.id+"' style='position:absolute; width: 20px; height:20px; top:"+body.Ypos+"px; left:"+body.Xpos+"px' src='images/shot.png'></img>";
         console.log(agregar)
         document.getElementById("all").innerHTML += agregar;
     }else{

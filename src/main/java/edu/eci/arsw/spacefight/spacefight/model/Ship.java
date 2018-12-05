@@ -16,7 +16,7 @@ public class Ship implements Comparable<Ship> {
     private int x, y;
     private float health = 100;
     public static final int velocity = 10;
-    private static final int shipSize = 20;
+    public static final int shipSize = 50;
     private char direction = 'U';
     private int online = 100;
     private String username;
@@ -75,7 +75,11 @@ public class Ship implements Comparable<Ship> {
 
     public char getDirection() {
         return direction;
-    }        
+    }
+
+    public void damage(int damage){
+        this.health-=damage;
+    }
     
     @Override
     public int compareTo(Ship o) {

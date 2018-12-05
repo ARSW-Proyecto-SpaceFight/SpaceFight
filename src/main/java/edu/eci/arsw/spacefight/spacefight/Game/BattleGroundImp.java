@@ -260,34 +260,48 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             }
             //System.out.println("IM WHILING");
             moveElements();
-            //Damage();
+            DamageShoots();
 
         }
 
 
     }
 
-    private synchronized void Damage() {
+    private synchronized void DamageShoots() {
         ArrayList<Ship> shiplist = getAllShips();
         synchronized (shiplist){
             synchronized (shoots){
+                ArrayList<Shoot> del= new ArrayList<>();
                 for(int j=0; j<shiplist.size();j++) {
                     for (int i = 0; i < shoots.size(); i++) {
-                        if(colide(shiplist.get(j),shoots.get(i))){
+                        if(colide(shiplist.get(j),shoots.get(i))) {
+                            if (shiplist.get(j).getTeam() != shoots.get(i).getShooter().getTeam()) {
+                                shiplist.get(j).damage(shoots.get(i).getDamage());
+                                //System.out.println("DAMAGE DONE");
+                            }
+                            del.add(shoots.get(i));
 
                         }
 
                     }
                 }
+                shoots.removeAll(del);
             }
 
         }
     }
 
     private boolean colide(Ship ship, Shoot shoot) {
-
-        return true;
+        boolean bol=false;
+        if(ship.getX()-Shoot.shootSize<shoot.getXpos() && shoot.getXpos()<ship.getX()+Ship.shipSize && ship.getY()-Shoot.shootSize<shoot.getYpos() && shoot.getYpos()<ship.getY()+Ship.shipSize ){
+            if(!shoot.getShooter().getUsername().equals(ship.getUsername())) {
+                bol = true;
+            }
+        }
+        return bol;
     }
+
+
 
     private synchronized void moveElements(){
         synchronized(shoots) {

@@ -25,7 +25,7 @@ public class Shoot {
     private char direction;
     public static final int VEL = 10;
     private int id;
-    private static final int shootSize = 50;
+    public static final int shootSize = 20;
 
     public Shoot(Ship s,int Xpos,int Ypos, char dir){
         this.Xpos =Xpos;
@@ -34,6 +34,7 @@ public class Shoot {
         direction=dir;
         Random rn = new Random();
         id= rn.nextInt();
+        this.Damage=10;
     }
 
     public int getXpos(){
