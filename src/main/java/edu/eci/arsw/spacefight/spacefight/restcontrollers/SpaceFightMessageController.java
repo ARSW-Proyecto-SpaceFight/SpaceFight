@@ -61,6 +61,8 @@ public class SpaceFightMessageController {
         msgt.convertAndSend("/topic/shoot." +roomId,s);
     }
 
+    public void deleteShoot(int roomId, Shoot s){ msgt.convertAndSend("/topic/deleteshoot."+roomId,s);}
+
     public boolean conectado(String username, int room){
         desconectados.put(username, Boolean.FALSE);
         Thread temp = new Thread(){

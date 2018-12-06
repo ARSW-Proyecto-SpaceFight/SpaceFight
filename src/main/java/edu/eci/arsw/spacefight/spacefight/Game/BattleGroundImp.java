@@ -289,6 +289,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                     }
                 }
                 shoots.removeAll(del);
+                for(Shoot s : del){msgt.deleteShoot(id, s);}
             }
 
         }
@@ -333,6 +334,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                 }
             }
             shoots.removeAll(found);
+            for(Shoot s : found){msgt.deleteShoot(id, s);}
         }
     }
 
