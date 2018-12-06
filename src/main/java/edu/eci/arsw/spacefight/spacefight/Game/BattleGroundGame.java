@@ -20,6 +20,6 @@ public interface BattleGroundGame {
     ArrayList<Meteorite> getAllMeteorites() throws BattleGroundGameException;
     Meteorite getMeteorite(int idMeteorite) throws BattleGroundGameException;
     void removeMeteorite(int idMeteorite) throws BattleGroundGameException;
-    Shoot shoot(String username)throws BattleGroundGameException;
+    void shoot(String username)throws BattleGroundGameException;
     void setId(int id);
 }

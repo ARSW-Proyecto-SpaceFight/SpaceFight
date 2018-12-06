@@ -237,16 +237,24 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         }
     }
     @Override
-    public Shoot shoot(String username)throws BattleGroundGameException {
+    public void shoot(String username)throws BattleGroundGameException {
         HashMap<String,Ship> map=getAllShipsAsMap();
         if(!map.containsKey(username)){
             throw new BattleGroundGameException("Ship not found");
         }
         else{
             Ship s = map.get(username);
-            Shoot shot = new Shoot(s,(int)s.getX(),(int)s.getY(),s.getDirection());
-            shoots.add(shot);
-            return shot;
+            int amount=0;
+            for(int i=0;i<shoots.size() && amount<3;i++){
+                if(shoots.get(i).getShooter().getUsername().equals(username)){
+                    amount++;
+                }
+            }
+            if(amount<3) {
+                Shoot shot = new Shoot(s, (int) s.getX(), (int) s.getY(), s.getDirection());
+                shoots.add(shot);
+            }
+            //return shot;
         }
     }
     @Override
