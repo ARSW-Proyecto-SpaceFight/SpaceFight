@@ -165,6 +165,10 @@ function  eliminarBala(body) {
 	eliminarElemento("bala"+body.id);
 }
 
+function danarNave(body){
+    document.getElementById("vida"+body.username).innerText = body.health;
+}
+
 function eliminarElemento(elementId) {    
     var element = document.getElementById(elementId);
     element.parentNode.removeChild(element);

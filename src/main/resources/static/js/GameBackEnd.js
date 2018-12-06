@@ -88,6 +88,9 @@ async function connectAndSubscribe() {
             await stompClient.subscribe('/topic/deleteshoot.'+ship.getRoom(), function (message){
                 eliminarBala(JSON.parse(message.body));
             });
+            await stompClient.subscribe('/topic/damage.'+ship.getRoom(), function (message){
+                danarNave(JSON.parse(message.body))
+            });
         await pintar();
         await newShip();         	               
         });
