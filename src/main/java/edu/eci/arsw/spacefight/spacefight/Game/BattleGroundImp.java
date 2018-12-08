@@ -15,6 +15,7 @@ import edu.eci.arsw.spacefight.spacefight.model.Team;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import edu.eci.arsw.spacefight.spacefight.restcontrollers.SpaceFightMessageController;
 import org.apache.ibatis.jdbc.Null;
@@ -41,12 +42,23 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         teamsmap.put(1,new Team());
         teamsmap.put(2,new Team());
         this.msgt=msgt;
+        insertMeteorites();
+
+
+    }
+
+    public void insertMeteorites(){
         try {
-            insertItemInBatlleGround(new Meteorite(50,50,20,1));
+            for(int i=1; i<=30;i++){
+                Random rn = new Random();
+                int posx = rn.nextInt(140)+344;
+                int posy = 1 + (int)(Math.random() * 469);
+                insertItemInBatlleGround(new Meteorite(posx,posy,20,i));
+            }
+
         } catch (BattleGroundGameException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
