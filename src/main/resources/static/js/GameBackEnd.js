@@ -61,6 +61,19 @@ async function existsRooms(){
 	return exists;
 }
 
+/*
+*Obtiene todos los meteoritos de la sala
+*/
+async function getAllMeteorites(room){
+    var Meteorites = new Array();
+    await Promise.resolve(axios.get(host+room+"/meteorites")
+    .then(async function(response){
+         Meteorites.put(response.data);
+    }));
+    return Meteorites;
+}
+
+
 async function connectAndSubscribe() {
         var socket = new SockJS('/gs-guide-websocket');
         stompClient = Stomp.over(socket);
@@ -91,8 +104,12 @@ async function connectAndSubscribe() {
             await stompClient.subscribe('/topic/damage.'+ship.getRoom(), function (message){
                 danarNave(JSON.parse(message.body))
             });
+            await stompClient.subscribe('/topic/meteorites.'+ship.getRoom(), function (message){
+                pintarmeteorites(JSON.parse(message.body))
+            });
         await pintar();
-        await newShip();         	               
+        await newShip();
+
         });
         
     }

@@ -30,4 +30,5 @@ public class Meteorite extends Item {
 
     public int getIdMeteorite(){return idItem;}
 
+
 }

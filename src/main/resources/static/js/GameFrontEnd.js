@@ -83,6 +83,18 @@ async function pintar(){
 	document.getElementById("all").innerHTML += agregar;
 }
 
+
+async function pintarmeteorites(body){
+    agregar = ""
+    var i;
+    for(i = 0; i< body.getAllMeteorites().length; i++ ){
+             agregar += "<img id='meteorite"+body.getIdMeteorite()+"' style='position:absolute; width:50px; height:50px; top:"+body.Xpos+"px; left:"+body.Ypos+"px'";
+             agregar += " src='images/meteorite.png' ></img>";
+        }
+     document.getElementById("all").innerHTML += agregar;
+
+}
+
 function moverNave(body){    
     nave = document.getElementById("ship"+body.username);   
     nave.style.top = body.y + "px"
