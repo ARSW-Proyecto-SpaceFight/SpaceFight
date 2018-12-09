@@ -188,6 +188,9 @@ public class SpaceFightRESTController{
         }
     }
 
+    public int getNextTeam(int room){
+        return bgs.getNextTeam(room);
+    }
 
 }
     

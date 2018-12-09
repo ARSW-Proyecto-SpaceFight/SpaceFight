@@ -378,4 +378,9 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         this.id = id;
         this.start();
     }
+
+    @Override
+    public ArrayList<Ship> getAllShipsFromTeam(int team) {
+        return teamsmap.get(team).getShips();
+    }
 }

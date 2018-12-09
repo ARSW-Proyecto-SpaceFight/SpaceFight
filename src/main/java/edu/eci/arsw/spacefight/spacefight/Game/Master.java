@@ -22,4 +22,5 @@ public interface Master {
     void removeMeteoritesToRoom(int roomid, Meteorite meteorite)throws MasterException;
     void removeOneMeteorite (int roomid, Meteorite meteorite)throws MasterException;
     ArrayList<Meteorite> getMeteoritesFromRoom(int roomid) throws MasterException;
+    int getNextTeam(int roomId);
 }

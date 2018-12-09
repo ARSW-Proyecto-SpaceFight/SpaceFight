@@ -34,4 +34,6 @@ public interface SpaceFightServices {
     void shoot(int roomId,String username)throws BattleGroundGameException;
 
     public ArrayList<Meteorite> getMeteoriteFromRoom(int roomId) throws BattleGroundGameException, MasterException;
+
+    int getNextTeam(int roomId);
 }

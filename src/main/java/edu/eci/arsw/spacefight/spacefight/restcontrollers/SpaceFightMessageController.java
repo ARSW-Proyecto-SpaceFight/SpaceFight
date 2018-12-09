@@ -42,7 +42,7 @@ public class SpaceFightMessageController {
     
     @MessageMapping("/new.{room}")
     public void newShip(Ship newShip, @DestinationVariable String room){        
-        spc.addPlayer(Integer.valueOf(room), newShip, newShip.getTeam());
+        spc.addPlayer(Integer.valueOf(room), newShip, spc.getNextTeam(Integer.valueOf(room)));
         msgt.convertAndSend("/topic/new."+room, spc.getPlayer(room, newShip.getUsername()).getBody());
     }
     

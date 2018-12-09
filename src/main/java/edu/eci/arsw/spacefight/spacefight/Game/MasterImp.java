@@ -221,5 +221,12 @@ public class MasterImp implements Master{
         }
     }
 
+    @Override
+    public int getNextTeam(int roomId) {
+        int cant1 = rooms.get(roomId).getAllShipsFromTeam(1).size();
+        int cant2 = rooms.get(roomId).getAllShipsFromTeam(2).size();
+        return (cant1>cant2)?2:1;
+    }
+
 
 }

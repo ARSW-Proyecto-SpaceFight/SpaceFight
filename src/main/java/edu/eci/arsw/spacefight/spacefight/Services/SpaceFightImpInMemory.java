@@ -211,5 +211,10 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
         return ms.getMeteoritesFromRoom(roomId);
     }
 
+    @Override
+    public int getNextTeam(int roomId) {
+        return ms.getNextTeam(roomId);
+    }
+
 
 }

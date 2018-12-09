@@ -22,4 +22,5 @@ public interface BattleGroundGame {
     void removeMeteorite(int idMeteorite) throws BattleGroundGameException;
     void shoot(String username)throws BattleGroundGameException;
     void setId(int id);
+    ArrayList<Ship> getAllShipsFromTeam(int team);
 }
