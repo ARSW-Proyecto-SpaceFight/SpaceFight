@@ -25,6 +25,8 @@ public class LifeOrb extends Item {
     @Override
     public void Impact(Ship s){s.setHealth(s.getHealth()+Recovery);}
 
+    public int getIdLifeOrb(){return idItem;}
+
 
 
 }

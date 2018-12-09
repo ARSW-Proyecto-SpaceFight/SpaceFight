@@ -2,6 +2,7 @@
 
 package edu.eci.arsw.spacefight.spacefight.Game;
 
+import edu.eci.arsw.spacefight.spacefight.model.LifeOrb;
 import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
 import edu.eci.arsw.spacefight.spacefight.model.ModelException;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
@@ -226,6 +227,62 @@ public class MasterImp implements Master{
         int cant1 = rooms.get(roomId).getAllShipsFromTeam(1).size();
         int cant2 = rooms.get(roomId).getAllShipsFromTeam(2).size();
         return (cant1>cant2)?2:1;
+    }
+
+    @Override
+    public void insertLifesOrbToRoom(int roomid, LifeOrb lifeOrb) throws MasterException {
+        if(!rooms.containsKey(roomid)){
+            throw  new MasterException("Room "+roomid+" does not exist.");
+        }
+        else{
+            try {
+                rooms.get(roomid).insertItemInBatlleGround(lifeOrb);
+            } catch (BattleGroundGameException e) {
+                throw new MasterException("Could not Insert lifeorb to background");
+            }
+        }
+    }
+
+    @Override
+    public void removeLifesOrbToRoom(int roomid, LifeOrb lifeOrb) throws MasterException {
+        if(!rooms.containsKey(roomid)){
+            throw  new MasterException("Room "+roomid+" does not exist.");
+        }
+        else{
+            try {
+                rooms.get(roomid).removeItemFromBatleGround(lifeOrb);
+            } catch (BattleGroundGameException e) {
+                throw new MasterException("Could not delete lifeorb to background");
+            }
+        }
+    }
+
+    @Override
+    public void removeOneLifeOrb(int roomid, LifeOrb lifeOrb) throws MasterException {
+        if(!rooms.containsKey(roomid)){
+            throw  new MasterException("Room "+roomid+" does not exist.");
+        }
+        else{
+            try {
+                rooms.get(roomid).removeLifeOrb(lifeOrb.getIdLifeOrb());
+            } catch (BattleGroundGameException e) {
+                throw new MasterException("Could not delete this life Orb to background");
+            }
+        }
+    }
+
+    @Override
+    public ArrayList<LifeOrb> getLifeOrbFromRoom(int roomid) throws MasterException {
+        if(!rooms.containsKey(roomid)){
+            throw  new MasterException("Room "+roomid+" does not exist.");
+        }
+        else{
+            try {
+                return rooms.get(roomid).getAllLifeOrbs();
+            } catch (BattleGroundGameException e) {
+                throw new MasterException("The background not contain any LifeOrbs");
+            }
+        }
     }
 
 
