@@ -210,7 +210,7 @@ function moverBala(body){
 function drawFlag(body){
     if(document.getElementById("flag"+body.id) == null){
         agregar = ""
-        agregar += "<img id='flag"+body.id+"' style='position:absolute; width: 30px; height:30px; top:"+body.Ypos+"px; left:"+body.Xpos+"px' src='images/flag"+body.id+".png'></img>";
+        agregar += "<img id='flag"+body.id+"' style='position:absolute; width: 30px; height:30px; top:"+body.Ypos+"px; left:"+body.Xpos+"px' src='images/flag1.png'></img>";
         console.log(agregar)
         document.getElementById("all").innerHTML += agregar;
     }else{
@@ -229,7 +229,7 @@ async function drawFlags(body){
     agregar = ""
     var i;
     for(i = 0; i< body.length; i++ ){
-        agregar += "<img id='flag"+body[i].id+"' style='position:absolute; width:30px; height:30px; top:"+body[i].Ypos+"px; left:"+body[i].Xpos+"px' src='images/flag"+body.id+".png'></img>";
+        agregar += "<img id='flag"+body[i].id+"' style='position:absolute; width:30px; height:30px; top:"+body[i].Ypos+"px; left:"+body[i].Xpos+"px' src='images/flag1.png'></img>";
 
     }
     document.getElementById("all").innerHTML += agregar;
