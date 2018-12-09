@@ -26,4 +26,7 @@ public interface BattleGroundGame {
     ArrayList<LifeOrb> getAllLifeOrbs() throws BattleGroundGameException;
     LifeOrb getLifeOrb(int idLifeOrb) throws BattleGroundGameException;
     void removeLifeOrb(int idLifeOrb) throws BattleGroundGameException;
+    void moveShip(String username,int key);
+
+    ArrayList<Flag> getFlags();
 }

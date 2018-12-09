@@ -31,18 +31,20 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     private ArrayList<Shoot> shoots;
     private ArrayList<Item> items = new ArrayList<Item>();
     private HashMap<Integer,Team> teamsmap= new HashMap<Integer, Team>();
-    private Team team1;
-    private Team team2;
+    //private Team team1;
+    //private Team team2;
     private  int id;
-    private Flag flagTeam1;
-    private Flag flagTeam2;
-
-    SpaceFightMessageController msgt ;
+    //private Flag flagTeam1;
+    //private Flag flagTeam2;
+    private HashMap<Integer,Flag> flagsmap= new HashMap<Integer, Flag>();
+    private final int numberOfTeams= 2;
+    SpaceFightMessageController msgt;
 
     public BattleGroundImp(SpaceFightMessageController msgt) {
         shoots= new ArrayList<>();
-        teamsmap.put(1,new Team(1));
-        teamsmap.put(2,new Team(2));
+        for(int i=1;i<numberOfTeams+1;i++){
+            teamsmap.put(i,new Team(i));
+        }
         this.msgt=msgt;
         insertMeteorites();
         insertFlags();
@@ -64,22 +66,24 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             e.printStackTrace();
         }
     }
-    
-    public void insertFlags(){
-        try {
-            Random rn = new Random();
-            int posxt1 = rn.nextInt(340)+1;
-            int posyt1 = 1 + (int)(Math.random() * 469);
-            insertItemInBatlleGround(new Flag(posxt1,posyt1,team1));
-            int posxt2 = rn.nextInt(341)+488;
-            int posyt2 = 1 + (int)(Math.random() * 469);
-            insertItemInBatlleGround(new Flag(posxt2,posyt2,team2));
-            
 
-        } catch (BattleGroundGameException e) {
-            e.printStackTrace();
+
+    public void insertFlags(){
+        Random rn = new Random();
+        int posxt1 = rn.nextInt(340)+1;
+        int posy = 1 + (int)(Math.random() * 469);
+        int posxt2 = rn.nextInt(341)+488;
+        ArrayList<Integer> pos=new ArrayList<>();
+        pos.add(posxt1);
+        pos.add(posxt2);
+        for(int i=1;i<numberOfTeams+1;i++){
+            Flag fg=new Flag(pos.get(i-1),posy,teamsmap.get(i));
+            flagsmap.put(i,fg);
+            msgt.sendflag(id,fg);
         }
+
     }
+
 
 
     public void insertLifeOrbs(){
@@ -316,9 +320,10 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                 e.printStackTrace();
             }
             //System.out.println("IM WHILING");
-            moveElements();
+            moveShoots();
             DamageShoots();
             damageMeteorites();
+            //moveFlags();
         }
 
 
@@ -387,7 +392,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
 
 
-    private synchronized void moveElements(){
+    private synchronized void moveShoots(){
         synchronized(shoots) {
             ArrayList<Shoot> found = new ArrayList<>();
             for (int i = 0; i < shoots.size(); i++) {
@@ -410,6 +415,14 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             for(Shoot s : found){msgt.deleteShoot(id, s);}
         }
     }
+    /*private synchronized void moveFlags(){
+        synchronized (flagsmap){
+            for(int i=1;i<numberOfTeams+1;i++){
+                msgt.sendflag(id,flagsmap.get(i));
+            }
+
+        }
+    }*/
 
     public void setId(int id) {
         this.id = id;
@@ -425,7 +438,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     public ArrayList<LifeOrb> getAllLifeOrbs() throws BattleGroundGameException {
         ArrayList<LifeOrb> o = new ArrayList<LifeOrb>();
         for(int i=0;i<items.size();i++) {
-            if(items.get(i).getClass().getName().toString().equals("edu.eci.arsw.spacefight.spacefight.model.Meteorite")){
+            if(items.get(i).getClass().getName().toString().equals("edu.eci.arsw.spacefight.spacefight.model.LifeOrb")){
                 o.add((LifeOrb) items.get(i));
             }
         }
@@ -453,5 +466,24 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         }catch(Exception e){
             throw new BattleGroundGameException(e.getMessage());
         }
+    }
+
+
+    @Override
+    public void moveShip(String username,int key) {
+        HashMap<String, Ship> sp = getAllShipsAsMap();
+        Ship s = sp.get(username);
+        s.move(key);
+        if (s.getCarryingFlag() != null) {
+            s.getCarryingFlag().move(key, Ship.velocity);
+            msgt.sendflag(id, s.getCarryingFlag());
+        }
+
+
+    }
+
+    @Override
+    public ArrayList<Flag> getFlags() {
+        return new ArrayList<Flag>(flagsmap.values());
     }
 }

@@ -1,5 +1,6 @@
 package edu.eci.arsw.spacefight.spacefight.Game;
 
+import edu.eci.arsw.spacefight.spacefight.model.Flag;
 import edu.eci.arsw.spacefight.spacefight.model.LifeOrb;
 import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
@@ -29,4 +30,6 @@ public interface Master {
     void removeOneLifeOrb (int roomid, LifeOrb lifeOrb)throws MasterException;
     ArrayList<LifeOrb> getLifeOrbFromRoom(int roomid) throws MasterException;
 
+
+    ArrayList<Flag> getFlags(int roomId);
 }

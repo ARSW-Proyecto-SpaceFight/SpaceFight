@@ -2,10 +2,7 @@
 
 package edu.eci.arsw.spacefight.spacefight.Game;
 
-import edu.eci.arsw.spacefight.spacefight.model.LifeOrb;
-import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
-import edu.eci.arsw.spacefight.spacefight.model.ModelException;
-import edu.eci.arsw.spacefight.spacefight.model.Ship;
+import edu.eci.arsw.spacefight.spacefight.model.*;
 import edu.eci.arsw.spacefight.spacefight.restcontrollers.SpaceFightMessageController;
 
 import java.util.ArrayList;
@@ -283,6 +280,11 @@ public class MasterImp implements Master{
                 throw new MasterException("The background not contain any LifeOrbs");
             }
         }
+    }
+
+    @Override
+    public ArrayList<Flag> getFlags(int roomId) {
+        return rooms.get(roomId).getFlags();
     }
 
 

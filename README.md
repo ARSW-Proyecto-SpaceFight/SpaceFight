@@ -4,7 +4,6 @@ Proyecto desarrollado en el periodo académico 2018-2 para el curso Arquitectura
 
 
 ## Integrantes del proyecto
-
   - [David Rodriguez][david]
   - [Orcar Pinto][oscar]
   - [Martin Cantor][martin]
@@ -15,7 +14,6 @@ Proyecto desarrollado en el periodo académico 2018-2 para el curso Arquitectura
   - Luis Daniel Benavidez
 
 ## Descripción del producto
-
 SpaceFight es un videojuego multijugador que asegura diversión y acción constante, inspirado en "atrapa la bandera". Su principal objetivo es encontrar la bandera del equipo rival y evitar morir.
 
 Los jugadores son ubicados en dos equipos aleatoriamente y la bandera se esconde en un lugar aleatorio del campo, los jugadores protegen la misma a partir de disparos en sus naves.
@@ -26,19 +24,19 @@ Los jugadores son ubicados en dos equipos aleatoriamente y la bandera se esconde
 
 ## DIAGRAMAS
 
-#### Diagrama de actividad
+### Diagrama de actividad
 
-#### Diagrama de componentes
+### Diagrama de componentes
 
-#### Diagrama de despliegue
+### Diagrama de despliegue
 
-##### Versión inicial
+#### Versión inicial
 
-##### Versión Escalable AWS
+#### Versión Escalable AWS
 
-## VISTA
-
-
+*_Vistas:_*
+------- 
+[![Heroku](https://wmpics.pics/di-NNAT.png)](https://spacefightarsw.herokuapp.com/)
 
    [david]: <https://github.com/davd62133>
    [oscar]: <https://github.com/TheBaphomet666>

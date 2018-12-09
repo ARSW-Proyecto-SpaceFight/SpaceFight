@@ -1,5 +1,5 @@
-//var host = "http://localhost:8080/spacefight/"
-var host = "https://spacefightarsw.herokuapp.com/spacefight/"
+var host = "http://localhost:8080/spacefight/"
+//var host = "https://spacefightarsw.herokuapp.com/spacefight/"
 
 var stompClient = null;
 
@@ -72,7 +72,13 @@ async function getAllMeteorites(){
     }));
 }
 
-
+async function getAllFlags(){
+    var Flags = new Array();
+    await Promise.resolve(axios.get(host+ship.getRoom()+"/flags")
+        .then(async function(response){
+        drawFlags(response.data);
+    }));
+}
 
 async function connectAndSubscribe() {
         var socket = new SockJS('/gs-guide-websocket');
