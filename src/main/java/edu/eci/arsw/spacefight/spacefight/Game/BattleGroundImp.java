@@ -53,7 +53,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                 Random rn = new Random();
                 int posx = rn.nextInt(140)+344;
                 int posy = 1 + (int)(Math.random() * 469);
-                insertItemInBatlleGround(new Meteorite(posx,posy,20,i));
+                insertItemInBatlleGround(new Meteorite(posx,posy,5,i));
             }
 
         } catch (BattleGroundGameException e) {
@@ -281,7 +281,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             //System.out.println("IM WHILING");
             moveElements();
             DamageShoots();
-
+            damageMeteorites();
         }
 
 
@@ -329,6 +329,23 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             }
         }
         return bol;
+    }
+
+    private synchronized void damageMeteorites(){
+        try {
+            for(Meteorite m : getAllMeteorites()){
+                for(Ship s : getAllShips()){
+                    if(m.colide(s)){
+                        m.Impact(s);
+                        msgt.damage(id,s);
+                    }
+
+                }
+            }
+        } catch (BattleGroundGameException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

@@ -29,6 +29,8 @@ public class Meteorite extends Item {
     public int getMeteoriteSize(){return meteoriteSize;}
 
     public int getIdMeteorite(){return idItem;}
+    //ship.getX()-Shoot.shootSize<shoot.getXpos() && shoot.getXpos()<ship.getX()+Ship.shipSize && ship.getY()-Shoot.shootSize<shoot.getYpos() && shoot.getYpos()<ship.getY()+Ship.shipSize
+    public boolean colide(Ship s){ return s.getX()-meteoriteSize<Xpos && Xpos<s.getX()+s.getShipSize() && s.getY()-meteoriteSize<Ypos && Ypos<s.getY()+s.getShipSize(); }
 
 
 }
