@@ -263,7 +263,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                 }
             }
             if(amount<3) {
-                Shoot shot = new Shoot(s, (int) s.getX(), (int) s.getY(), s.getDirection());
+                Shoot shot = new Shoot(s, (int) s.getX()+(s.getShipSize()/2)-10, (int) s.getY()+(s.getShipSize()/2)-10, s.getDirection());
                 shoots.add(shot);
             }
             //return shot;
