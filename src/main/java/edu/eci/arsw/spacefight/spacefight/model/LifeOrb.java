@@ -12,16 +12,18 @@ package edu.eci.arsw.spacefight.spacefight.model;
 public class LifeOrb extends Item {
 
 
-    private int Health;
+    private int Recovery;
+    private static final int orbesize = 20;
+
     public LifeOrb(int Xpos,int Ypos,int Health,int idLifeOrb){
         this.Xpos=Xpos;
         this.Ypos=Ypos;
-        this.Health=Health;
+        this.Recovery=Recovery;
         this.idItem=idLifeOrb;
     }
 
     @Override
-    public void Impact(Ship s){s.setHealth(Health);}
+    public void Impact(Ship s){s.setHealth(s.getHealth()+Recovery);}
 
 
 
