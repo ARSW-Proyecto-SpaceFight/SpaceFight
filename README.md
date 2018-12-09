@@ -36,7 +36,9 @@ Los jugadores son ubicados en dos equipos aleatoriamente y la bandera se esconde
 
 ##### Versión Escalable AWS
 
-## VISTA
+*_Vistas:_*
+------- 
+[![Heroku](https://wmpics.pics/di-NNAT.png)](https://spacefightarsw.herokuapp.com/)
 
 
 
