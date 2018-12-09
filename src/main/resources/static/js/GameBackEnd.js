@@ -72,7 +72,13 @@ async function getAllMeteorites(){
     }));
 }
 
-
+async function getAllFlags(){
+    var Flags = new Array();
+    await Promise.resolve(axios.get(host+ship.getRoom()+"/flags")
+        .then(async function(response){
+        drawFlags(response.data);
+    }));
+}
 
 async function connectAndSubscribe() {
         var socket = new SockJS('/gs-guide-websocket');

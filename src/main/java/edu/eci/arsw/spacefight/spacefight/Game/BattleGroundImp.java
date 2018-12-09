@@ -34,8 +34,8 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     //private Team team1;
     //private Team team2;
     private  int id;
-    private Flag flagTeam1;
-    private Flag flagTeam2;
+    //private Flag flagTeam1;
+    //private Flag flagTeam2;
     private HashMap<Integer,Flag> flagsmap= new HashMap<Integer, Flag>();
     private final int numberOfTeams= 2;
     SpaceFightMessageController msgt;
@@ -471,32 +471,19 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     @Override
     public void moveShip(String username,int key) {
-        HashMap<String,Ship> sp=getAllShipsAsMap();
-        Ship s=sp.get(username);
+        HashMap<String, Ship> sp = getAllShipsAsMap();
+        Ship s = sp.get(username);
         s.move(key);
-        if(s.getCarryingFlag()!=null){
-            s.getCarryingFlag().move(key,Ship.velocity);
-            msgt.sendflag(id,s.getCarryingFlag());
+        if (s.getCarryingFlag() != null) {
+            s.getCarryingFlag().move(key, Ship.velocity);
+            msgt.sendflag(id, s.getCarryingFlag());
         }
 
 
-    
-    @Override
-    public ArrayList<Flag> getFlags() throws BattleGroundGameException {
-        ArrayList<Flag> o = new ArrayList<Flag>();
-        o.add(flagTeam1);
-        o.add(flagTeam2);
-        return o;
     }
-    
-    @Override
-    public Flag getFlagTeam1() throws BattleGroundGameException {
-        return flagTeam1;
-    }
-    
-    @Override
-    public Flag getFlagTeam1() throws BattleGroundGameException {
-        return flagTeam2;
 
+    @Override
+    public ArrayList<Flag> getFlags() {
+        return new ArrayList<Flag>(flagsmap.values());
     }
 }

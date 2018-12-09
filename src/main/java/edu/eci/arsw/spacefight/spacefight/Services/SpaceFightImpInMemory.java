@@ -213,20 +213,16 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
         return ms.getMeteoritesFromRoom(roomId);
     }
     
-    @Override
-    public Array<Flag> getFlagsFromRoom(int roomId) throws BattleGroundGameException{
-        return ms.getFlagsFromRoom(roomId);
-    }
 
-    
-    @Override
-    public Array<Flag> getFlagsFromRoom(int roomId) throws BattleGroundGameException{
-        return ms.getFlagsFromRoom(roomId);
-    }
 
     @Override
     public int getNextTeam(int roomId) {
         return ms.getNextTeam(roomId);
+    }
+
+    @Override
+    public ArrayList<Flag> getFlagsFromRoom(int roomId) {
+        return ms.getFlags(roomId);
     }
 
 

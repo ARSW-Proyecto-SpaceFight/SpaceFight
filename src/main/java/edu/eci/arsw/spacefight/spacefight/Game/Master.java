@@ -29,10 +29,7 @@ public interface Master {
     void removeLifesOrbToRoom(int roomid, LifeOrb lifeOrb)throws MasterException;
     void removeOneLifeOrb (int roomid, LifeOrb lifeOrb)throws MasterException;
     ArrayList<LifeOrb> getLifeOrbFromRoom(int roomid) throws MasterException;
-    ArrayList<LifeOrb> getFlags() throws BattleGroundGameException;
-    Flag getFlagTeam1() throws BattleGroundGameException;
-    Flag getFlagTeam2() throws BattleGroundGameException;
-    ArrayList<Flag> getFlagsFromRoom(int roomid) throws MasterException;
 
 
+    ArrayList<Flag> getFlags(int roomId);
 }

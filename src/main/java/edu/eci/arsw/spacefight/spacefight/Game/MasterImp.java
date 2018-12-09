@@ -2,10 +2,7 @@
 
 package edu.eci.arsw.spacefight.spacefight.Game;
 
-import edu.eci.arsw.spacefight.spacefight.model.LifeOrb;
-import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
-import edu.eci.arsw.spacefight.spacefight.model.ModelException;
-import edu.eci.arsw.spacefight.spacefight.model.Ship;
+import edu.eci.arsw.spacefight.spacefight.model.*;
 import edu.eci.arsw.spacefight.spacefight.restcontrollers.SpaceFightMessageController;
 
 import java.util.ArrayList;
@@ -284,19 +281,10 @@ public class MasterImp implements Master{
             }
         }
     }
-    
+
     @Override
-    public ArrayList<LifeOrb> getFlagsFromRoom(int roomid) throws MasterException {
-        if(!rooms.containsKey(roomid)){
-            throw  new MasterException("Room "+roomid+" does not exist.");
-        }
-        else{
-            try {
-                return rooms.get(roomid).getFlags();
-            } catch (BattleGroundGameException e) {
-                throw new MasterException("The background not contain any LifeOrbs");
-            }
-        }
+    public ArrayList<Flag> getFlags(int roomId) {
+        return rooms.get(roomId).getFlags();
     }
 
 

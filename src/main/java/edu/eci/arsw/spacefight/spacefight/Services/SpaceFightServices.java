@@ -2,6 +2,7 @@ package edu.eci.arsw.spacefight.spacefight.Services;
 
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
 import edu.eci.arsw.spacefight.spacefight.Game.MasterException;
+import edu.eci.arsw.spacefight.spacefight.model.Flag;
 import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 
@@ -35,7 +36,8 @@ public interface SpaceFightServices {
 
     public ArrayList<Meteorite> getMeteoriteFromRoom(int roomId) throws BattleGroundGameException, MasterException;
 
-    public Array<Flag> getFlagsFromRoom(int roomId) throws BattleGroundGameException;
     
     int getNextTeam(int roomId);
+
+    ArrayList<Flag> getFlagsFromRoom(int parseInt);
 }

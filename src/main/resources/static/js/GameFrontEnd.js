@@ -55,6 +55,8 @@ async function start(){
 	//	await(2000);
 	//}
         await getAllMeteorites();
+
+        await getAllFlags();
 }
 
 /*
@@ -208,7 +210,7 @@ function moverBala(body){
 function drawFlag(body){
     if(document.getElementById("flag"+body.id) == null){
         agregar = ""
-        agregar += "<img id='flag"+body.id+"' style='position:absolute; width: 20px; height:20px; top:"+body.Ypos+"px; left:"+body.Xpos+"px' src='images/flag"+body.id+".png'></img>";
+        agregar += "<img id='flag"+body.id+"' style='position:absolute; width: 30px; height:30px; top:"+body.Ypos+"px; left:"+body.Xpos+"px' src='images/flag"+body.id+".png'></img>";
         console.log(agregar)
         document.getElementById("all").innerHTML += agregar;
     }else{
@@ -221,4 +223,15 @@ function moveFlag(body){
     flag = document.getElementById("flag"+body.id);
     flag.style.top = body.Ypos + "px"
     flag.style.left = body.Xpos + "px"
+}
+
+async function drawFlags(body){
+    agregar = ""
+    var i;
+    for(i = 0; i< body.length; i++ ){
+        agregar += "<img id='flag"+body[i].id+"' style='position:absolute; width:30px; height:30px; top:"+body[i].Ypos+"px; left:"+body[i].Xpos+"px' src='images/flag"+body.id+".png'></img>";
+
+    }
+    document.getElementById("all").innerHTML += agregar;
+
 }
