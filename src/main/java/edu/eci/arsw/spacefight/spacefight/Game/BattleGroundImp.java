@@ -67,7 +67,25 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         }
     }
     
-    
+
+    public void insertFlags(){
+        try {
+            Random rn = new Random();
+            int posxt1 = rn.nextInt(340)+1;
+            int posyt1 = 1 + (int)(Math.random() * 469);
+            flagTeam1 = new Flag(posxt1,posyt1,team1);
+            insertItemInBatlleGround(flagTeam1);
+            int posxt2 = rn.nextInt(341)+488;
+            int posyt2 = 1 + (int)(Math.random() * 469);
+            flagTeam2 = new Flag(posxt2,posyt2,team2);
+            insertItemInBatlleGround(flagTeam2));
+            
+
+        } catch (BattleGroundGameException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public void insertLifeOrbs(){
@@ -451,6 +469,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             throw new BattleGroundGameException(e.getMessage());
         }
     }
+<<<<<<< HEAD
 
     @Override
     public void moveShip(String username,int key) {
@@ -462,5 +481,24 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             msgt.sendflag(id,s.getCarryingFlag());
         }
 
+=======
+    
+    @Override
+    public ArrayList<Flag> getFlags() throws BattleGroundGameException {
+        ArrayList<Flag> o = new ArrayList<Flag>();
+        o.add(flagTeam1);
+        o.add(flagTeam2);
+        return o;
+    }
+    
+    @Override
+    public Flag getFlagTeam1() throws BattleGroundGameException {
+        return flagTeam1;
+    }
+    
+    @Override
+    public Flag getFlagTeam1() throws BattleGroundGameException {
+        return flagTeam2;
+>>>>>>> 5de4ae552d28835ad5e4693c1d8e3154d917caa8
     }
 }

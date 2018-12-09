@@ -35,5 +35,7 @@ public interface SpaceFightServices {
 
     public ArrayList<Meteorite> getMeteoriteFromRoom(int roomId) throws BattleGroundGameException, MasterException;
 
+    public Array<Flag> getFlagsFromRoom(int roomId) throws BattleGroundGameException;
+    
     int getNextTeam(int roomId);
 }
