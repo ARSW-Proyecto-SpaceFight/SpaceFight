@@ -34,6 +34,8 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     private Team team1;
     private Team team2;
     private  int id;
+    private Flag flagTeam1;
+    private Flag flagTeam2;
 
     SpaceFightMessageController msgt ;
 
@@ -43,7 +45,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         teamsmap.put(2,new Team());
         this.msgt=msgt;
         insertMeteorites();
-
+        insertFlags();
 
     }
 
@@ -55,6 +57,22 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                 int posy = 1 + (int)(Math.random() * 469);
                 insertItemInBatlleGround(new Meteorite(posx,posy,5,i));
             }
+
+        } catch (BattleGroundGameException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void insertFlags(){
+        try {
+            Random rn = new Random();
+            int posxt1 = rn.nextInt(340)+1;
+            int posyt1 = 1 + (int)(Math.random() * 469);
+            insertItemInBatlleGround(new Flag(posxt1,posyt1,team1));
+            int posxt2 = rn.nextInt(341)+488;cc
+            int posyt2 = 1 + (int)(Math.random() * 469);
+            insertItemInBatlleGround(new Flag(posxt2,posyt2,team2));
+            
 
         } catch (BattleGroundGameException e) {
             e.printStackTrace();
