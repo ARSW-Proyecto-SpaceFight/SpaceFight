@@ -12,6 +12,7 @@ package edu.eci.arsw.spacefight.spacefight.model;
 public class Flag {
 
     Team team;
+    int id;
     Boolean captured;
     public int Xpos;
     public int Ypos;
@@ -20,6 +21,7 @@ public class Flag {
         this.Xpos=Xpos;
         this.Ypos=Ypos;
         this.team=team;
+        id=team.getNumber();
         captured=false;
     }
 
@@ -42,5 +44,25 @@ public class Flag {
 
     public Team getTeam() {
         return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Boolean getCaptured() {
+        return captured;
+    }
+
+    public void setCaptured(Boolean captured) {
+        this.captured = captured;
     }
 }

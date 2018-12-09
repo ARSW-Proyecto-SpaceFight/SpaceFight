@@ -39,8 +39,8 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     public BattleGroundImp(SpaceFightMessageController msgt) {
         shoots= new ArrayList<>();
-        teamsmap.put(1,new Team());
-        teamsmap.put(2,new Team());
+        teamsmap.put(1,new Team(1));
+        teamsmap.put(2,new Team(2));
         this.msgt=msgt;
         insertMeteorites();
 

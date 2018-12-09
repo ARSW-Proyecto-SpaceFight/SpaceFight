@@ -6,6 +6,7 @@
 package edu.eci.arsw.spacefight.spacefight.restcontrollers;
 
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
+import edu.eci.arsw.spacefight.spacefight.model.Flag;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
@@ -64,6 +65,8 @@ public class SpaceFightMessageController {
     public void deleteShoot(int roomId, Shoot s){ msgt.convertAndSend("/topic/deleteshoot."+roomId,s);}
 
     public void damage(int roomId, Ship s){ msgt.convertAndSend("/topic/damage."+roomId,s);};
+
+    public void flag(int roomId, Flag f){ msgt.convertAndSend("/topic/flag."+roomId,f);};
 
     public boolean conectado(String username, int room){
         desconectados.put(username, Boolean.FALSE);
