@@ -49,7 +49,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     public void insertMeteorites(){
         try {
-            for(int i=1; i<=30;i++){
+            for(int i=1; i<=7;i++){
                 Random rn = new Random();
                 int posx = rn.nextInt(140)+344;
                 int posy = 1 + (int)(Math.random() * 469);
@@ -336,7 +336,6 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     private synchronized void moveElements(){
         synchronized(shoots) {
             ArrayList<Shoot> found = new ArrayList<>();
-            //System.out.println("FUCK ME IN THE ASS"+shoots.size()+"");
             for (int i = 0; i < shoots.size(); i++) {
                 Shoot s = shoots.get(i);
                 s.move();

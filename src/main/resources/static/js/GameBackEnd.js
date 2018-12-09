@@ -1,5 +1,5 @@
-//var host = "http://localhost:8080/spacefight/"
-var host = "https://spacefightarsw.herokuapp.com/spacefight/"
+var host = "http://localhost:8080/spacefight/"
+//var host = "https://spacefightarsw.herokuapp.com/spacefight/"
 
 var stompClient = null;
 
@@ -64,14 +64,14 @@ async function existsRooms(){
 /*
 *Obtiene todos los meteoritos de la sala
 */
-async function getAllMeteorites(room){
+async function getAllMeteorites(){
     var Meteorites = new Array();
-    await Promise.resolve(axios.get(host+room+"/meteorites")
+    await Promise.resolve(axios.get(host+ship.getRoom()+"/meteorites")
     .then(async function(response){
-         Meteorites.put(response.data);
+         pintarmeteorites(response.data);
     }));
-    return Meteorites;
 }
+
 
 
 async function connectAndSubscribe() {
@@ -113,3 +113,4 @@ async function connectAndSubscribe() {
         });
         
     }
+

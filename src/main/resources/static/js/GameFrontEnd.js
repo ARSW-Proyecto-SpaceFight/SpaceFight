@@ -53,7 +53,8 @@ async function start(){
 	//while(true){		
 	//	await pintar();
 	//	await(2000);
-	//}        
+	//}
+        await getAllMeteorites();
 }
 
 /*
@@ -87,8 +88,8 @@ async function pintar(){
 async function pintarmeteorites(body){
     agregar = ""
     var i;
-    for(i = 0; i< body.getAllMeteorites().length; i++ ){
-             agregar += "<img id='meteorite"+body.getIdMeteorite()+"' style='position:absolute; width:50px; height:50px; top:"+body.Xpos+"px; left:"+body.Ypos+"px'";
+    for(i = 0; i< body.length; i++ ){
+             agregar += "<img id='meteorite"+body[i].idItem+"' style='position:absolute; width:"+body[i].meteoriteSize+"px; height:"+body[i].meteoriteSize+"px; top:"+body[i].ypos+"px; left:"+body[i].xpos+"px'";
              agregar += " src='images/meteorite.png' ></img>";
         }
      document.getElementById("all").innerHTML += agregar;
