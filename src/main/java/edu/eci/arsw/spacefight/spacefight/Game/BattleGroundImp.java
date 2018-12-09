@@ -69,7 +69,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             int posxt1 = rn.nextInt(340)+1;
             int posyt1 = 1 + (int)(Math.random() * 469);
             insertItemInBatlleGround(new Flag(posxt1,posyt1,team1));
-            int posxt2 = rn.nextInt(341)+488;cc
+            int posxt2 = rn.nextInt(341)+488;
             int posyt2 = 1 + (int)(Math.random() * 469);
             insertItemInBatlleGround(new Flag(posxt2,posyt2,team2));
             
