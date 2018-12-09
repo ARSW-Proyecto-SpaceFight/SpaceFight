@@ -216,3 +216,9 @@ function drawFlag(body){
     }
 
 }
+
+function moveFlag(body){
+    flag = document.getElementById("flag"+body.id);
+    flag.style.top = body.Ypos + "px"
+    flag.style.left = body.Xpos + "px"
+}

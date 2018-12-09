@@ -24,6 +24,7 @@ public class Ship implements Comparable<Ship> {
     //private Position position;
     public static final int BOUNDX = 830;
     public static final int BOUNDY = 470;
+    private Flag carryingFlag;
     
     public Ship(){
     }
@@ -33,6 +34,7 @@ public class Ship implements Comparable<Ship> {
         this.y = y;
         this.username = username;
         this.team = team;
+        this.carryingFlag=null;
     }
     
     
@@ -111,6 +113,10 @@ public class Ship implements Comparable<Ship> {
             default:
                 break;
         }
+        if(carryingFlag!=null){
+            carryingFlag.move(key,velocity);
+
+        }
     }
     
     public synchronized void isOnline(){
@@ -133,5 +139,36 @@ public class Ship implements Comparable<Ship> {
     public void setTeam(int team){
         this.team = team;
     }
-    
+
+    public static int getVelocity() {
+        return velocity;
+    }
+
+    public void setDirection(char direction) {
+        this.direction = direction;
+    }
+
+    public int getOnline() {
+        return online;
+    }
+
+    public void setOnline(int online) {
+        this.online = online;
+    }
+
+    public static int getBOUNDX() {
+        return BOUNDX;
+    }
+
+    public static int getBOUNDY() {
+        return BOUNDY;
+    }
+
+    public Flag getCarryingFlag() {
+        return carryingFlag;
+    }
+
+    public void setCarryingFlag(Flag carryingFlag) {
+        this.carryingFlag = carryingFlag;
+    }
 }

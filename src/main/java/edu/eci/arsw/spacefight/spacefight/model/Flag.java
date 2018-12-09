@@ -65,4 +65,23 @@ public class Flag {
     public void setCaptured(Boolean captured) {
         this.captured = captured;
     }
+
+    public void move(int key,int velocity){
+        switch (key) {
+            case 37:
+                if(Xpos>0) Xpos-=velocity;
+                break;
+            case 38:
+                if(Ypos>0) Ypos-=velocity;
+                break;
+            case 39:
+                if(Xpos<830) Xpos+=velocity;
+                break;
+            case 40:
+                if(Ypos<470) Ypos+=velocity;
+                break;
+            default:
+                break;
+        }
+    }
 }

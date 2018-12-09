@@ -36,7 +36,7 @@ public class SpaceFightMessageController {
     
     @MessageMapping("/move.{room}")
     public void move(Movement movement, @DestinationVariable String room) throws BattleGroundGameException{       
-        spc.movePlayer(Integer.parseInt(room), movement.getUsername(), movement.getKey(), movement.getTeam());        
+        spc.movePlayer(Integer.parseInt(room), movement.getUsername(), movement.getKey(), movement.getTeam());
         msgt.convertAndSend("/topic/move." +room, spc.getPlayer(room, movement.getUsername()).getBody());
         spc.playerOnline(Integer.parseInt(room), movement.getUsername());
     }
@@ -66,7 +66,7 @@ public class SpaceFightMessageController {
 
     public void damage(int roomId, Ship s){ msgt.convertAndSend("/topic/damage."+roomId,s);};
 
-    public void flag(int roomId, Flag f){ msgt.convertAndSend("/topic/flag."+roomId,f);};
+    public void sendflag(int roomId, Flag f){ msgt.convertAndSend("/topic/flag."+roomId,f);};
 
     public boolean conectado(String username, int room){
         desconectados.put(username, Boolean.FALSE);

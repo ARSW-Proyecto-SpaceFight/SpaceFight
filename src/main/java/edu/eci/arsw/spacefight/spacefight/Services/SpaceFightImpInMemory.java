@@ -6,6 +6,7 @@
 package edu.eci.arsw.spacefight.spacefight.Services;
 
 import edu.eci.arsw.spacefight.spacefight.Game.*;
+import edu.eci.arsw.spacefight.spacefight.model.Flag;
 import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import edu.eci.arsw.spacefight.spacefight.restcontrollers.SpaceFightMessageController;
@@ -142,7 +143,8 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
     @Override
     public void moveShip(int roomId, String username, int key,int team) throws MasterException {
         try {
-            ms.getShip(username, roomId, team).move(key);
+            //ms.getShip(username, roomId, team).move(key);
+            ms.getRoom(roomId).moveShip(username,key);
         } catch (MasterException e) {
             throw new MasterException(e.getMessage());
         }
@@ -209,6 +211,11 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
     @Override
     public ArrayList<Meteorite> getMeteoriteFromRoom(int roomId) throws BattleGroundGameException, MasterException {
         return ms.getMeteoritesFromRoom(roomId);
+    }
+
+    @Override
+    public Array<Flag> getFlagsFromRoom(int roomId) throws BattleGroundGameException{
+        return ms.getFlagsFromRoom(roomId);
     }
 
     @Override
