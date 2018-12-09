@@ -16,6 +16,7 @@ public class Flag {
     Boolean captured;
     public int Xpos;
     public int Ypos;
+    private int size=30;
 
     public Flag(int Xpos,int Ypos,Team team){
         this.Xpos=Xpos;
@@ -83,5 +84,13 @@ public class Flag {
             default:
                 break;
         }
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 }
