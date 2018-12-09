@@ -70,10 +70,12 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             Random rn = new Random();
             int posxt1 = rn.nextInt(340)+1;
             int posyt1 = 1 + (int)(Math.random() * 469);
-            insertItemInBatlleGround(new Flag(posxt1,posyt1,team1));
+            flagTeam1 = new Flag(posxt1,posyt1,team1);
+            insertItemInBatlleGround(flagTeam1);
             int posxt2 = rn.nextInt(341)+488;
             int posyt2 = 1 + (int)(Math.random() * 469);
-            insertItemInBatlleGround(new Flag(posxt2,posyt2,team2));
+            flagTeam2 = new Flag(posxt2,posyt2,team2);
+            insertItemInBatlleGround(flagTeam2));
             
 
         } catch (BattleGroundGameException e) {
@@ -453,5 +455,23 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         }catch(Exception e){
             throw new BattleGroundGameException(e.getMessage());
         }
+    }
+    
+    @Override
+    public ArrayList<Flag> getFlags() throws BattleGroundGameException {
+        ArrayList<Flag> o = new ArrayList<Flag>();
+        o.add(flagTeam1);
+        o.add(flagTeam2);
+        return o;
+    }
+    
+    @Override
+    public Flag getFlagTeam1() throws BattleGroundGameException {
+        return flagTeam1;
+    }
+    
+    @Override
+    public Flag getFlagTeam1() throws BattleGroundGameException {
+        return flagTeam2;
     }
 }

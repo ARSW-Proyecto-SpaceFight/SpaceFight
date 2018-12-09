@@ -28,5 +28,6 @@ public interface Master {
     void removeLifesOrbToRoom(int roomid, LifeOrb lifeOrb)throws MasterException;
     void removeOneLifeOrb (int roomid, LifeOrb lifeOrb)throws MasterException;
     ArrayList<LifeOrb> getLifeOrbFromRoom(int roomid) throws MasterException;
+    ArrayList<Flag> getFlagsFromRoom(int roomid) throws MasterException;
 
 }

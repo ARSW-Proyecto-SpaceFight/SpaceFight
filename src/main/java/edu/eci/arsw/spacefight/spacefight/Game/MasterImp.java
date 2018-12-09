@@ -284,6 +284,20 @@ public class MasterImp implements Master{
             }
         }
     }
+    
+    @Override
+    public ArrayList<LifeOrb> getFlagsFromRoom(int roomid) throws MasterException {
+        if(!rooms.containsKey(roomid)){
+            throw  new MasterException("Room "+roomid+" does not exist.");
+        }
+        else{
+            try {
+                return rooms.get(roomid).getFlags();
+            } catch (BattleGroundGameException e) {
+                throw new MasterException("The background not contain any LifeOrbs");
+            }
+        }
+    }
 
 
 }

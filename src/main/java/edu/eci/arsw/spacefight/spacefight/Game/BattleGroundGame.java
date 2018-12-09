@@ -26,4 +26,7 @@ public interface BattleGroundGame {
     ArrayList<LifeOrb> getAllLifeOrbs() throws BattleGroundGameException;
     LifeOrb getLifeOrb(int idLifeOrb) throws BattleGroundGameException;
     void removeLifeOrb(int idLifeOrb) throws BattleGroundGameException;
+    ArrayList<LifeOrb> getFlags() throws BattleGroundGameException;
+    Flag getFlagTeam1() throws BattleGroundGameException;
+    Flag getFlagTeam2() throws BattleGroundGameException;
 }
