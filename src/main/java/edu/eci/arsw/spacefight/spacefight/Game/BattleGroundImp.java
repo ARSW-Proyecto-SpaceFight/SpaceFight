@@ -41,17 +41,19 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     public BattleGroundImp(SpaceFightMessageController msgt) {
         shoots= new ArrayList<>();
-        teamsmap.put(1,new Team());
-        teamsmap.put(2,new Team());
+        teamsmap.put(1,new Team(1));
+        teamsmap.put(2,new Team(2));
         this.msgt=msgt;
         insertMeteorites();
         insertFlags();
+        insertLifeOrbs();
+
 
     }
 
     public void insertMeteorites(){
         try {
-            for(int i=1; i<=7;i++){
+            for(int i=1; i<=12;i++){
                 Random rn = new Random();
                 int posx = rn.nextInt(140)+344;
                 int posy = 1 + (int)(Math.random() * 469);
@@ -73,6 +75,23 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             int posyt2 = 1 + (int)(Math.random() * 469);
             insertItemInBatlleGround(new Flag(posxt2,posyt2,team2));
             
+
+        } catch (BattleGroundGameException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void insertLifeOrbs(){
+        try {
+            int identificador = 13;
+            for(int i=1; i<=3;i++){
+                Random rn = new Random();
+                int posx = 1 + (int)(Math.random() * 830);
+                int posy = 1 + (int)(Math.random() * 469);
+                insertItemInBatlleGround(new LifeOrb(posx,posy,7,identificador));
+                identificador+=1;
+            }
 
         } catch (BattleGroundGameException e) {
             e.printStackTrace();
@@ -400,5 +419,39 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     @Override
     public ArrayList<Ship> getAllShipsFromTeam(int team) {
         return teamsmap.get(team).getShips();
+    }
+
+    @Override
+    public ArrayList<LifeOrb> getAllLifeOrbs() throws BattleGroundGameException {
+        ArrayList<LifeOrb> o = new ArrayList<LifeOrb>();
+        for(int i=0;i<items.size();i++) {
+            if(items.get(i).getClass().getName().toString().equals("edu.eci.arsw.spacefight.spacefight.model.Meteorite")){
+                o.add((LifeOrb) items.get(i));
+            }
+        }
+
+        if(o.isEmpty()){
+            throw new BattleGroundGameException("Non exist a life Orbs in the items list");
+        }
+
+        return o;
+    }
+
+    @Override
+    public LifeOrb getLifeOrb(int idLifeOrb) throws BattleGroundGameException {
+        try{
+            return getAllLifeOrbs().get(idLifeOrb);
+        }catch (Exception e){
+            throw new BattleGroundGameException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void removeLifeOrb(int idLifeOrb) throws BattleGroundGameException {
+        try{
+            getAllLifeOrbs().remove(getMeteorite(idLifeOrb));
+        }catch(Exception e){
+            throw new BattleGroundGameException(e.getMessage());
+        }
     }
 }

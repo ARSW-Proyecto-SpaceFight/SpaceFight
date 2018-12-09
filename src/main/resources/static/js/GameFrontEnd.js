@@ -204,3 +204,15 @@ function moverBala(body){
     bala.style.top = body.Ypos + "px"
     bala.style.left = body.Xpos + "px"
 }
+
+function drawFlag(body){
+    if(document.getElementById("flag"+body.id) == null){
+        agregar = ""
+        agregar += "<img id='flag"+body.id+"' style='position:absolute; width: 20px; height:20px; top:"+body.Ypos+"px; left:"+body.Xpos+"px' src='images/flag"+body.id+".png'></img>";
+        console.log(agregar)
+        document.getElementById("all").innerHTML += agregar;
+    }else{
+        moveFlag(body)
+    }
+
+}

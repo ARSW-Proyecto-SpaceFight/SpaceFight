@@ -1,5 +1,6 @@
 package edu.eci.arsw.spacefight.spacefight.Game;
 
+import edu.eci.arsw.spacefight.spacefight.model.LifeOrb;
 import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import org.springframework.stereotype.Service;
@@ -23,4 +24,9 @@ public interface Master {
     void removeOneMeteorite (int roomid, Meteorite meteorite)throws MasterException;
     ArrayList<Meteorite> getMeteoritesFromRoom(int roomid) throws MasterException;
     int getNextTeam(int roomId);
+    void insertLifesOrbToRoom(int roomid, LifeOrb lifeOrb)throws MasterException;
+    void removeLifesOrbToRoom(int roomid, LifeOrb lifeOrb)throws MasterException;
+    void removeOneLifeOrb (int roomid, LifeOrb lifeOrb)throws MasterException;
+    ArrayList<LifeOrb> getLifeOrbFromRoom(int roomid) throws MasterException;
+
 }

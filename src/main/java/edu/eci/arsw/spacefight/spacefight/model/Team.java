@@ -17,10 +17,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Team {
 
     private int Score;
+    private int number;
     private ConcurrentHashMap<String,Ship> ships = new ConcurrentHashMap<>();
 
-    public Team(){
+    public Team(int number){
         Score=0;
+        this.number=number;
     }
     
 
@@ -60,6 +62,27 @@ public class Team {
         }
 
     }
+
+    public int getScore() {
+        return Score;
+    }
+
+    public void setScore(int score) {
+        Score = score;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setShips(ConcurrentHashMap<String, Ship> ships) {
+        this.ships = ships;
+    }
+
     public ArrayList<Ship> getShips(){
         return new ArrayList<Ship>(ships.values());
     }

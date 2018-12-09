@@ -102,13 +102,16 @@ async function connectAndSubscribe() {
                 eliminarBala(JSON.parse(message.body));
             });
             await stompClient.subscribe('/topic/damage.'+ship.getRoom(), function (message){
-                danarNave(JSON.parse(message.body))
+                danarNave(JSON.parse(message.body));
             });
             await stompClient.subscribe('/topic/meteorites.'+ship.getRoom(), function (message){
-                pintarmeteorites(JSON.parse(message.body))
+                pintarmeteorites(JSON.parse(message.body));
             });
-        await pintar();
-        await newShip();
+            await stompClient.subscribe('/topic/flag.'+ship.getRoom(), function (message){
+                drawFlag(JSON.parse(message.body));
+            });
+            await pintar();
+            await newShip();
 
         });
         
