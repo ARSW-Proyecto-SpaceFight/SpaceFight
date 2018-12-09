@@ -13,7 +13,7 @@ public class LifeOrb extends Item {
 
 
     private int Recovery;
-    private static final int orbesize = 20;
+    private static final int orbesize = 25;
 
     public LifeOrb(int Xpos,int Ypos,int Health,int idLifeOrb){
         this.Xpos=Xpos;
