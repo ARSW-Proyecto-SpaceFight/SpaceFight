@@ -89,7 +89,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     public void insertLifeOrbs(){
         try {
             int identificador = 13;
-            for(int i=1; i<=3;i++){
+            for(int i=1; i<=4;i++){
                 Random rn = new Random();
                 int posx = 1 + (int)(Math.random() * 830);
                 int posy = 1 + (int)(Math.random() * 469);
@@ -466,7 +466,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     public ArrayList<LifeOrb> getAllLifeOrbs() throws BattleGroundGameException {
         ArrayList<LifeOrb> o = new ArrayList<LifeOrb>();
         for(int i=0;i<items.size();i++) {
-            if(items.get(i).getClass().getName().toString().equals("edu.eci.arsw.spacefight.spacefight.model.Meteorite")){
+            if(items.get(i).getClass().getName().toString().equals("edu.eci.arsw.spacefight.spacefight.model.LifeOrb")){
                 o.add((LifeOrb) items.get(i));
             }
         }

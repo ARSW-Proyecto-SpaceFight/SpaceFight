@@ -198,6 +198,20 @@ public class SpaceFightRESTController{
         return bgs.getNextTeam(room);
     }
 
+    @RequestMapping(path = "/{roomId}/lifeorbs",method = RequestMethod.GET)
+    public ResponseEntity<?> getLifeOrbsFromRoom(@PathVariable(name = "roomId") String roomId){
+        try {
+            return new ResponseEntity<>(bgs.getLifeOrbFromRoom(Integer.parseInt(roomId)), HttpStatus.CREATED);
+        } catch (BattleGroundGameException ex) {
+            Logger.getLogger(SpaceFightRESTController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getLocalizedMessage(),HttpStatus.BAD_REQUEST);
+        } catch (MasterException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getLocalizedMessage(),HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
 }
     
 

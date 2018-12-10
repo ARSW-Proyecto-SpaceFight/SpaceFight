@@ -13,7 +13,7 @@ public class LifeOrb extends Item {
 
 
     private int Recovery;
-    private static final int orbesize = 20;
+    private static final int orbeSize = 20;
 
     public LifeOrb(int Xpos,int Ypos,int Health,int idLifeOrb){
         this.Xpos=Xpos;
@@ -26,6 +26,8 @@ public class LifeOrb extends Item {
     public void Impact(Ship s){s.setHealth(s.getHealth()+Recovery);}
 
     public int getIdLifeOrb(){return idItem;}
+
+    public int getLifeOrbSize(){return orbeSize;}
 
 
 
