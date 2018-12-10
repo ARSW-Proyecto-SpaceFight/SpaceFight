@@ -6,11 +6,8 @@
 package edu.eci.arsw.spacefight.spacefight.Services;
 
 import edu.eci.arsw.spacefight.spacefight.Game.*;
-<<<<<<< HEAD
 import edu.eci.arsw.spacefight.spacefight.model.LifeOrb;
-=======
 import edu.eci.arsw.spacefight.spacefight.model.Flag;
->>>>>>> c65d5f2c946a5cce7bf008bd529d915b0f386b1d
 import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
 import edu.eci.arsw.spacefight.spacefight.model.Ship;
 import edu.eci.arsw.spacefight.spacefight.restcontrollers.SpaceFightMessageController;
@@ -227,6 +224,7 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
     @Override
     public ArrayList<LifeOrb> getLifeOrbFromRoom(int roomId) throws BattleGroundGameException, MasterException {
         return ms.getLifeOrbFromRoom(roomId);
+    }
 
     public ArrayList<Flag> getFlagsFromRoom(int roomId) {
         return ms.getFlags(roomId);
