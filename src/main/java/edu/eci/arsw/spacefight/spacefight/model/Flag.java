@@ -11,17 +11,17 @@ package edu.eci.arsw.spacefight.spacefight.model;
  */
 public class Flag {
 
-    Team team;
+    //Team team;
     int id;
     Boolean captured;
     public int Xpos;
     public int Ypos;
-    private int size=30;
+    public static final int size=30;
 
     public Flag(int Xpos,int Ypos,Team team){
         this.Xpos=Xpos;
         this.Ypos=Ypos;
-        this.team=team;
+        //this.team=team;
         id=team.getNumber();
         captured=false;
     }
@@ -43,13 +43,13 @@ public class Flag {
         Ypos = ypos;
     }
 
-    public Team getTeam() {
+    /*public Team getTeam() {
         return team;
     }
 
     public void setTeam(Team team) {
         this.team = team;
-    }
+    }*/
 
     public int getId() {
         return id;
@@ -90,7 +90,4 @@ public class Flag {
         return size;
     }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
 }

@@ -323,10 +323,29 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             moveShoots();
             DamageShoots();
             damageMeteorites();
+            checkCapture();
             //moveFlags();
         }
 
 
+    }
+
+    private synchronized void checkCapture() {
+        ArrayList<Ship> shiplist = getAllShips();
+        synchronized (shiplist) {
+            synchronized (flagsmap){
+                for(int j=0; j<shiplist.size();j++) {
+                    for(int i=1;i<numberOfTeams+1;i++){
+                        if(colideFlag(shiplist.get(j),flagsmap.get(i)) && shiplist.get(j).getCarryingFlag()== null && flagsmap.get(i).getCaptured()==false){
+                            shiplist.get(j).setCarryingFlag(flagsmap.get(i));
+                            flagsmap.get(i).setCaptured(true);
+
+                        }
+                    }
+
+                }
+            }
+        }
     }
 
     /**
@@ -368,6 +387,15 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         if(ship.getX()-Shoot.shootSize<shoot.getXpos() && shoot.getXpos()<ship.getX()+Ship.shipSize && ship.getY()-Shoot.shootSize<shoot.getYpos() && shoot.getYpos()<ship.getY()+Ship.shipSize ){
             if(!shoot.getShooter().getUsername().equals(ship.getUsername())) {
                 bol = true;
+            }
+        }
+        return bol;
+    }
+    private boolean colideFlag(Ship ship,Flag flag){
+        boolean bol=false;
+        if(ship.getX()-Flag.size<flag.getXpos() && flag.getXpos()<ship.getX()+Ship.shipSize && ship.getY()-Flag.size<flag.getYpos() && flag.getYpos()<ship.getY()+Ship.shipSize ){
+            if(flag.getId()!=ship.getTeam()){
+                bol=true;
             }
         }
         return bol;
