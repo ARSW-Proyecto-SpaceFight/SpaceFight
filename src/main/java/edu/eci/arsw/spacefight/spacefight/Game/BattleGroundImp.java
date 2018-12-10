@@ -362,7 +362,9 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                             if (shiplist.get(j).getTeam() != shoots.get(i).getShooter().getTeam()) {
                                 shiplist.get(j).damage(shoots.get(i).getDamage());
                                 if(shiplist.get(j).getCarryingFlag()!=null){
+                                    Flag fg=shiplist.get(j).getCarryingFlag();
                                     shiplist.get(j).dropFlag();
+                                    msgt.sendflag(id,fg);
                                 }
                                 //System.out.println("DAMAGE DONE");
                                 msgt.damage(id,shiplist.get(j));
