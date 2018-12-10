@@ -23,7 +23,7 @@ public class Shoot {
     public int Xpos;
     public int Ypos;
     private char direction;
-    public static final int VEL = 10;
+    public static final int VEL = 20;
     private int id;
     public static final int shootSize = 20;
 
