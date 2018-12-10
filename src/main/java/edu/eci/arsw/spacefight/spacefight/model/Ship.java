@@ -81,6 +81,13 @@ public class Ship implements Comparable<Ship> {
 
     public void damage(int damage){
         this.health-=damage;
+
+    }
+
+    public void dropFlag(){
+        carryingFlag.setCaptured(false);
+        carryingFlag.bounce();
+        carryingFlag=null;
     }
     
     @Override
