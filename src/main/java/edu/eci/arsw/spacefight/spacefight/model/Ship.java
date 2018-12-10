@@ -113,10 +113,6 @@ public class Ship implements Comparable<Ship> {
             default:
                 break;
         }
-        if(carryingFlag!=null){
-            carryingFlag.move(key,velocity);
-
-        }
     }
     
     public synchronized void isOnline(){
