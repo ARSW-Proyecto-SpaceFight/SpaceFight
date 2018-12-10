@@ -15,7 +15,7 @@ public class LifeOrb extends Item {
     private int Recovery;
     private static final int orbeSize = 20;
 
-    public LifeOrb(int Xpos,int Ypos,int Health,int idLifeOrb){
+    public LifeOrb(int Xpos,int Ypos,int Recovery,int idLifeOrb){
         this.Xpos=Xpos;
         this.Ypos=Ypos;
         this.Recovery=Recovery;
@@ -23,13 +23,15 @@ public class LifeOrb extends Item {
     }
 
     @Override
-    public void Impact(Ship s){s.setHealth(s.getHealth()+Recovery);}
+    public void Impact(Ship s){
+        s.setHealth(s.getHealth()+Recovery);
+    }
 
     public int getIdLifeOrb(){return idItem;}
 
     public int getLifeOrbSize(){return orbeSize;}
 
-    
+    public boolean orbecolide(Ship s){ return s.getX()-orbeSize<Xpos && Xpos<s.getX()+s.getShipSize() && s.getY()-orbeSize<Ypos && Ypos<s.getY()+s.getShipSize(); }
 
 
 
