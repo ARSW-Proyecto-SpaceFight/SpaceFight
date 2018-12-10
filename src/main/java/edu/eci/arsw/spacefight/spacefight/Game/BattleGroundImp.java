@@ -89,7 +89,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     public void insertLifeOrbs(){
         try {
             int identificador = 13;
-            for(int i=1; i<=3;i++){
+            for(int i=1; i<=4;i++){
                 Random rn = new Random();
                 int posx = 1 + (int)(Math.random() * 830);
                 int posy = 1 + (int)(Math.random() * 469);

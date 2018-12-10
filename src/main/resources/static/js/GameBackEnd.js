@@ -1,5 +1,5 @@
-//var host = "http://localhost:8080/spacefight/"
-var host = "https://spacefightarsw.herokuapp.com/spacefight/"
+var host = "http://localhost:8080/spacefight/"
+//var host = "https://spacefightarsw.herokuapp.com/spacefight/"
 
 var stompClient = null;
 
@@ -40,6 +40,7 @@ async function getAllShips(room){
 	}));
 }
 
+
 /*
 *Crea una nueva sala
 */
@@ -69,6 +70,18 @@ async function getAllMeteorites(){
     await Promise.resolve(axios.get(host+ship.getRoom()+"/meteorites")
     .then(async function(response){
          pintarmeteorites(response.data);
+    }));
+}
+
+
+/*
+* Obtiene todos los orbes de vida de la sala
+*/
+async function getAllLifeOrbs(){
+    var LifeOrbs = new Array();
+    await Promise.resolve(axios.get(host+ship.getRoom()+"/lifeorbs")
+    .then(async function(response){
+         pintarorbesdevida(response.data);
     }));
 }
 
@@ -115,6 +128,9 @@ async function connectAndSubscribe() {
             });
             await stompClient.subscribe('/topic/flag.'+ship.getRoom(), function (message){
                 drawFlag(JSON.parse(message.body));
+            });
+            await stompClient.subscribe('/topic/flag.'+ship.getRoom(), function (message){
+                 pintarorbesdevida(JSON.parse(message.body));
             });
             await pintar();
             await newShip();

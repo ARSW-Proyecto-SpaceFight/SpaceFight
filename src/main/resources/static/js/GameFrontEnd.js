@@ -57,6 +57,8 @@ async function start(){
         await getAllMeteorites();
 
         await getAllFlags();
+
+        await getAllLifeOrbs();
 }
 
 /*
@@ -96,6 +98,16 @@ async function pintarmeteorites(body){
         }
      document.getElementById("all").innerHTML += agregar;
 
+}
+
+async function pintarorbesdevida(body){
+     agregar = ""
+     var i;
+     for(i = 0; i< body.length; i++ ){
+         agregar += "<img id='lifeorb"+body[i].idItem+"' style='position:absolute; width:"+body[i].lifeOrbSize+"px; height:"+body[i].lifeOrbSize+"px; top:"+body[i].ypos+"px; left:"+body[i].xpos+"px'";
+         agregar += " src='images/lifeorb.png' ></img>";
+     }
+     document.getElementById("all").innerHTML += agregar;
 }
 
 function moverNave(body){    
