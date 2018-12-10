@@ -55,7 +55,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     public void insertMeteorites(){
         try {
-            for(int i=1; i<=12;i++){
+            for(int i=1; i<=8;i++){
                 Random rn = new Random();
                 int posx = rn.nextInt(140)+344;
                 int posy = 1 + (int)(Math.random() * 469);
@@ -323,8 +323,11 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             moveShoots();
             DamageShoots();
             damageMeteorites();
+            lifeorbesgainlife();
             checkCapture();
             //moveFlags();
+
+
         }
 
 
@@ -421,6 +424,21 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             e.printStackTrace();
         }
 
+    }
+
+    private synchronized void lifeorbesgainlife(){
+        try{
+            for(LifeOrb o : getAllLifeOrbs()){
+                for(Ship s : getAllShips()){
+                    if(o.orbecolide(s)){
+                        o.Impact(s);
+                        msgt.damage(id,s);
+                    }
+                }
+            }
+        } catch (BattleGroundGameException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -12,7 +12,7 @@ package edu.eci.arsw.spacefight.spacefight.model;
 public class Meteorite extends Item {
 
     private int Damage;
-    private static final int meteoriteSize = 35;
+    private static final int meteoriteSize = 25;
 
     public Meteorite(int Xpos,int Ypos,int Damage, int id){
         this.Xpos=Xpos;

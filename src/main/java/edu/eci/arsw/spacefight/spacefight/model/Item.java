@@ -39,5 +39,7 @@ public class Item {
     protected void Impact(Ship s){
 
     }
+
+
     
 }
