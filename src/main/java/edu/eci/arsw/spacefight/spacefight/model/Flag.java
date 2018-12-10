@@ -94,7 +94,7 @@ public class Flag {
 
     public void bounce() {
         Random rn = new Random();
-        int ran = rn.nextInt(30)+50;
+        int ran = rn.nextInt(100)+60;
         Xpos+=ran;
         Ypos+=ran;
         checkBounds();
