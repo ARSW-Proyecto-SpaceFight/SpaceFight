@@ -5,6 +5,8 @@
  */
 package edu.eci.arsw.spacefight.spacefight.model;
 
+import java.util.Random;
+
 /**
  *
  * @author User
@@ -90,4 +92,21 @@ public class Flag {
         return size;
     }
 
+    public void bounce() {
+        Random rn = new Random();
+        int ran = rn.nextInt(30)+50;
+        Xpos+=ran;
+        Ypos+=ran;
+        checkBounds();
+    }
+
+    private void checkBounds(){
+        if(Xpos<0){ Xpos=0;}
+
+        if(Ypos<0){ Ypos=0;}
+
+        if(Xpos>830){ Xpos=830;}
+
+        if(Ypos>470){ Ypos=470;}
+    }
 }
