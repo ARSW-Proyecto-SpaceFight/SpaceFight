@@ -19,13 +19,25 @@ SpaceFight es un videojuego multijugador que asegura diversión y acción consta
 Los jugadores son ubicados en dos equipos aleatoriamente y la bandera se esconde en un lugar aleatorio del campo, los jugadores protegen la misma a partir de disparos en sus naves.
 
 ## UI Simulation
-
-## ESCENARIOS
+HOME
+![](img/home.PNG)
+INFORMACIÓN DEL JUEGO
+![](img/inf.PNG)
+INSTRUCCIONES
+![](img/inst.PNG)
+LOGIN
+![](img/log.PNG)
+SALAS
+![](img/salas.PNG)
+![](img/numsala.PNG)
+![](img/nom.PNG)
+![](img/game.PNG)
 
 ## DIAGRAMAS
 
 ### Diagrama de clases
 ![](img/class.PNG)
+
 
 ### Diagrama de actividad
 ![](img/activity.PNG)
