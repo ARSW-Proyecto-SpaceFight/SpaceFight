@@ -62,6 +62,8 @@ async function start(){
 
         await getAllLifeOrbs();
 
+        drawStrings();
+
 
 }
 
@@ -275,4 +277,18 @@ async function drawBases(body){
     }
     document.getElementById("all").innerHTML += agregar;
 
+}
+
+function drawStrings(){
+        agregar = "";
+        agregar += "<label id = 'team1' style='position:absolute; top:0px; left:0px'>Score Team 1</label>";
+        agregar += "<label id = 'scoreteam1' style='position:absolute; top:10px; left:0px'>0</label>";
+        agregar += "<label id = 'team2' style='position:absolute; top:0px; left:850px'>Score Team 2</label>";
+        agregar += "<label id = 'scoreteam2' style='position:absolute; top:20px; left:850px'>0</label>";
+        document.getElementById("all").innerHTML += agregar;
+     }
+
+function drawScore(body){
+      document.getElementById("scoreteam1").innerText = body.scoreTeam1;
+      document.getElementById("scoreteam2").innerText = body.scoreTeam2;
 }
