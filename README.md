@@ -5,7 +5,7 @@ Proyecto desarrollado en el periodo académico 2018-2 para el curso Arquitectura
 
 ## Integrantes del proyecto
   - [David Rodriguez][david]
-  - [Orcar Pinto][oscar]
+  - [Oscar Pinto][oscar]
   - [Martin Cantor][martin]
   - [Alejandra Gómez][alejandra]
 

@@ -28,7 +28,7 @@ public class Ship implements Comparable<Ship> {
     
     public Ship(){
 
-        
+
     }
 
     public Ship(int x, int y, String username, int team) {
