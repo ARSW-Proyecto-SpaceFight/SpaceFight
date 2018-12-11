@@ -99,6 +99,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                 insertItemInBatlleGround(new LifeOrb(posx,posy,7,identificador));
                 identificador+=1;
             }
+            msgt.sendCreateOrbs(id,getAllLifeOrbs());
 
         } catch (BattleGroundGameException e) {
             e.printStackTrace();
@@ -485,15 +486,15 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                     if(o.orbecolide(s)){
                         o.Impact(s);
                         msgt.damage(id,s);
-                        /**if(o.getisInUse()==true){
-                            getAllLifeOrbs().remove(o);
-                            System.out.println(getAllLifeOrbs().size());
-                        }**/
                         msgt.sendOrb(id,o);
                         items.remove(o);
 
                     }
                 }
+            }
+
+            if(getAllLifeOrbs().size()==0){
+                insertLifeOrbs();
             }
 
 

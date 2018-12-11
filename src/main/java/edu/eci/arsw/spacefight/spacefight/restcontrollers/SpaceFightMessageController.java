@@ -8,6 +8,7 @@ package edu.eci.arsw.spacefight.spacefight.restcontrollers;
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
 import edu.eci.arsw.spacefight.spacefight.model.*;
 
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,6 +75,8 @@ public class SpaceFightMessageController {
     public void sendDeath(int roomId, Ship s){msgt.convertAndSend("/topic/death."+roomId,s);}
 
     public void sendOrb(int roomId, LifeOrb o){msgt.convertAndSend("/topic/orbesDelete."+roomId, o);}
+
+    public void sendCreateOrbs(int roomId, ArrayList<LifeOrb> lifeorbs){msgt.convertAndSend("/topic/orbes."+roomId, lifeorbs);}
 
 
     public boolean conectado(String username, int room){
