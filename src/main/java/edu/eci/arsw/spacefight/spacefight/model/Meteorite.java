@@ -23,7 +23,12 @@ public class Meteorite extends Item {
     }
     @Override
     public void Impact(Ship s){
-        s.setHealth(s.getHealth()-Damage);
+        if(s.getHealth()>0 && s.getHealth()<=100){
+            s.setHealth(s.getHealth()-Damage);
+            if(s.getHealth()<0){
+                s.setHealth(0);
+            }
+        }
     }
 
     public int getMeteoriteSize(){return meteoriteSize;}
