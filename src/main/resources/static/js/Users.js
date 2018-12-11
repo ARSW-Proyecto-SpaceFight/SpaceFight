@@ -1,4 +1,4 @@
-var host = "http://localhost:8080/spacefight/"
+var host = "http://localhost:8080/spacefight/users"
 //var host = "https://spacefightarsw.herokuapp.com/spacefight/users"
 
 async function addUser(){
