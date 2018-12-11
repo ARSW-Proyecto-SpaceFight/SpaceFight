@@ -24,14 +24,22 @@ public class LifeOrb extends Item {
 
     @Override
     public void Impact(Ship s){
+        if(s.getHealth()>0 && s.getHealth()<100){
             s.setHealth(s.getHealth()+Recovery);
+            if(s.getHealth()>100){
+                s.setHealth(100);
+            }
+        }
+
     }
 
     public int getIdLifeOrb(){return idItem;}
 
     public int getLifeOrbSize(){return orbeSize;}
 
-    public boolean orbecolide(Ship s){ return s.getX()-orbeSize<Xpos && Xpos<s.getX()+s.getShipSize() && s.getY()-orbeSize<Ypos && Ypos<s.getY()+s.getShipSize(); }
+    public boolean orbecolide(Ship s){
+        return s.getX()-orbeSize<Xpos && Xpos<s.getX()+s.getShipSize() && s.getY()-orbeSize<Ypos && Ypos<s.getY()+s.getShipSize();
+    }
 
 
 
