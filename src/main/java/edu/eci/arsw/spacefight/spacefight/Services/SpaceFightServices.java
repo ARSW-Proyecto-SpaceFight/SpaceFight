@@ -2,10 +2,7 @@ package edu.eci.arsw.spacefight.spacefight.Services;
 
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
 import edu.eci.arsw.spacefight.spacefight.Game.MasterException;
-import edu.eci.arsw.spacefight.spacefight.model.LifeOrb;
-import edu.eci.arsw.spacefight.spacefight.model.Flag;
-import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
-import edu.eci.arsw.spacefight.spacefight.model.Ship;
+import edu.eci.arsw.spacefight.spacefight.model.*;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -45,4 +42,5 @@ public interface SpaceFightServices {
 
     ArrayList<Flag> getFlagsFromRoom(int parseInt);
 
+    ArrayList<Base> getBasesFromRoom(int parseInt);
 }

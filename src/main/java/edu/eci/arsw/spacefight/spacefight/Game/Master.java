@@ -1,9 +1,6 @@
 package edu.eci.arsw.spacefight.spacefight.Game;
 
-import edu.eci.arsw.spacefight.spacefight.model.Flag;
-import edu.eci.arsw.spacefight.spacefight.model.LifeOrb;
-import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
-import edu.eci.arsw.spacefight.spacefight.model.Ship;
+import edu.eci.arsw.spacefight.spacefight.model.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -32,4 +29,6 @@ public interface Master {
 
 
     ArrayList<Flag> getFlags(int roomId);
+
+    ArrayList<Base> getBases(int roomId);
 }

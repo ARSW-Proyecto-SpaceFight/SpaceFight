@@ -287,5 +287,10 @@ public class MasterImp implements Master{
         return rooms.get(roomId).getFlags();
     }
 
+    @Override
+    public ArrayList<Base> getBases(int roomId) {
+        return rooms.get(roomId).getBases();
+    }
+
 
 }

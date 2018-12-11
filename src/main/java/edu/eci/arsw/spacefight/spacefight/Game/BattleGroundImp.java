@@ -79,7 +79,10 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         for(int i=1;i<numberOfTeams+1;i++){
             Flag fg=new Flag(pos.get(i-1),posy,teamsmap.get(i));
             flagsmap.put(i,fg);
-            msgt.sendflag(id,fg);
+            Base bs= new Base(pos.get(i-1)-30,posy-30,teamsmap.get(i).getNumber());
+            teamsmap.get(i).setBase(bs);
+            //msgt.sendBase(id,bs);
+            //msgt.sendflag(id,fg);
         }
 
     }
@@ -324,6 +327,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             DamageShoots();
             damageMeteorites();
             lifeorbesgainlife();
+            checkTakeFlag();
             checkCapture();
             //moveFlags();
 
@@ -334,6 +338,39 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     }
 
     private synchronized void checkCapture() {
+        ArrayList<Ship> shiplist = getAllShips();
+        ArrayList<Base> bases =getBases();
+        synchronized (shiplist) {
+            for(int i=0;i<shiplist.size();i++){
+                for(int j=0;j<bases.size();j++){
+                    if(colideBase(shiplist.get(i),bases.get(j))){
+                        Flag fg= shiplist.get(i).getCarryingFlag();
+                        fg.setXpos(teamsmap.get(fg.getId()).getBase().getXpos()+30);
+                        fg.setYpos(teamsmap.get(fg.getId()).getBase().getYpos()+30);
+                        fg.setCaptured(false);
+                        msgt.sendflag(id,fg);
+                        shiplist.get(i).setCarryingFlag(null);
+
+                        teamsmap.get(shiplist.get(i).getTeam()).addPoint();
+                    }
+                }
+            }
+
+
+        }
+    }
+
+    private boolean colideBase(Ship ship, Base base) {
+        boolean bol= false;
+        if(ship.getX()-Base.Size<base.getXpos() && base.getXpos()<ship.getX()+Ship.shipSize && ship.getY()-Base.Size<base.getYpos() && base.getYpos()<ship.getY()+Ship.shipSize ){
+            if(base.getId()==ship.getTeam() && ship.getCarryingFlag()!=null){
+                bol=true;
+            }
+        }
+        return bol;
+    }
+
+    private synchronized void checkTakeFlag() {
         ArrayList<Ship> shiplist = getAllShips();
         synchronized (shiplist) {
             synchronized (flagsmap){
@@ -536,5 +573,15 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     @Override
     public ArrayList<Flag> getFlags() {
         return new ArrayList<Flag>(flagsmap.values());
+    }
+
+    @Override
+    public ArrayList<Base> getBases() {
+        ArrayList<Team> teams = new ArrayList<>(teamsmap.values());
+        ArrayList<Base> bases = new ArrayList<>();
+        for(int i=0; i<teams.size();i++){
+            bases.add(teams.get(i).getBase());
+        }
+        return bases;
     }
 }

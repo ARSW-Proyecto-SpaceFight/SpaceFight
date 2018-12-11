@@ -93,6 +93,15 @@ async function getAllFlags(){
     }));
 }
 
+async function getAllBases(){
+    var Bases = new Array();
+    await Promise.resolve(axios.get(host+ship.getRoom()+"/bases")
+        .then(async function(response){
+
+        drawBases(response.data);
+    }));
+}
+
 async function connectAndSubscribe() {
         var socket = new SockJS('/gs-guide-websocket');
         stompClient = Stomp.over(socket);
@@ -131,6 +140,9 @@ async function connectAndSubscribe() {
             });
             await stompClient.subscribe('/topic/flag.'+ship.getRoom(), function (message){
                  pintarorbesdevida(JSON.parse(message.body));
+            });
+            await stompClient.subscribe('/topic/base.'+ship.getRoom(), function (message){
+                drawBase(JSON.parse(message.body));
             });
             await pintar();
             await newShip();

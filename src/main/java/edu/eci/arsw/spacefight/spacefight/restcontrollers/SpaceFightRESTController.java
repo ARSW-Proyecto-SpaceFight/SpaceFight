@@ -193,6 +193,12 @@ public class SpaceFightRESTController{
         return new ResponseEntity<>(bgs.getFlagsFromRoom(Integer.parseInt(roomId)), HttpStatus.CREATED);
     }
 
+    @RequestMapping(path = "/{roomId}/bases",method = RequestMethod.GET)
+    public ResponseEntity<?> getBasesFromRoom(@PathVariable(name = "roomId") String roomId){
+        //System.out.println(bgs.getBasesFromRoom(Integer.parseInt(roomId)).get(0));
+        return new ResponseEntity<>(bgs.getBasesFromRoom(Integer.parseInt(roomId)), HttpStatus.CREATED);
+    }
+
 
     public int getNextTeam(int room){
         return bgs.getNextTeam(room);

@@ -6,10 +6,7 @@
 package edu.eci.arsw.spacefight.spacefight.Services;
 
 import edu.eci.arsw.spacefight.spacefight.Game.*;
-import edu.eci.arsw.spacefight.spacefight.model.LifeOrb;
-import edu.eci.arsw.spacefight.spacefight.model.Flag;
-import edu.eci.arsw.spacefight.spacefight.model.Meteorite;
-import edu.eci.arsw.spacefight.spacefight.model.Ship;
+import edu.eci.arsw.spacefight.spacefight.model.*;
 import edu.eci.arsw.spacefight.spacefight.restcontrollers.SpaceFightMessageController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -228,6 +225,11 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
 
     public ArrayList<Flag> getFlagsFromRoom(int roomId) {
         return ms.getFlags(roomId);
+    }
+
+    @Override
+    public ArrayList<Base> getBasesFromRoom(int roomId) {
+        return ms.getBases(roomId);
     }
 
 

@@ -18,6 +18,7 @@ public class Team {
 
     private int Score;
     private int number;
+    private Base base;
     private ConcurrentHashMap<String,Ship> ships = new ConcurrentHashMap<>();
 
     public Team(int number){
@@ -87,4 +88,14 @@ public class Team {
         return new ArrayList<Ship>(ships.values());
     }
 
+    public Base getBase() {
+        return base;
+    }
+
+    public void setBase(Base base) {
+        this.base = base;
+    }
+    public void addPoint(){
+        Score++;
+    }
 }

@@ -56,9 +56,13 @@ async function start(){
 	//}
         await getAllMeteorites();
 
+        await getAllBases();
+
         await getAllFlags();
 
         await getAllLifeOrbs();
+
+
 }
 
 /*
@@ -231,6 +235,18 @@ function drawFlag(body){
 
 }
 
+function drawBase(body){
+    if(document.getElementById("base"+body.id) == null){
+        agregar = ""
+        agregar += "<img id='base"+body.id+"' style='position:absolute; width: "+body.size+"px; height:"+body.size+"px; top:"+body.Ypos+"px; left:"+body.Xpos+"px' src='images/base"+body.id+".png'></img>";
+        console.log(agregar)
+        document.getElementById("all").innerHTML += agregar;
+    }else{
+        moveFlag(body)
+    }
+
+}
+
 function moveFlag(body){
     flag = document.getElementById("flag"+body.id);
     flag.style.top = body.Ypos + "px"
@@ -243,6 +259,18 @@ async function drawFlags(body){
     for(i = 0; i< body.length; i++ ){
     	//console.log("number:"+body[i].id+"size:"+body[i].size);
         agregar += "<img id='flag"+body[i].id+"' style='position:absolute; width:"+body[i].size+"px; height:"+body[i].size+"px; top:"+body[i].Ypos+"px; left:"+body[i].Xpos+"px' src='images/flag"+body[i].id+".png'></img>";
+
+    }
+    document.getElementById("all").innerHTML += agregar;
+
+}
+
+async function drawBases(body){
+    agregar = ""
+    var i;
+    for(i = 0; i< body.length; i++ ){
+        //console.log("number:"+body[i].id+"size:"+body[i].size);
+        agregar += "<img id='base"+body[i].id+"' style='position:absolute; width:80px; height:80px; top:"+body[i].ypos+"px; left:"+body[i].xpos+"px' src='images/base"+body[i].id+".png'></img>";
 
     }
     document.getElementById("all").innerHTML += agregar;

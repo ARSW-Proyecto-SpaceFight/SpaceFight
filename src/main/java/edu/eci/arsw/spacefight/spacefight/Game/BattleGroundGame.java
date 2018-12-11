@@ -29,4 +29,6 @@ public interface BattleGroundGame {
     void moveShip(String username,int key);
 
     ArrayList<Flag> getFlags();
+
+    ArrayList<Base> getBases();
 }
