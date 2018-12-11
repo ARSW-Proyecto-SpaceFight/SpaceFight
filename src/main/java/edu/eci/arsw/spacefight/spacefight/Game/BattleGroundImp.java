@@ -73,15 +73,19 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     public void insertFlags(){
         Random rn = new Random();
         int posxt1 = rn.nextInt(340)+1;
-        int posy = 1 + (int)(Math.random() * 469);
+        int posy1 = 1 + (int)(Math.random() * 469);
+        int posy2 = 1 + (int)(Math.random() * 469);
         int posxt2 = rn.nextInt(341)+488;
-        ArrayList<Integer> pos=new ArrayList<>();
-        pos.add(posxt1);
-        pos.add(posxt2);
+        ArrayList<Integer> posx=new ArrayList<>();
+        ArrayList<Integer> posy=new ArrayList<>();
+        posx.add(posxt1);
+        posx.add(posxt2);
+        posy.add(posy1);
+        posy.add(posy2);
         for(int i=1;i<numberOfTeams+1;i++){
-            Flag fg=new Flag(pos.get(i-1),posy,teamsmap.get(i));
+            Flag fg=new Flag(posx.get(i-1),posy.get(i-1),teamsmap.get(i));
             flagsmap.put(i,fg);
-            Base bs= new Base(pos.get(i-1)-30,posy-30,teamsmap.get(i).getNumber());
+            Base bs= new Base(posx.get(i-1)-30,posy.get(i-1)-30,teamsmap.get(i).getNumber());
             teamsmap.get(i).setBase(bs);
             //msgt.sendBase(id,bs);
             //msgt.sendflag(id,fg);
