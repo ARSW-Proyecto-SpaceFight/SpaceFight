@@ -78,6 +78,11 @@ public class SpaceFightMessageController {
 
     public void sendCreateOrbs(int roomId, ArrayList<LifeOrb> lifeorbs){msgt.convertAndSend("/topic/orbes."+roomId, lifeorbs);}
 
+    public void sendOver(int roomId){
+
+        spc.endGame(roomId);
+        msgt.convertAndSend("/topic/over."+roomId,roomId);
+    }
 
     public boolean conectado(String username, int room){
         desconectados.put(username, Boolean.FALSE);

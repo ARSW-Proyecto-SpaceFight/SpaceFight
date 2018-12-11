@@ -286,6 +286,11 @@ async function drawBases(body){
 
 }
 
+async function gameOver(){
+
+
+}
+
 function drawStrings(){
         agregar = "";
         agregar += "<label id = 'team1' style='position:absolute; top:0px; left:0px'>Score Team 1</label>";

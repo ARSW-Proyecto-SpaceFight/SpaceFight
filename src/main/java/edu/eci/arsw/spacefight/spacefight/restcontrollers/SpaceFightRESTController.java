@@ -217,6 +217,13 @@ public class SpaceFightRESTController{
         }
     }
 
+    public void endGame(int roomId){
+        try {
+            bgs.removeRoom(roomId);
+        } catch (BattleGroundGameException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
     

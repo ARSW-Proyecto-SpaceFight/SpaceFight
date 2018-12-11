@@ -39,8 +39,9 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     private HashMap<Integer,Flag> flagsmap= new HashMap<Integer, Flag>();
     private final int numberOfTeams= 2;
     SpaceFightMessageController msgt;
-
+    private boolean active=true;
     public BattleGroundImp(SpaceFightMessageController msgt) {
+
         shoots= new ArrayList<>();
         for(int i=1;i<numberOfTeams+1;i++){
             teamsmap.put(i,new Team(i));
@@ -49,6 +50,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         insertMeteorites();
         insertFlags();
         insertLifeOrbs();
+
 
 
     }
@@ -310,13 +312,13 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     @Override
     public void run(){
         //System.out.println("IM RUNNING");
-        while(true) {
+        while(active) {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            //System.out.println("IM WHILING");
+           // System.out.println("IM WHILING");
             moveShoots();
             DamageShoots();
             damageMeteorites();
@@ -324,11 +326,23 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             checkTakeFlag();
             checkCapture();
             checkDeath();
+            checkEnd();
             //moveFlags();
 
 
         }
 
+
+    }
+
+    private synchronized void checkEnd() {
+        ArrayList<Team> teams = new ArrayList<>(teamsmap.values());
+        for(int i=0;i<teams.size();i++){
+            if(teams.get(i).getScore()>=5){
+                msgt.sendOver(id);
+                active=false;
+            }
+        }
 
     }
 

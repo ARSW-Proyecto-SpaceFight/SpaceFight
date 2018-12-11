@@ -173,7 +173,7 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
                 }
             }
         } catch (MasterException e) {
-            throw new BattleGroundGameException(e.getMessage());
+            //throw new BattleGroundGameException(e.getMessage());
         }
     }
 

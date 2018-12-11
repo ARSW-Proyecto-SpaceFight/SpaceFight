@@ -1,5 +1,5 @@
-//var host = "http://localhost:8080/spacefight/"
-var host = "https://spacefightarsw.herokuapp.com/spacefight/"
+var host = "http://localhost:8080/spacefight/"
+//var host = "https://spacefightarsw.herokuapp.com/spacefight/"
 
 var stompClient = null;
 
@@ -153,6 +153,11 @@ async function connectAndSubscribe() {
             });
             await stompClient.subscribe('/topic/orbesDelete.'+ship.getRoom(), function(message){
                 eliminarOrbe(JSON.parse(message.body));
+            });
+            await stompClient.subscribe('/topic/over.'+ship.getRoom(), function(message){
+                var ret = host.replace('/spacefight/','');
+                window.location.replace(ret+"/salas.html");
+
             });
 
             await pintar();
