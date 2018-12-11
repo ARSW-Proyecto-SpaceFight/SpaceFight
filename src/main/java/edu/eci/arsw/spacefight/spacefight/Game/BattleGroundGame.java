@@ -19,13 +19,11 @@ public interface BattleGroundGame {
     Item getItem(int idItem)throws BattleGroundGameException;
     ArrayList<Meteorite> getAllMeteorites() throws BattleGroundGameException;
     Meteorite getMeteorite(int idMeteorite) throws BattleGroundGameException;
-    void removeMeteorite(int idMeteorite) throws BattleGroundGameException;
     void shoot(String username)throws BattleGroundGameException;
     void setId(int id);
     ArrayList<Ship> getAllShipsFromTeam(int team);
-    ArrayList<LifeOrb> getAllLifeOrbs() throws BattleGroundGameException;
-    LifeOrb getLifeOrb(int idLifeOrb) throws BattleGroundGameException;
-    void removeLifeOrb(int idLifeOrb) throws BattleGroundGameException;
+    ArrayList<LifeOrb> getAllLifeOrbs();
+    LifeOrb getLifeOrb(int idLifeOrb);
     void moveShip(String username,int key);
 
     ArrayList<Flag> getFlags();

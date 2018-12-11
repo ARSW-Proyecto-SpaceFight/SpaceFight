@@ -176,34 +176,6 @@ public class MasterImp implements Master{
         }
     }
 
-    @Override
-    public void removeMeteoritesToRoom(int roomid, Meteorite meteorite) throws MasterException {
-        if(!rooms.containsKey(roomid)){
-            throw  new MasterException("Room "+roomid+" does not exist.");
-        }
-        else{
-            try {
-                rooms.get(roomid).removeItemFromBatleGround(meteorite);
-            } catch (BattleGroundGameException e) {
-                throw new MasterException("Could not delete meteorite to background");
-            }
-        }
-    }
-
-    @Override
-    public void removeOneMeteorite(int roomid, Meteorite meteorite) throws MasterException {
-        if(!rooms.containsKey(roomid)){
-            throw  new MasterException("Room "+roomid+" does not exist.");
-        }
-        else{
-            try {
-                rooms.get(roomid).removeMeteorite(meteorite.getIdMeteorite());
-            } catch (BattleGroundGameException e) {
-                throw new MasterException("Could not delete meteorite to background");
-            }
-        }
-
-    }
 
     @Override
     public ArrayList<Meteorite> getMeteoritesFromRoom(int roomid) throws MasterException {
@@ -240,33 +212,7 @@ public class MasterImp implements Master{
         }
     }
 
-    @Override
-    public void removeLifesOrbToRoom(int roomid, LifeOrb lifeOrb) throws MasterException {
-        if(!rooms.containsKey(roomid)){
-            throw  new MasterException("Room "+roomid+" does not exist.");
-        }
-        else{
-            try {
-                rooms.get(roomid).removeItemFromBatleGround(lifeOrb);
-            } catch (BattleGroundGameException e) {
-                throw new MasterException("Could not delete lifeorb to background");
-            }
-        }
-    }
 
-    @Override
-    public void removeOneLifeOrb(int roomid, LifeOrb lifeOrb) throws MasterException {
-        if(!rooms.containsKey(roomid)){
-            throw  new MasterException("Room "+roomid+" does not exist.");
-        }
-        else{
-            try {
-                rooms.get(roomid).removeLifeOrb(lifeOrb.getIdLifeOrb());
-            } catch (BattleGroundGameException e) {
-                throw new MasterException("Could not delete this life Orb to background");
-            }
-        }
-    }
 
     @Override
     public ArrayList<LifeOrb> getLifeOrbFromRoom(int roomid) throws MasterException {
@@ -274,11 +220,8 @@ public class MasterImp implements Master{
             throw  new MasterException("Room "+roomid+" does not exist.");
         }
         else{
-            try {
                 return rooms.get(roomid).getAllLifeOrbs();
-            } catch (BattleGroundGameException e) {
-                throw new MasterException("The background not contain any LifeOrbs");
-            }
+
         }
     }
 

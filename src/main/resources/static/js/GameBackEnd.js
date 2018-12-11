@@ -147,10 +147,13 @@ async function connectAndSubscribe() {
             await stompClient.subscribe('/topic/score.'+ship.getRoom(), function (message){
                 drawScore(JSON.parse(message.body));
             });
+
             await stompClient.subscribe('/topic/death.'+ship.getRoom(), function (message){
                  moverNave(JSON.parse(message.body));
             });
-
+            await stompClient.subscribe('/topic/orbesDelete.'+ship.getRoom(), function(message){
+                eliminarOrbe(JSON.parse(message.body));
+            });
 
             await pintar();
             await newShip();
