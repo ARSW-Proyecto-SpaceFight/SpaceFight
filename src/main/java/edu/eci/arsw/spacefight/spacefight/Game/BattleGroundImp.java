@@ -352,6 +352,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                         shiplist.get(i).setCarryingFlag(null);
 
                         teamsmap.get(shiplist.get(i).getTeam()).addPoint();
+                        msgt.sendScore(id, teamsmap.get(1), teamsmap.get(2));
                     }
                 }
             }

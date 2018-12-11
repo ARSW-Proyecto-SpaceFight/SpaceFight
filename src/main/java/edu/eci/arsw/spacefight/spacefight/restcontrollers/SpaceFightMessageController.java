@@ -6,14 +6,12 @@
 package edu.eci.arsw.spacefight.spacefight.restcontrollers;
 
 import edu.eci.arsw.spacefight.spacefight.Game.BattleGroundGameException;
-import edu.eci.arsw.spacefight.spacefight.model.Base;
-import edu.eci.arsw.spacefight.spacefight.model.Flag;
-import edu.eci.arsw.spacefight.spacefight.model.Ship;
+import edu.eci.arsw.spacefight.spacefight.model.*;
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import edu.eci.arsw.spacefight.spacefight.model.Shoot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -70,6 +68,8 @@ public class SpaceFightMessageController {
     public void sendflag(int roomId, Flag f){ msgt.convertAndSend("/topic/flag."+roomId,f);};
 
     public void sendBase(int roomId, Base bs) { msgt.convertAndSend("/topic/base."+roomId,bs);}
+
+    public void sendScore(int roomId, Team team1, Team team2){msgt.convertAndSend("/topic/score."+roomId, new Score(team1.getScore(), team2.getScore()));}
 
     public boolean conectado(String username, int room){
         desconectados.put(username, Boolean.FALSE);
@@ -141,6 +141,32 @@ public class SpaceFightMessageController {
             return team;
         }
         
+    }
+
+    static class Score {
+        private int scoreTeam1;
+        private int scoreTeam2;
+
+        public Score(int scoreTeam1, int scoreTeam2) {
+            this.scoreTeam1 = scoreTeam1;
+            this.scoreTeam2 = scoreTeam2;
+        }
+
+        public int getScoreTeam1() {
+            return scoreTeam1;
+        }
+
+        public void setScoreTeam1(int scoreTeam1) {
+            this.scoreTeam1 = scoreTeam1;
+        }
+
+        public int getScoreTeam2() {
+            return scoreTeam2;
+        }
+
+        public void setScoreTeam2(int scoreTeam2) {
+            this.scoreTeam2 = scoreTeam2;
+        }
     }
 }
 
