@@ -198,9 +198,16 @@ function  eliminarBala(body) {
 	eliminarElemento("bala"+body.id);
 }
 
+function eliminarOrbe(body){
+    eliminarElemento("lifeorb"+body.idItem);
+
+}
+
 function danarNave(body){
     document.getElementById("vida"+body.username).innerText = body.health;
 }
+
+
 
 function eliminarElemento(elementId) {    
     var element = document.getElementById(elementId);

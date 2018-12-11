@@ -220,11 +220,8 @@ public class MasterImp implements Master{
             throw  new MasterException("Room "+roomid+" does not exist.");
         }
         else{
-            try {
                 return rooms.get(roomid).getAllLifeOrbs();
-            } catch (BattleGroundGameException e) {
-                throw new MasterException("The background not contain any LifeOrbs");
-            }
+
         }
     }
 

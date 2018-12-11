@@ -38,7 +38,7 @@ public class LifeOrb extends Item {
     public int getLifeOrbSize(){return orbeSize;}
 
     public boolean orbecolide(Ship s){
-        return s.getX()-orbeSize<Xpos && Xpos<s.getX()+s.getShipSize() && s.getY()-orbeSize<Ypos && Ypos<s.getY()+s.getShipSize();
+        return s.getX()-orbeSize<Xpos && Xpos<s.getX()+s.getShipSize() && s.getY()-orbeSize<Ypos && Ypos<s.getY()+s.getShipSize() && s.getHealth()!=100;
     }
 
 

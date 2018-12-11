@@ -476,7 +476,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     }
 
     private synchronized void lifeorbesgainlife(){
-        try{
+
             for(LifeOrb o : getAllLifeOrbs()){
                 for(Ship s : getAllShips()){
                     if(o.orbecolide(s)){
@@ -492,9 +492,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                     }
                 }
             }
-        } catch (BattleGroundGameException e) {
-            e.printStackTrace();
-        }
+
 
 
     }
@@ -544,7 +542,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     }
 
     @Override
-    public ArrayList<LifeOrb> getAllLifeOrbs() throws BattleGroundGameException {
+    public ArrayList<LifeOrb> getAllLifeOrbs()  {
         ArrayList<LifeOrb> o = new ArrayList<LifeOrb>();
         for(int i=0;i<items.size();i++) {
             if(items.get(i).getClass().getName().toString().equals("edu.eci.arsw.spacefight.spacefight.model.LifeOrb")){
@@ -552,20 +550,13 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             }
         }
 
-        if(o.isEmpty()){
-            throw new BattleGroundGameException("Non exist a life Orbs in the items list");
-        }
-
         return o;
     }
 
     @Override
-    public LifeOrb getLifeOrb(int idLifeOrb) throws BattleGroundGameException {
-        try{
+    public LifeOrb getLifeOrb(int idLifeOrb){
             return getAllLifeOrbs().get(idLifeOrb);
-        }catch (Exception e){
-            throw new BattleGroundGameException(e.getMessage());
-        }
+
     }
 
 
