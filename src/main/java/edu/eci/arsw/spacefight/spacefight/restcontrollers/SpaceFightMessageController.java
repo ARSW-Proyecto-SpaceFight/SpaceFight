@@ -71,6 +71,8 @@ public class SpaceFightMessageController {
 
     public void sendScore(int roomId, Team team1, Team team2){msgt.convertAndSend("/topic/score."+roomId, new Score(team1.getScore(), team2.getScore()));}
 
+    public void sendOrb(int roomId, LifeOrb o){msgt.convertAndSend("/topic/orbesDelete."+roomId, o);}
+
     public boolean conectado(String username, int room){
         desconectados.put(username, Boolean.FALSE);
         Thread temp = new Thread(){

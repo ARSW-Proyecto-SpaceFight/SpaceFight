@@ -1,5 +1,5 @@
-//var host = "http://localhost:8080/spacefight/"
-var host = "https://spacefightarsw.herokuapp.com/spacefight/"
+var host = "http://localhost:8080/spacefight/"
+//var host = "https://spacefightarsw.herokuapp.com/spacefight/"
 
 var stompClient = null;
 
@@ -147,7 +147,9 @@ async function connectAndSubscribe() {
             await stompClient.subscribe('/topic/score.'+ship.getRoom(), function (message){
                 drawScore(JSON.parse(message.body));
             });
-
+            await stompClient.subscribe('/topic/orbesDelete.'+ship.getRoom(), function(message){
+                console.log(message.body);
+            });
 
             await pintar();
             await newShip();

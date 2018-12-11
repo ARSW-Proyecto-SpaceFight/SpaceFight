@@ -284,14 +284,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         }
     }
 
-    @Override
-    public void removeMeteorite(int idMeteorite) throws BattleGroundGameException {
-        try{
-           getAllMeteorites().remove(getMeteorite(idMeteorite));
-        }catch(Exception e){
-            throw new BattleGroundGameException(e.getMessage());
-        }
-    }
+
     @Override
     public void shoot(String username)throws BattleGroundGameException {
         HashMap<String,Ship> map=getAllShipsAsMap();
@@ -471,12 +464,21 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                     if(o.orbecolide(s)){
                         o.Impact(s);
                         msgt.damage(id,s);
+                        /**if(o.getisInUse()==true){
+                            getAllLifeOrbs().remove(o);
+                            System.out.println(getAllLifeOrbs().size());
+                        }**/
+                        msgt.sendOrb(id,o);
+                        items.remove(o);
+
                     }
                 }
             }
         } catch (BattleGroundGameException e) {
             e.printStackTrace();
         }
+
+
     }
 
 
@@ -548,14 +550,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         }
     }
 
-    @Override
-    public void removeLifeOrb(int idLifeOrb) throws BattleGroundGameException {
-        try{
-            getAllLifeOrbs().remove(getMeteorite(idLifeOrb));
-        }catch(Exception e){
-            throw new BattleGroundGameException(e.getMessage());
-        }
-    }
+
 
 
     @Override
