@@ -24,7 +24,7 @@ Los jugadores son ubicados en dos equipos aleatoriamente y la bandera se esconde
 
 ## DIAGRAMAS
 
-### Diagrama de actividad
+### Diagrama de clases
 ![](img/class.PNG)
 
 ### Diagrama de actividad
