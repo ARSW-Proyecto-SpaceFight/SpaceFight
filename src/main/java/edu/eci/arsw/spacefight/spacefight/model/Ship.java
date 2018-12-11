@@ -27,6 +27,8 @@ public class Ship implements Comparable<Ship> {
     private Flag carryingFlag;
     
     public Ship(){
+
+        
     }
 
     public Ship(int x, int y, String username, int team) {
