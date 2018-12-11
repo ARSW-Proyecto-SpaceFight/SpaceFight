@@ -25,14 +25,21 @@ Los jugadores son ubicados en dos equipos aleatoriamente y la bandera se esconde
 ## DIAGRAMAS
 
 ### Diagrama de actividad
+![](img/class.png)
+
+### Diagrama de actividad
+![](img/activity.png)
 
 ### Diagrama de componentes
+![](img/component.png)
 
 ### Diagrama de despliegue
 
 #### Versión inicial
+![](img/deployment1.png)
 
 #### Versión Escalable AWS
+![](img/deployment2.png)
 
 *_Vistas:_*
 ------- 
