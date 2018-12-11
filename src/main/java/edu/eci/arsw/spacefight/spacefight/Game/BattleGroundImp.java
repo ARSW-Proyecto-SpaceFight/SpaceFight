@@ -306,7 +306,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                     amount++;
                 }
             }
-            if(amount<3) {
+            if(amount<5) {
                 Shoot shot = new Shoot(s, (int) s.getX()+(s.getShipSize()/2)-10, (int) s.getY()+(s.getShipSize()/2)-10, s.getDirection());
                 shoots.add(shot);
             }
@@ -347,8 +347,11 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                         shiplist.get(i).dropFlag();
                     }
                     shiplist.get(i).setHealth(100);
+
                     shiplist.get(i).setX(teamsmap.get(shiplist.get(i).getTeam()).getBase().getXpos());
                     shiplist.get(i).setY(teamsmap.get(shiplist.get(i).getTeam()).getBase().getYpos());
+                    msgt.damage(id,shiplist.get(i));
+                    msgt.sendDeath(id,shiplist.get(i));
                 }
             }
         }
