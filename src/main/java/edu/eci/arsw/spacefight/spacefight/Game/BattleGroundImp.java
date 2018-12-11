@@ -322,11 +322,29 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             lifeorbesgainlife();
             checkTakeFlag();
             checkCapture();
+            checkDeath();
             //moveFlags();
 
 
         }
 
+
+    }
+
+    private synchronized void checkDeath() {
+        ArrayList<Ship> shiplist = getAllShips();
+        synchronized (shiplist) {
+            for (int i =0;i<shiplist.size();i++){
+                if(shiplist.get(i).getHealth()<=0){
+                    if(shiplist.get(i).getCarryingFlag()!=null){
+                        shiplist.get(i).dropFlag();
+                    }
+                    shiplist.get(i).setHealth(100);
+                    shiplist.get(i).setX(teamsmap.get(shiplist.get(i).getTeam()).getBase().getXpos());
+                    shiplist.get(i).setY(teamsmap.get(shiplist.get(i).getTeam()).getBase().getYpos());
+                }
+            }
+        }
 
     }
 
