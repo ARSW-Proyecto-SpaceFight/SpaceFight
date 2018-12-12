@@ -15,27 +15,50 @@ public class Item {
     protected int Xpos;
     protected int Ypos;
 
+    /**
+     * get identification of item
+     * @return value of item
+     */
     public int getIdItem(){
         return idItem;
     }
 
-    public int getXpos(){
+    /**
+     * get x position of item
+     * @return value of x
+     */
+    public int getXpos() {
         return Xpos;
     }
 
-    public void setXpos(int xpos){
+    /**
+     * set x position of item
+     * @param xpos new value 
+     */
+    public void setXpos(int xpos) {
         Xpos = xpos;
     }
 
-
-    public int getYpos(){
+    /**
+     * get y position of item
+     * @return value of y
+     */
+    public int getYpos() {
         return Ypos;
     }
 
-    public void setYpos(int ypos){
+    /**
+     * set y position of item
+     * @param ypos new value
+     */
+    public void setYpos(int ypos) {
         Ypos = ypos;
     }
 
+    /**
+     * verify if ship impact with item
+     * @param s ship
+     */
     protected void Impact(Ship s){
 
     }

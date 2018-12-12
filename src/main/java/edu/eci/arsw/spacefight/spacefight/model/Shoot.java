@@ -37,50 +37,97 @@ public class Shoot {
         this.Damage=10;
     }
 
-    public int getXpos(){
+    /**
+     * get x position of flag
+     * @return value of x
+     */
+    public int getXpos() {
         return Xpos;
     }
 
-    public void setXpos(int xpos){
+    /**
+     * set x position of flag
+     * @param xpos new value 
+     */
+    public void setXpos(int xpos) {
         Xpos = xpos;
     }
 
 
-    public int getYpos(){
+    /**
+     * get y position of flag
+     * @return value of y
+     */
+    public int getYpos() {
         return Ypos;
     }
 
-    public void setYpos(int ypos){
+    /**
+     * set y position of flag
+     * @param ypos new value
+     */
+    public void setYpos(int ypos) {
         Ypos = ypos;
     }
 
+    /**
+     * get the ship that shoot
+     * @return ship
+     */
     public Ship getShooter() {
         return Shooter;
     }
 
+    /**
+     * set the ship that shoot
+     * @param shooter new ship
+     */
     public void setShooter(Ship shooter) {
         Shooter = shooter;
     }
 
+    /**
+     * get shoot value of damage
+     * @return actual damage value
+     */
     public int getDamage() {
         return Damage;
     }
 
+    /**
+     * get damage shoot value
+     * @param damage new value
+     */
     public void setDamage(int damage) {
         Damage = damage;
     }
 
+    /**
+     * direction for movement
+     * @return direction
+     */
     public char getDirection() {
         return direction;
     }
 
+    /**
+     * set direction for movement
+     * @param direction new value
+     */
     public void setDirection(char direction) {
         this.direction = direction;
     }
 
+    /**
+     * get size of shoot 
+     * @return size
+     */
     public static int getShootSize() {return shootSize; }
 
 
+    /**
+     * move
+     */
     public void move(){
         if(direction=='L'){
             Xpos-=VEL;
@@ -97,10 +144,18 @@ public class Shoot {
 
     }
 
+    /**
+     * get the number that identifies the object
+     * @return value that identifies
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * set the number that identifies the object
+     * @param id new value
+     */
     public void setId(int id) {
         this.id = id;
     }

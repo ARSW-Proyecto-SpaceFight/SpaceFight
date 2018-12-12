@@ -40,6 +40,11 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     private final int numberOfTeams= 2;
     SpaceFightMessageController msgt;
     private boolean active=true;
+    
+    /**
+     * responsible for creating all the logical elements on the battleground
+     * @param msgt message of the controller
+     */
     public BattleGroundImp(SpaceFightMessageController msgt) {
 
         shoots= new ArrayList<>();
@@ -55,6 +60,9 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     }
 
+    /**
+     * assigns random positions of n meteorites
+     */
     public void insertMeteorites(){
         try {
             for(int i=1; i<=8;i++){
@@ -69,7 +77,9 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         }
     }
 
-
+    /**
+     * assigns random positions for flags of 2 teams
+     */
     public void insertFlags(){
         Random rn = new Random();
         int posxt1 = rn.nextInt(340)+1;
@@ -95,6 +105,9 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
 
 
+    /**
+     * assigns random positions of n Life Orbs
+     */
     public void insertLifeOrbs(){
         try {
             int identificador = 13;
@@ -167,6 +180,11 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
         }
     }
+    
+    /**
+     * Get list of ships on the battleground
+     * @return arraylist with the ships of both teams
+     */
     public ArrayList<Ship> getAllShips(){
         ArrayList<Team> teams= new ArrayList<Team>(teamsmap.values());
         ArrayList<Ship> sp= new ArrayList<>();
@@ -176,6 +194,10 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         return sp;
     }
 
+    /**
+     * get the ship with the name of the person that is playing
+     * @return hashmap relation between the name of the player and the ship
+     */
     public HashMap<String,Ship> getAllShipsAsMap(){
         HashMap<String,Ship> spmap = new HashMap<>();
         ArrayList<Ship> sp= getAllShips();
@@ -185,6 +207,12 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         return spmap;
     }
 
+    /**
+     * get the number team by ship
+     * @param sp ship that consult 
+     * @return the number team of a ship
+     * @throws BattleGroundGameException 
+     */
     public int findShipTeam(Ship sp)throws BattleGroundGameException{
         ArrayList<Integer> keys = new ArrayList<>(teamsmap.keySet());
         int team= Integer.MIN_VALUE;
@@ -200,6 +228,13 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         return team;
 
     }
+    
+    /**
+     * get the number team by username
+     * @param username name of the player
+     * @return the number team of a player
+     * @throws BattleGroundGameException 
+     */
     public int findShipTeam(String username)throws BattleGroundGameException{
         ArrayList<Integer> keys = new ArrayList<>(teamsmap.keySet());
         int team= Integer.MIN_VALUE;
@@ -215,6 +250,13 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         return team;
 
     }
+    
+    /**
+     * get the ship of a team by username
+     * @param username player name
+     * @return the ship of player
+     * @throws BattleGroundGameException 
+     */
     public Ship getShip(String username) throws BattleGroundGameException{
         try {
             return teamsmap.get(findShipTeam(username)).getShip(username);
@@ -224,6 +266,11 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     }
 
+    /**
+     * add item on the battlegroung
+     * @param item ship/meteorite/lifeorbs/flags
+     * @throws BattleGroundGameException 
+     */
     @Override
     public void insertItemInBatlleGround(Item item) throws BattleGroundGameException {
         if(!items.contains(item)){
@@ -234,6 +281,11 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         }
     }
 
+    /**
+     * delete item on the battleground
+     * @param item ship/meteorite/lifeorbs/flags
+     * @throws BattleGroundGameException 
+     */
     @Override
     public void removeItemFromBatleGround(Item item) throws BattleGroundGameException {
         if(!items.contains(item)){
@@ -245,11 +297,22 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     }
 
+    /**
+     * list of items on the battleground
+     * @return list with items
+     * @throws BattleGroundGameException 
+     */
     @Override
     public ArrayList<Item> getAllItems() throws BattleGroundGameException {
         return items;
     }
 
+    /**
+     * get an specific item by id
+     * @param idItem number that identify items
+     * @return the item
+     * @throws BattleGroundGameException 
+     */
     @Override
     public Item getItem(int idItem) throws BattleGroundGameException {
         Item it= null;
@@ -265,6 +328,11 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         return it;
     }
 
+    /**
+     * get the list of meteorites
+     * @return
+     * @throws BattleGroundGameException 
+     */
     @Override
     public ArrayList<Meteorite> getAllMeteorites() throws BattleGroundGameException {
         ArrayList<Meteorite> m = new ArrayList<Meteorite>();
@@ -282,6 +350,12 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     }
 
+    /**
+     * get specific meteorite by id
+     * @param idMeteorite number of meteorite
+     * @return the item
+     * @throws BattleGroundGameException 
+     */
     @Override
     public Meteorite getMeteorite(int idMeteorite) throws BattleGroundGameException {
         try{
@@ -292,6 +366,11 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
     }
 
 
+    /**
+     *relation between shoot and ship by username
+     * @param username player name
+     * @throws BattleGroundGameException 
+     */
     @Override
     public void shoot(String username)throws BattleGroundGameException {
         HashMap<String,Ship> map=getAllShipsAsMap();
@@ -310,9 +389,12 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
                 Shoot shot = new Shoot(s, (int) s.getX()+(s.getShipSize()/2)-10, (int) s.getY()+(s.getShipSize()/2)-10, s.getDirection());
                 shoots.add(shot);
             }
-            //return shot;
         }
     }
+    
+    /**
+     * run method 
+     */
     @Override
     public void run(){
         //System.out.println("IM RUNNING");
@@ -339,6 +421,9 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     }
 
+    /**
+     * verifica si la puntuación es 5 para acabar el juego
+     */
     private synchronized void checkEnd() {
         ArrayList<Team> teams = new ArrayList<>(teamsmap.values());
         for(int i=0;i<teams.size();i++){
@@ -350,6 +435,10 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     }
 
+    
+    /**
+     * verifica si una nave ha muerto o no.
+     */
     private synchronized void checkDeath() {
         ArrayList<Ship> shiplist = getAllShips();
         synchronized (shiplist) {
@@ -370,6 +459,9 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     }
 
+    /**
+     * verify if a ship capture a flag
+     */
     private synchronized void checkCapture() {
         ArrayList<Ship> shiplist = getAllShips();
         ArrayList<Base> bases =getBases();
@@ -394,6 +486,12 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         }
     }
 
+    /**
+     * relation between a ship with a base to start again if a player die
+     * @param ship ship of the player
+     * @param base base of the team
+     * @return 
+     */
     private boolean colideBase(Ship ship, Base base) {
         boolean bol= false;
         if(ship.getX()-Base.Size<base.getXpos() && base.getXpos()<ship.getX()+Ship.shipSize && ship.getY()-Base.Size<base.getYpos() && base.getYpos()<ship.getY()+Ship.shipSize ){
@@ -404,6 +502,9 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         return bol;
     }
 
+    /**
+     * verify if a player took the flag of the other team
+     */
     private synchronized void checkTakeFlag() {
         ArrayList<Ship> shiplist = getAllShips();
         synchronized (shiplist) {
@@ -470,6 +571,13 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         }
         return bol;
     }
+    
+    /**
+     * check the position of the ship and the flag to capture it
+     * @param ship ship that capture th flag
+     * @param flag flag of the other team
+     * @return if the position of flag and ship are equals is true, else false 
+     */
     private boolean colideFlag(Ship ship,Flag flag){
         boolean bol=false;
         if(ship.getX()-Flag.size<flag.getXpos() && flag.getXpos()<ship.getX()+Ship.shipSize && ship.getY()-Flag.size<flag.getYpos() && flag.getYpos()<ship.getY()+Ship.shipSize ){
@@ -480,6 +588,9 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         return bol;
     }
 
+    /**
+     * reduces the life of the ships
+     */
     private synchronized void damageMeteorites(){
         try {
             for(Meteorite m : getAllMeteorites()){
@@ -497,6 +608,9 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     }
 
+    /**
+     *  increase the life of the ship
+    */
     private synchronized void lifeorbesgainlife(){
 
             for(LifeOrb o : getAllLifeOrbs()){
@@ -521,6 +635,9 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
 
 
+    /**
+     * Allows the movement of the shoots on the battleground
+     */
     private synchronized void moveShoots(){
         synchronized(shoots) {
             ArrayList<Shoot> found = new ArrayList<>();
@@ -553,16 +670,29 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         }
     }*/
 
+    /**
+     * set id of the room
+     * @param id 
+     */
     public void setId(int id) {
         this.id = id;
         this.start();
     }
 
+    /**
+     * get the ships on a team
+     * @param team number of the team
+     * @return list of ships
+     */
     @Override
     public ArrayList<Ship> getAllShipsFromTeam(int team) {
         return teamsmap.get(team).getShips();
     }
 
+    /**
+     * get the lifeorbs on the battleground
+     * @return list with this items
+     */
     @Override
     public ArrayList<LifeOrb> getAllLifeOrbs()  {
         ArrayList<LifeOrb> o = new ArrayList<LifeOrb>();
@@ -575,6 +705,11 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
         return o;
     }
 
+    /**
+     * get the life orb like object
+     * @param idLifeOrb id of the item
+     * @return the item
+     */
     @Override
     public LifeOrb getLifeOrb(int idLifeOrb){
             return getAllLifeOrbs().get(idLifeOrb);
@@ -583,7 +718,11 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
 
 
-
+    /**
+     * allows the movement of a ship on the battleground
+     * @param username player name
+     * @param key key of the keyboard
+     */
     @Override
     public void moveShip(String username,int key) {
         HashMap<String, Ship> sp = getAllShipsAsMap();
@@ -597,11 +736,19 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
 
     }
 
+    /**
+     * get flags of teams
+     * @return list  with flags
+     */
     @Override
     public ArrayList<Flag> getFlags() {
         return new ArrayList<Flag>(flagsmap.values());
     }
 
+    /**
+     * get bases of teams
+     * @return list with bases
+     */
     @Override
     public ArrayList<Base> getBases() {
         ArrayList<Team> teams = new ArrayList<>(teamsmap.values());

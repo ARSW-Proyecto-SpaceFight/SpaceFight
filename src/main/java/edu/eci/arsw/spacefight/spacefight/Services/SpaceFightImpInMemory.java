@@ -193,6 +193,13 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
             throw new BattleGroundGameException(e.getMessage());
         }
     }
+    
+    /**
+     * allows shoot a ship by name
+     * @param roomId number of room
+     * @param username player name
+     * @throws BattleGroundGameException 
+     */
     public void shoot(int roomId,String username)throws BattleGroundGameException{
         try {
             ms.shoot(roomId,username);
@@ -201,11 +208,22 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
         }
     }
 
+    /**
+     * get the list of created rooms
+     * @return list of rooms 
+     */
     @Override
     public Set<Integer> getRooms() {
         return ms.getRoomsMap().keySet();
     }
 
+    /**
+     * get meteorites of room
+     * @param roomId number of room
+     * @return list of meteorites
+     * @throws BattleGroundGameException
+     * @throws MasterException 
+     */
     @Override
     public ArrayList<Meteorite> getMeteoriteFromRoom(int roomId) throws BattleGroundGameException, MasterException {
         return ms.getMeteoritesFromRoom(roomId);
@@ -213,20 +231,42 @@ public class SpaceFightImpInMemory implements SpaceFightServices{
     
 
 
+    /**
+     * get the team with less players
+     * @param roomId number of room
+     * @return team number
+     */
     @Override
     public int getNextTeam(int roomId) {
         return ms.getNextTeam(roomId);
     }
 
+    /**
+     * get the lifeorbs created on a room
+     * @param roomId number of room
+     * @return list of life orbs
+     * @throws BattleGroundGameException
+     * @throws MasterException 
+     */
     @Override
     public ArrayList<LifeOrb> getLifeOrbFromRoom(int roomId) throws BattleGroundGameException, MasterException {
         return ms.getLifeOrbFromRoom(roomId);
     }
 
+    /**
+     * get flags on the room
+     * @param roomId number of room
+     * @return list of flags
+     */
     public ArrayList<Flag> getFlagsFromRoom(int roomId) {
         return ms.getFlags(roomId);
     }
 
+    /**
+     * get bases on the room
+     * @param roomId number of room
+     * @return list of bases
+     */
     @Override
     public ArrayList<Base> getBasesFromRoom(int roomId) {
         return ms.getBases(roomId);

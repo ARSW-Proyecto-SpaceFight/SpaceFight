@@ -140,6 +140,13 @@ public class MasterImp implements Master{
         }
 
     }
+    
+    /**
+     * relation between shoots, roms and player
+     * @param roomId number of created room
+     * @param username player name to identify a ship
+     * @throws MasterException 
+     */
     public void shoot(int roomId,String username)throws MasterException{
         try {
             BattleGroundGame bg=getRoom(roomId);
@@ -152,6 +159,11 @@ public class MasterImp implements Master{
 
     }
 
+    /**
+     * verify if a room exist
+     * @param roomid number that the person give to the room
+     * @return boolean
+     */
     @Override
     public boolean containsRoom(int roomid) {
      if(rooms.containsKey(roomid)){
@@ -162,6 +174,12 @@ public class MasterImp implements Master{
     }
 
     
+    /**
+     * insert the meteorites that the battleground creates to the room
+     * @param roomid number of the room
+     * @param meteorite item
+     * @throws MasterException 
+     */
     @Override
     public void insertMeteoritesToRoom(int roomid, Meteorite meteorite) throws MasterException {
         if(!rooms.containsKey(roomid)){
@@ -177,6 +195,12 @@ public class MasterImp implements Master{
     }
 
 
+    /**
+     * get the list of meteorites on room
+     * @param roomid number of the room
+     * @return the list of meteorites
+     * @throws MasterException 
+     */
     @Override
     public ArrayList<Meteorite> getMeteoritesFromRoom(int roomid) throws MasterException {
         if(!rooms.containsKey(roomid)){
@@ -191,6 +215,11 @@ public class MasterImp implements Master{
         }
     }
 
+    /**
+     * return the number of the team on the room that have less players
+     * @param roomId number of the room
+     * @return the number of the team
+     */
     @Override
     public int getNextTeam(int roomId) {
         int cant1 = rooms.get(roomId).getAllShipsFromTeam(1).size();
@@ -198,6 +227,12 @@ public class MasterImp implements Master{
         return (cant1>cant2)?2:1;
     }
 
+    /**
+     * allows insert life orbs on the room
+     * @param roomid nuber of room
+     * @param lifeOrb item
+     * @throws MasterException 
+     */
     @Override
     public void insertLifesOrbToRoom(int roomid, LifeOrb lifeOrb) throws MasterException {
         if(!rooms.containsKey(roomid)){
@@ -214,6 +249,12 @@ public class MasterImp implements Master{
 
 
 
+    /**
+     * get the list of life orbs on room
+     * @param roomid number of room
+     * @return list of lifeorbs
+     * @throws MasterException 
+     */
     @Override
     public ArrayList<LifeOrb> getLifeOrbFromRoom(int roomid) throws MasterException {
         if(!rooms.containsKey(roomid)){
@@ -225,11 +266,21 @@ public class MasterImp implements Master{
         }
     }
 
+    /**
+     * get flags of rooms
+     * @param roomId number of the room
+     * @return list of flags
+     */
     @Override
     public ArrayList<Flag> getFlags(int roomId) {
         return rooms.get(roomId).getFlags();
     }
 
+    /**
+     * get team bases of room
+     * @param roomId number of room
+     * @return list of bases
+     */
     @Override
     public ArrayList<Base> getBases(int roomId) {
         return rooms.get(roomId).getBases();
