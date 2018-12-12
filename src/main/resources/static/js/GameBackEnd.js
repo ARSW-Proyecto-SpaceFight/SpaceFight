@@ -30,6 +30,10 @@ async function newShip(){
         stompClient.send("/app/new."+ship.getRoom(), {}, JSON.stringify(ship.getJSON()));
 }
 
+async function endRoom(){
+    var room = alert("Se acabó el juego");
+}
+
 /*
 *Le pregunta al servidor el estado actual del juego
 */
@@ -42,14 +46,7 @@ async function getAllShips(room){
 
 
 /*
-*Crea una nueva sala
-*/
-async function createNewRoom(room){
-	await Promise.resolve(axios.post(host+"?room="+room));
-}
-
-/*
-*Mira si existe los cuartos
+*Mira si existe las salas
 */
 async function existsRooms(){
 	var exists = false;

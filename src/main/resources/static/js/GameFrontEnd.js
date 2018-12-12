@@ -94,7 +94,9 @@ async function pintar(){
 	document.getElementById("all").innerHTML += agregar;
 }
 
-
+/*
+* Pinta meteoritos
+*/
 async function pintarmeteorites(body){
     agregar = ""
     var i;
@@ -106,6 +108,9 @@ async function pintarmeteorites(body){
 
 }
 
+/*
+* Pinta orbes de vida
+*/
 async function pintarorbesdevida(body){
      agregar = ""
      var i;
@@ -116,6 +121,9 @@ async function pintarorbesdevida(body){
      document.getElementById("all").innerHTML += agregar;
 }
 
+/*
+* Permite el movimiento de la nave
+*/
 function moverNave(body){    
     nave = document.getElementById("ship"+body.username);   
     nave.style.top = body.y + "px"
@@ -154,6 +162,9 @@ function moverNave(body){
     vidaNave.style.left = body.x + "px"
 }
 
+/*
+* Pinta la nave
+*/
 function pintarNave(body){
     agregar = ""
     agregar += "<img id='ship"+body.username+"' style='position:absolute; width:"+body.shipSize+"px; height:"+body.shipSize+"px; top:"+body.y+"px; left:"+body.x+"px'";
@@ -188,32 +199,49 @@ function pintarNave(body){
     document.getElementById("all").innerHTML += agregar;
 }
 
+/*
+* Elimina una nave del campo
+*/
 function eliminarNave(username){
     eliminarElemento("user"+username);
     eliminarElemento("vida"+username);
     eliminarElemento("ship"+username);
 }
 
+/*
+* Elimina una bala del campo
+*/
 function  eliminarBala(body) {
 	eliminarElemento("bala"+body.id);
 }
 
+/*
+* Elimina un orbe de vida
+*/
 function eliminarOrbe(body){
     eliminarElemento("lifeorb"+body.idItem);
 
 }
 
+/*
+* Genera dano en la nave por impacto
+*/
 function danarNave(body){
     document.getElementById("vida"+body.username).innerText = body.health;
 }
 
 
-
+/*
+* Elimina un item del campo por su id
+*/
 function eliminarElemento(elementId) {    
     var element = document.getElementById(elementId);
     element.parentNode.removeChild(element);
 }
 
+/*
+* Dibuja las balas en el campo
+*/
 function pintarBala(body){    
     if(document.getElementById("bala"+body.id) == null){
         agregar = ""
@@ -226,12 +254,18 @@ function pintarBala(body){
 
 }
 
+/*
+* Permite el movimiento de las balas
+*/
 function moverBala(body){
     bala = document.getElementById("bala"+body.id);
     bala.style.top = body.Ypos + "px"
     bala.style.left = body.Xpos + "px"
 }
 
+/*
+* Dibuja la bandera en el campo
+*/
 function drawFlag(body){
     if(document.getElementById("flag"+body.id) == null){
         agregar = ""
@@ -244,6 +278,9 @@ function drawFlag(body){
 
 }
 
+/*
+* Dibuja una bandera en el campo
+*/
 function drawBase(body){
     if(document.getElementById("base"+body.id) == null){
         agregar = ""
@@ -256,12 +293,18 @@ function drawBase(body){
 
 }
 
+/*
+* Permite el movimiento de la bandera en el campo
+*/
 function moveFlag(body){
     flag = document.getElementById("flag"+body.id);
     flag.style.top = body.Ypos + "px"
     flag.style.left = body.Xpos + "px"
 }
 
+/*
+* Dibuja las banderas de los dos equipos en el campo
+*/
 async function drawFlags(body){
     agregar = ""
     var i;
@@ -274,6 +317,9 @@ async function drawFlags(body){
 
 }
 
+/*
+* Dibuja las bases de los dos equipos en el campo
+*/
 async function drawBases(body){
     agregar = ""
     var i;
@@ -291,6 +337,9 @@ async function gameOver(){
 
 }
 
+/*
+* Dibuja los textos del campo
+*/
 function drawStrings(){
         agregar = "";
         agregar += "<label id = 'team1' style='position:absolute; top:0px; left:0px'>Score Team 1</label>";
@@ -300,6 +349,9 @@ function drawStrings(){
         document.getElementById("all").innerHTML += agregar;
      }
 
+/*
+* Dibuja la puntuacion del equipo en el campo
+*/
 function drawScore(body){
       document.getElementById("scoreteam1").innerText = body.scoreTeam1;
       document.getElementById("scoreteam2").innerText = body.scoreTeam2;

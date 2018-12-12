@@ -430,6 +430,7 @@ public class BattleGroundImp extends Thread implements BattleGroundGame {
             if(teams.get(i).getScore()>=5){
                 msgt.sendOver(id);
                 active=false;
+                
             }
         }
 
